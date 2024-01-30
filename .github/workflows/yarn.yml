@@ -10,12 +10,12 @@ jobs:
   build:
     name: Test
     runs-on: ubuntu-latest
-    env:
-      WORDS: ${{ secrets.ECHO_HELLOWORLD }}
-      PASSWORD: ${{ secrets.PASSWORD }}
-      NAMEANDIPADDRESS: ${{ secrets.NAMEANDIPADDRESS }}
     steps:
       - uses: actions/checkout@v3
+        env:
+          WORDS: ${{ secrets.ECHO_HELLOWORLD }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+          NAMEANDIPADDRESS: ${{ secrets.NAMEANDIPADDRESS }}
 
       - name: Set Node.js 18.x
         uses: actions/setup-node@v3
