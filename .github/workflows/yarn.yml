@@ -34,7 +34,7 @@ jobs:
         run: cd examples/littleweb && yarn build # will run `yarn build` command
 
       - name: ECHO_HELLOWORLD
-        run: echo $WORDS
+        run: echo "$WORDS"
 
       - name: 删除旧的jar包以及运行脚本
         run: sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no $NAMEANDIPADDRESS "cd /root/pubWeb && rm -rf ./*"
