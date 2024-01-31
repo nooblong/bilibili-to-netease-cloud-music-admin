@@ -8,14 +8,11 @@ on:
 
 jobs:
   build:
+    environment: 3year
     name: Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        env:
-          WORDS: ${{ secrets.ECHO_HELLOWORLD }}
-          PASSWORD: ${{ secrets.PASSWORD }}
-          NAMEANDIPADDRESS: ${{ secrets.NAMEANDIPADDRESS }}
 
       - name: Set Node.js 18.x
         uses: actions/setup-node@v3
@@ -36,10 +33,10 @@ jobs:
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub! ${{ secrets.ECHO_HELLOWORLD }}"
 
       - name: 删除旧的jar包以及运行脚本
-        run: sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no $NAMEANDIPADDRESS "cd /root/pubWeb && rm -rf ./*"
+        run: sshpass -p ${{ secrets.PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.NAMEANDIPADDRESS }} "cd /root/pubWeb && rm -rf ./*"
 
       - name: 上传jar包和启动脚本到服务器中
-        run: sshpass -p $PASSWORD scp -r -o StrictHostKeyChecking=no ./examples/littleweb/dist $NAMEANDIPADDRESS:/root/pubWeb
+        run: sshpass -p ${{ secrets.PASSWORD }} scp -r -o StrictHostKeyChecking=no ./examples/littleweb/dist ${{ secrets.NAMEANDIPADDRESS }}:/root/pubWeb
 
       - name: 启动项目
-        run: sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no $NAMEANDIPADDRESS "nginx -s reload"
+        run: sshpass -p ${{ secrets.PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.NAMEANDIPADDRESS }} "nginx -s reload"
