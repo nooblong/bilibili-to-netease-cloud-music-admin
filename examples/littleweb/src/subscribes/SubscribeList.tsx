@@ -43,12 +43,12 @@ const SubscribesDesktop = () => (
         actions={<SubscribeListActions />}
     >
         <Datagrid rowClick={rowClick}>
-            <TextField source="remark" />
-            <TextField source="type" />
-            <TextField source="videoOrder" />
-            <TextField source="voiceListId" />
-            <TextField source="targetId" />
-            <TextField source="processTime" />
+            <TextField source="remark" label="备注" />
+            <TextField source="type" label="类型" />
+            <TextField source="videoOrder" label="获取视频顺序" />
+            <TextField source="voiceListId" label="播客id" />
+            <TextField source="targetId" label="目标id" />
+            <TextField source="processTime" label="处理时间" />
         </Datagrid>
     </List>
 );

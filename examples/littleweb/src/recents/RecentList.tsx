@@ -43,12 +43,14 @@ const RecentListDesktop = () => (
         filters={recentFilters}
     >
         <Datagrid rowClick={rowClick}>
-            <TextField source="name" />
-            <TextField source="voiceId" />
-            <TextField source="voiceListId" />
-            <TextField source="userName" />
-            <TextField source="displayStatus" />
-            <TextField source="createTime" />
+            <TextField source="name" label="标题" />
+            <TextField source="voiceId" label="声音id" />
+            <TextField source="voiceListId" label="播客id" />
+            <TextField source="userName" label="用户名" />
+            <TextField source="displayStatus" label="审核状态" />
+            <TextField source="uploadStatus" label="上传状态" />
+            <TextField source="retryTimes" label="重试次数" />
+            <TextField source="createTime" label="创建时间" />
         </Datagrid>
     </List>
 );
