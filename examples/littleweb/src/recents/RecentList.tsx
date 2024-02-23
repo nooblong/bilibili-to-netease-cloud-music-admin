@@ -26,7 +26,11 @@ const RecentListMobile = () => {
             <SimpleList
                 linkType="show"
                 primaryText={record => record.name}
-                secondaryText={record => rowSx(record, 0).display}
+                secondaryText={record =>
+                    rowSx(record, 0).display +
+                    '-' +
+                    uploadStatusDict(record.uploadStatus)
+                }
                 tertiaryText={record =>
                     new Date(record.createTime).toLocaleDateString()
                 }
@@ -90,6 +94,11 @@ const RecentList = () => {
 
 function rowSx(record, index) {
     if (record.displayStatus === 'AUDITING') {
+        if (record.uploadStatus === 'NOT_UPLOAD') {
+            return {
+                display: '待上传',
+            };
+        }
         return {
             '& .MuiListItemText-secondary': {
                 color: 'red',
@@ -125,6 +134,18 @@ function rowSx(record, index) {
             display: '状态: ' + record.displayStatus,
         };
     }
+}
+
+function uploadStatusDict(status: string): string {
+    switch (status) {
+        case 'NOT_UPLOAD':
+            return '未处理';
+        case 'FINISHED':
+            return '已上传';
+        case 'NETEASE_ACCOUNT_EXPIRED':
+            return '网易登录过期跳过';
+    }
+    return '未知状态';
 }
 
 export default RecentList;
