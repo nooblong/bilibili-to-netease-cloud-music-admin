@@ -45,8 +45,8 @@ const RecentCreateToolbar = () => {
                 alwaysEnable
                 transform={data => ({
                     ...data,
-                    passCheck: data.passCheck ? 1 : 0,
-                    useDefaultCover: data.useDefaultCover ? 1 : 0,
+                    crack: data.crack ? 1 : 0,
+                    useVideoCover: data.useVideoCover ? 1 : 0,
                 })}
             />
         </Toolbar>
@@ -118,13 +118,13 @@ const SubscribeCreate = () => {
                 />
                 <TextInput source="keyWord" fullWidth label="过滤关键词" />
                 <BooleanInput
-                    source="passCheck"
+                    source="crack"
                     fullWidth
                     disabled={data1 && data1.fullName !== 'admin'}
                     label="绕过版权检测"
                 />
                 <BooleanInput
-                    source="useDefaultCover"
+                    source="useVideoCover"
                     label="使用播客默认封面，取消则为视频封面"
                     fullWidth
                 />

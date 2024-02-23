@@ -95,13 +95,13 @@ const SubscribeEdit = props => {
                 />
                 <TextInput source="keyWord" fullWidth label="过滤关键词" />
                 <BooleanInput
-                    source="passCheck"
+                    source="crack"
                     fullWidth
                     label="绕过版权检测"
                     disabled={data1 && data1.fullName !== 'admin'}
                 />
                 <BooleanInput
-                    source="useDefaultCover"
+                    source="useVideoCover"
                     label="使用播客默认封面，取消则为视频封面"
                     defaultValue
                     fullWidth
@@ -193,8 +193,8 @@ const SubscribeEdit = props => {
                                         alwaysEnable
                                         transform={data => ({
                                             ...data,
-                                            passCheck: data.passCheck ? 1 : 0,
-                                            useDefaultCover: data.useDefaultCover
+                                            crack: data.crack ? 1 : 0,
+                                            useVideoCover: data.useVideoCover
                                                 ? 1
                                                 : 0,
                                         })}
