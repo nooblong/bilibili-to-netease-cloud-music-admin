@@ -93,12 +93,12 @@ const RecentList = () => {
 };
 
 function rowSx(record, index) {
+    if (record.uploadStatus === 'NOT_UPLOAD') {
+        return {
+            display: '待上传',
+        };
+    }
     if (record.displayStatus === 'AUDITING') {
-        if (record.uploadStatus === 'NOT_UPLOAD') {
-            return {
-                display: '待上传',
-            };
-        }
         return {
             '& .MuiListItemText-secondary': {
                 color: 'red',
