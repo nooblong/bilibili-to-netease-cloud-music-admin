@@ -125,7 +125,7 @@ const SubscribeCreate = () => {
                 />
                 <BooleanInput
                     source="useVideoCover"
-                    label="使用播客默认封面，取消则为视频封面"
+                    label="使用视频封面，取消则为播客默认封面"
                     fullWidth
                 />
                 <TextInput

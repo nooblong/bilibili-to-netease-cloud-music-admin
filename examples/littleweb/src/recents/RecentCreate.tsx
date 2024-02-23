@@ -130,7 +130,7 @@ const RecentCreate = () => {
                 />
                 <BooleanInput
                     source="useDefaultImg"
-                    label="使用视频封面，取消则为播客封面"
+                    label="使用视频封面，取消则为播客默认封面"
                     defaultValue
                     fullWidth
                 />
