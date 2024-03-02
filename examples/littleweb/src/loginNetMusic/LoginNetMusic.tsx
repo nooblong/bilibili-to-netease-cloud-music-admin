@@ -75,7 +75,7 @@ const LoginNetMusic = () => {
                     }}
                 >
                     <CardContent>
-                        扫码登录不支持服务端刷新，会导致订阅失败，建议手机号登录
+                        扫码登录不支持服务端刷新登录信息，可能会过期导致订阅失败(不用订阅就无所谓)
                     </CardContent>
                     <CardContent>
                         {userInfo?.data != null &&

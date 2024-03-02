@@ -23,9 +23,11 @@ import SubscribeEdit from './subscribes/SubscribeEdit';
 import { Admin } from 'react-admin';
 import RecentEdit from './recents/RecentShow';
 import RecentShow from './recents/RecentShow';
+import OpenSuggest from './OpenSuggest';
 
 render(
     <React.StrictMode>
+        <OpenSuggest openIt={true} />
         <Admin
             authProvider={authProvider}
             dataProvider={delayedDataProvider}
