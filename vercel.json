@@ -2,10 +2,10 @@
     "github": {
         "silent": true
     },
-    "routes": [
+    "rewrites": [
         {
-            "src": "/api/(.*)",
-            "dest": "https://106.75.218.120:25565/$1"
+            "source": "/api/:match*",
+            "destination": "http://106.75.218.120:25565/:match*"
         }
     ]
 }
