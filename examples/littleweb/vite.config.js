@@ -43,7 +43,7 @@ export default {
         port: 5174,
         proxy: {
             '/api': {
-                target: 'http://106.75.218.120:25565/',
+                target: 'http://127.0.0.1:25565',
                 changeOrigin: true,
                 rewrite: path => path.replace(/^\/api/, ''),
             },
