@@ -1,11 +1,5 @@
 {
     "github": {
         "silent": true
-    },
-    "rewrites": [
-        {
-            "source": "/api/:match*",
-            "destination": "http://106.75.218.120:25565/:match*"
-        }
-    ]
+    }
 }
