@@ -16,7 +16,7 @@ import { TextInput } from 'ra-ui-materialui';
 
 export default function ({ videoInfo, setVideoInfo }) {
     const dataProvider = useDataProvider();
-    // const [url, setUrl] = useState<string>();
+    const [bvid, setBvid] = useState<string>(videoInfo.bvid);
     const handleChange = (event): void => {
         if (videoInfo.pages.length > 1) {
             const obj = {
@@ -35,10 +35,7 @@ export default function ({ videoInfo, setVideoInfo }) {
             <TextInput
                 source="bvid"
                 onChange={event => {
-                    setVideoInfo({
-                        ...videoInfo,
-                        bvid: event.currentTarget.value,
-                    });
+                    setBvid(event.currentTarget.value);
                 }}
                 multiline
                 fullWidth
@@ -49,7 +46,7 @@ export default function ({ videoInfo, setVideoInfo }) {
                 variant="contained"
                 onClick={() => {
                     dataProvider
-                        .getVideoInfo('getVideoInfo', { bvid: videoInfo.bvid })
+                        .getVideoInfo('getVideoInfo', { bvid: bvid })
                         .then(data => {
                             data = data.data;
                             const obj = {
@@ -62,6 +59,7 @@ export default function ({ videoInfo, setVideoInfo }) {
                                 pages: data.pages,
                                 cid: videoInfo.cid,
                                 partName: videoInfo.partName,
+                                bvid: bvid,
                             };
                             setVideoInfo(obj);
                         });
