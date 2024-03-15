@@ -55,8 +55,10 @@ const LoginNetMusic = () => {
     useEffect(() => {
         dataProvider.isLogin().then(data => {
             if (
-                data.data.data.account == null ||
-                data.data.data.account === 'null'
+                data.data.data === null ||
+                data.data.data.account === null ||
+                data.data.data.account === 'null' ||
+                data.data.data.account.anonimousUser
             ) {
                 localStorage.removeItem('netmusic');
             } else {
@@ -79,7 +81,8 @@ const LoginNetMusic = () => {
                     </CardContent>
                     <CardContent>
                         {userInfo?.data != null &&
-                        userInfo.data?.account != null ? (
+                        userInfo.data?.account != null &&
+                        !userInfo.data.account.anonimousUser ? (
                             <UserInfoShow
                                 id={userInfo.data?.account.id}
                                 userName={userInfo.data?.account.userName}
