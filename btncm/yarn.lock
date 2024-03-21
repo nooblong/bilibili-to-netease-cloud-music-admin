@@ -3655,13 +3655,13 @@ __metadata:
   linkType: hard
 
 "prosemirror-view@npm:^1.0.0, prosemirror-view@npm:^1.1.0, prosemirror-view@npm:^1.13.3, prosemirror-view@npm:^1.27.0, prosemirror-view@npm:^1.31.0, prosemirror-view@npm:^1.32.7":
-  version: 1.33.1
-  resolution: "prosemirror-view@npm:1.33.1"
+  version: 1.33.2
+  resolution: "prosemirror-view@npm:1.33.2"
   dependencies:
     prosemirror-model: "npm:^1.16.0"
     prosemirror-state: "npm:^1.0.0"
     prosemirror-transform: "npm:^1.1.0"
-  checksum: 10c0/9248a3f5fd60279ba2870535deb61f16946f2602a0e9b5736d5a311aa69381bed086095a4474c1c4a5d8149039a8e36e8b28056b8910648ccc8c68958eee1578
+  checksum: 10c0/47b0e28f8c80c50c907b2bd92cffb86c8094ea9506b911597f79910ea5553a3ad6d456b29a30b5913dd9a8c1d746052538a0de6fe93cce88df0b3f7c5d765894
   languageName: node
   linkType: hard
 
@@ -3715,16 +3715,15 @@ __metadata:
   languageName: node
   linkType: soft
 
-"ra-data-fakerest@npm:^4.16.3":
-  version: 4.16.12
-  resolution: "ra-data-fakerest@npm:4.16.12"
+"ra-data-fakerest@portal:/Users/lyl/Documents/GitHub/nosync.nosync/bilibili-to-netease-cloud-music-admin/reactadmin/packages/ra-data-fakerest::locator=btncm%40workspace%3A.":
+  version: 0.0.0-use.local
+  resolution: "ra-data-fakerest@portal:/Users/lyl/Documents/GitHub/nosync.nosync/bilibili-to-netease-cloud-music-admin/reactadmin/packages/ra-data-fakerest::locator=btncm%40workspace%3A."
   dependencies:
     fakerest: "npm:^3.0.0"
   peerDependencies:
     ra-core: ^4.0.0
-  checksum: 10c0/45f1639a03561bb601a84a367c1abf8f4aa3f2b83a76ab018acf484cfca46149c06d8a999072c72aac71a8575d98bdf1972545f95b4ebbddd390358021541304
   languageName: node
-  linkType: hard
+  linkType: soft
 
 "ra-data-simple-rest@portal:/Users/lyl/Documents/GitHub/nosync.nosync/bilibili-to-netease-cloud-music-admin/reactadmin/packages/ra-data-simple-rest::locator=btncm%40workspace%3A.":
   version: 0.0.0-use.local
@@ -3736,19 +3735,18 @@ __metadata:
   languageName: node
   linkType: soft
 
-"ra-i18n-polyglot@npm:^4.16.12, ra-i18n-polyglot@npm:^4.16.3":
-  version: 4.16.12
-  resolution: "ra-i18n-polyglot@npm:4.16.12"
+"ra-i18n-polyglot@portal:/Users/lyl/Documents/GitHub/nosync.nosync/bilibili-to-netease-cloud-music-admin/reactadmin/packages/ra-i18n-polyglot::locator=btncm%40workspace%3A.":
+  version: 0.0.0-use.local
+  resolution: "ra-i18n-polyglot@portal:/Users/lyl/Documents/GitHub/nosync.nosync/bilibili-to-netease-cloud-music-admin/reactadmin/packages/ra-i18n-polyglot::locator=btncm%40workspace%3A."
   dependencies:
     node-polyglot: "npm:^2.2.2"
     ra-core: "npm:^4.16.12"
-  checksum: 10c0/12aab0a135b6851d38f6a39a2959a088d6e46201d12fb606d964a74458f57a330db5ce5539a3f91c167d33be849724adb89c5dd6e952e2bc70dd56c22199f7dd
   languageName: node
-  linkType: hard
+  linkType: soft
 
-"ra-input-rich-text@npm:^4.16.3":
-  version: 4.16.13
-  resolution: "ra-input-rich-text@npm:4.16.13"
+"ra-input-rich-text@portal:/Users/lyl/Documents/GitHub/nosync.nosync/bilibili-to-netease-cloud-music-admin/reactadmin/packages/ra-input-rich-text::locator=btncm%40workspace%3A.":
+  version: 0.0.0-use.local
+  resolution: "ra-input-rich-text@portal:/Users/lyl/Documents/GitHub/nosync.nosync/bilibili-to-netease-cloud-music-admin/reactadmin/packages/ra-input-rich-text::locator=btncm%40workspace%3A."
   dependencies:
     "@tiptap/core": "npm:^2.0.3"
     "@tiptap/extension-color": "npm:^2.0.3"
@@ -3770,27 +3768,24 @@ __metadata:
     ra-ui-materialui: ^4.0.0
     react: ^16.9.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.9.0 || ^17.0.0 || ^18.0.0
-  checksum: 10c0/28f705746a271556cf6e9a27cac15e8f53769ac10cc224d0599128ccd65d19bc4e154dd4d69129b6309c6cf2424cfe3293f1508272722ce3cb80bc832e693631
   languageName: node
-  linkType: hard
+  linkType: soft
 
-"ra-language-english@npm:^4.16.12, ra-language-english@npm:^4.16.3":
-  version: 4.16.12
-  resolution: "ra-language-english@npm:4.16.12"
+"ra-language-english@portal:/Users/lyl/Documents/GitHub/nosync.nosync/bilibili-to-netease-cloud-music-admin/reactadmin/packages/ra-language-english::locator=btncm%40workspace%3A.":
+  version: 0.0.0-use.local
+  resolution: "ra-language-english@portal:/Users/lyl/Documents/GitHub/nosync.nosync/bilibili-to-netease-cloud-music-admin/reactadmin/packages/ra-language-english::locator=btncm%40workspace%3A."
   dependencies:
     ra-core: "npm:^4.16.12"
-  checksum: 10c0/312d6099e18b971d933cc4483a6213f7a31e360b80d74fa212195e67e25b6cf26968359db66521155b17ce5d381dbd3dc399221f2ba590ef04930bd5d34efcc9
   languageName: node
-  linkType: hard
+  linkType: soft
 
-"ra-language-french@npm:^4.16.3":
-  version: 4.16.12
-  resolution: "ra-language-french@npm:4.16.12"
+"ra-language-french@portal:/Users/lyl/Documents/GitHub/nosync.nosync/bilibili-to-netease-cloud-music-admin/reactadmin/packages/ra-language-french::locator=btncm%40workspace%3A.":
+  version: 0.0.0-use.local
+  resolution: "ra-language-french@portal:/Users/lyl/Documents/GitHub/nosync.nosync/bilibili-to-netease-cloud-music-admin/reactadmin/packages/ra-language-french::locator=btncm%40workspace%3A."
   dependencies:
     ra-core: "npm:^4.16.12"
-  checksum: 10c0/83341c383179790835aeb61accbd2db56728509793ee01b2fc47049570c4e9af63576e7915965d6073e288af0084f4e4e31986fb3d59854845cac8356243c551
   languageName: node
-  linkType: hard
+  linkType: soft
 
 "ra-ui-materialui@portal:/Users/lyl/Documents/GitHub/nosync.nosync/bilibili-to-netease-cloud-music-admin/reactadmin/packages/ra-ui-materialui::locator=btncm%40workspace%3A.":
   version: 0.0.0-use.local
