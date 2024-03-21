@@ -18,11 +18,12 @@ import { Login, LoginForm, TextInput } from 'ra-ui-materialui';
 const LoginPage = () => (
     <>
         <Login
+            sx={{ background: 'black' }}
             // A random image that changes everyday
-            backgroundImage={'https://source.unsplash.com/random/1600x900/daily'.replace(
-                /^(http)s*(:\/\/)/,
-                'https://images.weserv.nl/?url='
-            )}
+            // backgroundImage={'https://source.unsplash.com/random/1600x900/daily'.replace(
+            //     /^(http)s*(:\/\/)/,
+            //     'https://images.weserv.nl/?url='
+            // )}
             children={Children()}
         />
     </>

@@ -51,16 +51,12 @@ const AlertDialogSlide = ({ openIt }) => {
                 <DialogTitle>{'这是一些提示'}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
-                        第一次进来要右上角退出游客模式才能进行操作登录网易云等。。
-                        <br />
-                        不要重复搬运已经有人搬过的！
-                        <br />
-                        ip和域名可能会变，会更新在github：
+                        github：
                         <a href="https://github.com/nooblong/bilibili-to-netease-cloud-music">
                             https://github.com/nooblong/bilibili-to-netease-cloud-music
                         </a>
                         <br />
-                        可以的话麻烦关注一下我：网易云@nooblong
+                        网易云:@nooblong
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>

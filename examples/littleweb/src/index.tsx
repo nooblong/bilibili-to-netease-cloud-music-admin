@@ -27,7 +27,7 @@ import OpenSuggest from './OpenSuggest';
 
 render(
     <React.StrictMode>
-        <OpenSuggest openIt={true} />
+        {/*<OpenSuggest openIt={true} />*/}
         <Admin
             authProvider={authProvider}
             dataProvider={delayedDataProvider}

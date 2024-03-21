@@ -21,7 +21,7 @@ const MyAppBar = () => {
         <AppBar
             userMenu={
                 <UserMenu>
-                    <OpenSuggest openIt={false} />
+                    {/*<OpenSuggest openIt={false} />*/}
                     <Logout></Logout>
                 </UserMenu>
             }
