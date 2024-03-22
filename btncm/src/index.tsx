@@ -17,14 +17,16 @@ import RecentShow from './recents/RecentShow';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
+import UserList from './users/UserList';
+import Dashboard from './dashboard/Dashboard';
 
 render(
     <React.StrictMode>
         <Admin
             authProvider={authProvider}
             dataProvider={delayedDataProvider}
-            // i18nProvider={i18nProvider}
-            title="Example Admin"
+            dashboard={Dashboard}
+            title="btncm"
             layout={Layout}
             loginPage={LoginPage}
         >
@@ -50,6 +52,7 @@ render(
                 list={LoginNetMusic}
                 options={{ label: '登录网易云' }}
             />
+            <Resource name="user" list={UserList} />
         </Admin>
     </React.StrictMode>,
     document.getElementById('root')
