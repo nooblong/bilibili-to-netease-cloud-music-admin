@@ -1,10 +1,16 @@
-import {Button, Card, CardContent, FormControl, MenuItem,} from '@mui/material';
-import React, {useState} from 'react';
+import {
+    Button,
+    Card,
+    CardContent,
+    FormControl,
+    MenuItem,
+} from '@mui/material';
+import React, { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
-import {TextInput, useDataProvider} from 'react-admin';
+import { TextInput, useDataProvider } from 'react-admin';
 
 export default function ({ videoInfo, setVideoInfo }) {
     const dataProvider = useDataProvider();

@@ -1,7 +1,22 @@
 import * as React from 'react';
-import {Fragment, useState} from 'react';
-import {EditButton, ListActions, ListBase, Title, useListContext,} from 'react-admin';
-import {Box, Card, Collapse, List, ListItem, ListItemSecondaryAction, ListItemText, Stack,} from '@mui/material';
+import { Fragment, useState } from 'react';
+import {
+    EditButton,
+    ListActions,
+    ListBase,
+    Title,
+    useListContext,
+} from 'react-admin';
+import {
+    Box,
+    Card,
+    Collapse,
+    List,
+    ListItem,
+    ListItemSecondaryAction,
+    ListItemText,
+    Stack,
+} from '@mui/material';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 

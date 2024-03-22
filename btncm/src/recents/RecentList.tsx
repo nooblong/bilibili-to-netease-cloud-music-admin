@@ -1,23 +1,31 @@
 import * as React from 'react';
-import {useMediaQuery} from '@mui/material';
-import {Theme} from '@mui/material/styles';
+import { useMediaQuery } from '@mui/material';
+import { Theme } from '@mui/material/styles';
 import {
-    CreateButton, Datagrid,
+    CreateButton,
+    Datagrid,
     FilterButton,
     InfiniteList,
     List,
     SelectInput,
-    SimpleList, TextField,
+    SimpleList,
+    TextField,
     TextInput,
     TopToolbar,
 } from 'react-admin';
-import {AuditStatusEnum} from '../subscribes/Enums';
+import { AuditStatusEnum } from '../subscribes/Enums';
 
 const RecentListMobile = () => {
     return (
-
-        <List actions={<PostListActions/>} filters={recentFilters} exporter={false}>
-            <Datagrid bulkActionButtons={false} rowClick={(id, resource, record) => rowClick(id, resource)}>
+        <List
+            actions={<PostListActions />}
+            filters={recentFilters}
+            exporter={false}
+        >
+            <Datagrid
+                bulkActionButtons={false}
+                rowClick={(id, resource, record) => rowClick(id, resource)}
+            >
                 <TextField source="uploadName" label="上传名字" />
                 <TextField source="userName" label="用户" />
                 <TextField source="statusDesc" label="状态" />
@@ -53,7 +61,7 @@ const recentFilters = [
 ];
 
 const RecentList = () => {
-    return <RecentListMobile />
+    return <RecentListMobile />;
 };
 
 export default RecentList;

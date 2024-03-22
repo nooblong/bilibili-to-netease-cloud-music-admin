@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {useMemo} from 'react';
-import {RichTextInput} from 'ra-input-rich-text';
+import { useMemo } from 'react';
+import { RichTextInput } from 'ra-input-rich-text';
 import {
     ArrayInput,
     AutocompleteInput,
@@ -27,8 +27,8 @@ import {
     usePermissions,
     useRedirect,
 } from 'react-admin';
-import {useFormContext, useWatch} from 'react-hook-form';
-import {Button, Dialog, DialogActions, DialogContent} from '@mui/material';
+import { useFormContext, useWatch } from 'react-hook-form';
+import { Button, Dialog, DialogActions, DialogContent } from '@mui/material';
 
 const PostCreateToolbar = () => {
     const notify = useNotify();

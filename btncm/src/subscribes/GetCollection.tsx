@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
-import {Button, TextField} from '@mui/material';
-import {useDataProvider, useNotify} from 'react-admin';
-import {parseImgUrl} from '../dataProvider';
+import React, { useState } from 'react';
+import { Button, TextField } from '@mui/material';
+import { useDataProvider, useNotify } from 'react-admin';
+import { parseImgUrl } from '../dataProvider';
 import Box from '@mui/material/Box';
 
 export default function ({ setTargetId }) {

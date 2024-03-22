@@ -1,9 +1,14 @@
-import {DataProvider, fetchUtils, HttpError, withLifecycleCallbacks} from 'react-admin';
+import {
+    DataProvider,
+    fetchUtils,
+    HttpError,
+    withLifecycleCallbacks,
+} from 'react-admin';
 import get from 'lodash/get';
 import simpleRestProvider from 'ra-data-simple-rest';
 import addUploadFeature from './addUploadFeature';
 import moment from 'moment';
-import querystring from 'querystring'
+import querystring from 'querystring';
 
 export const accessTokenClient = (url, options: any = {}) => {
     if (!options.headers) {
@@ -129,7 +134,9 @@ const dataProvider: DataProvider = {
         }
         if (resource === 'loginPassword') {
             return accessTokenClient(
-                `/api/direct/login/cellphone?${querystring.stringify(params.data)}`,
+                `/api/direct/login/cellphone?${querystring.stringify(
+                    params.data
+                )}`,
                 {}
             ).then(({ json }) => {
                 return {

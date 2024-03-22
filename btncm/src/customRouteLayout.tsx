@@ -1,5 +1,11 @@
 import * as React from 'react';
-import {Datagrid, TextField, Title, useAuthenticated, useGetList,} from 'react-admin';
+import {
+    Datagrid,
+    TextField,
+    Title,
+    useAuthenticated,
+    useGetList,
+} from 'react-admin';
 
 const sort = { field: 'published_at', order: 'DESC' };
 

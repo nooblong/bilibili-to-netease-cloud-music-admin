@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useRecordContext, useTranslate} from 'react-admin';
+import { useRecordContext, useTranslate } from 'react-admin';
 
 export default () => {
     const translate = useTranslate();

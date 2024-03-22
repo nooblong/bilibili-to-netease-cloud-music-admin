@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useState} from 'react';
+import { useState } from 'react';
 import {
     Form,
     LoginForm,
@@ -9,14 +9,20 @@ import {
     useLogin,
     useNotify,
     useSafeSetState,
-    useTranslate
+    useTranslate,
 } from 'react-admin';
-import {Box, Button, Card, CardActions, CircularProgress} from '@mui/material';
-import {styled} from '@mui/material/styles';
+import {
+    Box,
+    Button,
+    Card,
+    CardActions,
+    CircularProgress,
+} from '@mui/material';
+import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
 
 const LoginPage = () => {
-    const {redirectTo} = {redirectTo: '/'};
+    const { redirectTo } = { redirectTo: '/' };
     const [loading, setLoading] = useSafeSetState(false);
     const [registering, setRegistering] = useState(false);
     const login = useLogin();
@@ -36,8 +42,8 @@ const LoginPage = () => {
                     typeof error === 'string'
                         ? error
                         : typeof error === 'undefined' || !error.message
-                            ? 'ra.auth.sign_in_error'
-                            : error.message,
+                        ? 'ra.auth.sign_in_error'
+                        : error.message,
                     {
                         type: 'error',
                         messageArgs: {
@@ -45,8 +51,8 @@ const LoginPage = () => {
                                 typeof error === 'string'
                                     ? error
                                     : error && error.message
-                                        ? error.message
-                                        : undefined,
+                                    ? error.message
+                                    : undefined,
                         },
                     }
                 );
@@ -72,8 +78,8 @@ const LoginPage = () => {
                     typeof error === 'string'
                         ? error
                         : typeof error === 'undefined' || !error.message
-                            ? 'ra.auth.sign_in_error'
-                            : error.message,
+                        ? 'ra.auth.sign_in_error'
+                        : error.message,
                     {
                         type: 'error',
                         messageArgs: {
@@ -81,8 +87,8 @@ const LoginPage = () => {
                                 typeof error === 'string'
                                     ? error
                                     : error && error.message
-                                        ? error.message
-                                        : undefined,
+                                    ? error.message
+                                    : undefined,
                         },
                     }
                 );
@@ -100,7 +106,7 @@ const LoginPage = () => {
     const StyledForm = styled(Form, {
         name: PREFIX,
         overridesResolver: (props, styles) => styles.root,
-    })(({theme}) => ({
+    })(({ theme }) => ({
         [`& .${LoginFormClasses.content}`]: {
             width: 300,
         },
@@ -144,15 +150,14 @@ const LoginPage = () => {
                         backgroundSize: 'cover',
                     }}
                 >
-                    <Card sx={{minWidth: 300, marginTop: '6em'}}>
+                    <Card sx={{ minWidth: 300, marginTop: '6em' }}>
                         <Box
                             sx={{
                                 margin: '1em',
                                 display: 'flex',
                                 justifyContent: 'center',
                             }}
-                        >
-                        </Box>
+                        ></Box>
                         <Box
                             sx={{
                                 marginTop: '1em',
@@ -163,7 +168,7 @@ const LoginPage = () => {
                         >
                             登录
                         </Box>
-                        <Box sx={{padding: '0 1em 1em 1em'}}>
+                        <Box sx={{ padding: '0 1em 1em 1em' }}>
                             <TextInput
                                 autoFocus
                                 source="username"
@@ -190,9 +195,7 @@ const LoginPage = () => {
                                 fullWidth
                             >
                                 {loading && (
-                                    <CircularProgress
-                                        size={25} thickness={2}
-                                    />
+                                    <CircularProgress size={25} thickness={2} />
                                 )}
                                 登录
                             </Button>
@@ -235,15 +238,14 @@ const LoginPage = () => {
                         backgroundSize: 'cover',
                     }}
                 >
-                    <Card sx={{minWidth: 300, marginTop: '6em'}}>
+                    <Card sx={{ minWidth: 300, marginTop: '6em' }}>
                         <Box
                             sx={{
                                 margin: '1em',
                                 display: 'flex',
                                 justifyContent: 'center',
                             }}
-                        >
-                        </Box>
+                        ></Box>
                         <Box
                             sx={{
                                 marginTop: '1em',
@@ -254,7 +256,7 @@ const LoginPage = () => {
                         >
                             注册
                         </Box>
-                        <Box sx={{padding: '0 1em 1em 1em'}}>
+                        <Box sx={{ padding: '0 1em 1em 1em' }}>
                             <TextInput
                                 autoFocus
                                 source="username"

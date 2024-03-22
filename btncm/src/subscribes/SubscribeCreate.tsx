@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {ReactElement, useEffect} from 'react';
+import { ReactElement, useEffect } from 'react';
 import {
     ArrayInput,
     BooleanInput,
@@ -19,15 +19,15 @@ import {
     useNotify,
     useRedirect,
 } from 'react-admin';
-import {useFormContext, useWatch} from 'react-hook-form';
-import {SubscribeTypeEnum, VideoOrderEnum} from './Enums';
-import {parseDatetime} from '../dataProvider';
-import {Card} from '@mui/material';
+import { useFormContext, useWatch } from 'react-hook-form';
+import { SubscribeTypeEnum, VideoOrderEnum } from './Enums';
+import { parseDatetime } from '../dataProvider';
+import { Card } from '@mui/material';
 import GetUp from './GetUp';
 import GetCollection from './GetCollection';
 import GetFavorite from './GetFavorite';
 import GetPart from './GetPart';
-import {toChoice} from '../recents/RecentCreate';
+import { toChoice } from '../recents/RecentCreate';
 import moment from 'moment';
 
 const RecentCreateToolbar = () => {

@@ -1,6 +1,12 @@
 /* eslint react/jsx-key: off */
 import * as React from 'react';
-import {Create, required, SimpleFormConfigurable, TextInput, TranslatableInputs,} from 'react-admin';
+import {
+    Create,
+    required,
+    SimpleFormConfigurable,
+    TextInput,
+    TranslatableInputs,
+} from 'react-admin';
 
 const TagCreate = () => (
     <Create redirect="list">

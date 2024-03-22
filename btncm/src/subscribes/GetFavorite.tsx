@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-import {Button, FormControl, MenuItem, TextField,} from '@mui/material';
-import {useDataProvider, useNotify} from 'react-admin';
+import React, { useState } from 'react';
+import { Button, FormControl, MenuItem, TextField } from '@mui/material';
+import { useDataProvider, useNotify } from 'react-admin';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import Box from '@mui/material/Box';

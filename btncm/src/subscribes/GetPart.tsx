@@ -1,10 +1,16 @@
-import {Button, CardContent, FormControl, MenuItem, TextField,} from '@mui/material';
-import React, {useState} from 'react';
+import {
+    Button,
+    CardContent,
+    FormControl,
+    MenuItem,
+    TextField,
+} from '@mui/material';
+import React, { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
-import {useDataProvider, useNotify} from 'react-admin'
+import { useDataProvider, useNotify } from 'react-admin';
 
 export default function ({ setTargetId }) {
     const dataProvider = useDataProvider();

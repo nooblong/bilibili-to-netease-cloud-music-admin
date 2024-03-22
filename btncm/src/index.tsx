@@ -1,7 +1,7 @@
 /* eslint react/jsx-key: off */
 import * as React from 'react';
-import {Admin, Resource} from 'react-admin'; // eslint-disable-line import/no-unresolved
-import {render} from 'react-dom';
+import { Admin, Resource } from 'react-admin'; // eslint-disable-line import/no-unresolved
+import { render } from 'react-dom';
 
 import authProvider from './authProvider';
 import Layout from './Layout';

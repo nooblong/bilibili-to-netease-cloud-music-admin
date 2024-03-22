@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 import {
     Create,
     required,
@@ -12,11 +12,11 @@ import {
     useCreate,
     useGetOne,
     useNotify,
-    useRedirect
+    useRedirect,
 } from 'react-admin';
-import {Card} from '@mui/material';
-import {toChoice} from './RecentCreate';
-import {useParams} from 'react-router-dom';
+import { Card } from '@mui/material';
+import { toChoice } from './RecentCreate';
+import { useParams } from 'react-router-dom';
 
 const RecentShow = () => {
     const redirect = useRedirect();

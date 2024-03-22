@@ -1,10 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
-import {Button} from '@mui/material';
+import { Button } from '@mui/material';
 import IconCancel from '@mui/icons-material/Cancel';
 
-import {useTranslate} from 'react-admin';
+import { useTranslate } from 'react-admin';
 
 const PostQuickCreateCancelButton = ({
     onClick,

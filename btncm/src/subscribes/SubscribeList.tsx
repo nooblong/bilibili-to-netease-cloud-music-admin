@@ -1,22 +1,34 @@
 import * as React from 'react';
-import {Avatar, useMediaQuery} from '@mui/material';
-import {Theme} from '@mui/material/styles';
+import { Avatar, useMediaQuery } from '@mui/material';
+import { Theme } from '@mui/material/styles';
 import {
     CreateButton,
     Datagrid,
-    FilterButton, ImageField,
+    FilterButton,
+    ImageField,
     InfiniteList,
     List,
     SimpleList,
     TextField,
     TextInput,
-    TopToolbar, useRecordContext
+    TopToolbar,
+    useRecordContext,
 } from 'react-admin';
 
-const AvatarField = (props) => {
+const AvatarField = props => {
     const record = useRecordContext(props);
-    return record ? <img src={record.netCover} style={{maxHeight: "100px", maxWidth: "100px", objectFit: "contain"}}  alt=''/> : null;
-}
+    return record ? (
+        <img
+            src={record.netCover}
+            style={{
+                maxHeight: '100px',
+                maxWidth: '100px',
+                objectFit: 'contain',
+            }}
+            alt=""
+        />
+    ) : null;
+};
 
 const SubscribesDesktop = () => (
     <List

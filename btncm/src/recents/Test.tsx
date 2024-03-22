@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {SelectInput, SimpleForm} from 'react-admin';
-import {useForm, useWatch} from 'react-hook-form';
-import {Button, TextInput} from 'ra-ui-materialui';
+import { SelectInput, SimpleForm } from 'react-admin';
+import { useForm, useWatch } from 'react-hook-form';
+import { Button, TextInput } from 'ra-ui-materialui';
 
 const countries = ['USA', 'UK', 'France'];
 const cities = {
