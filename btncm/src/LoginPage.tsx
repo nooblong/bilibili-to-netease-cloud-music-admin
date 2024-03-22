@@ -11,28 +11,13 @@ import {
     useSafeSetState,
     useTranslate
 } from 'react-admin';
-import {Button, CardContent, CircularProgress} from '@mui/material';
+import {Box, Button, Card, CardActions, CardContent, CircularProgress} from '@mui/material';
 import {styled} from '@mui/material/styles';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
-import Login from "./Login";
 
-const LoginPage = () => (
-    <>
-        <Login
-            sx={{background: 'black'}}
-            // A random image that changes everyday
-            // backgroundImage={'https://source.unsplash.com/random/1600x900/daily'.replace(
-            //     /^(http)s*(:\/\/)/,
-            //     'https://images.weserv.nl/?url='
-            // )}
-            children={Children()}
-        />
-    </>
-);
-
-const Children = () => {
-    const {redirectTo, className} = {redirectTo: '/'};
+const LoginPage = () => {
+    const {redirectTo} = {redirectTo: '/'};
     const [loading, setLoading] = useSafeSetState(false);
     const [registering, setRegistering] = useState(false);
     const login = useLogin();
@@ -149,122 +134,175 @@ const Children = () => {
                     onSubmit={submit}
                     mode="onChange"
                     noValidate
-                    className={className}
-                    sx={{textAlign: 'center'}}
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        minHeight: '100vh',
+                        alignItems: 'center',
+                        justifyContent: 'flex-start',
+                        backgroundRepeat: 'no-repeat',
+                        backgroundColor: 'black',
+                        backgroundSize: 'cover',
+                    }}
                 >
-                    登录
-                    <CardContent className={LoginFormClasses.content}>
-                        <TextInput
-                            autoFocus
-                            source="username"
-                            label={translate('ra.auth.username')}
-                            autoComplete="username"
-                            validate={required()}
-                            fullWidth
-                        />
-                        <TextInput
-                            source="password"
-                            label={translate('ra.auth.password')}
-                            type="password"
-                            autoComplete="current-password"
-                            validate={required()}
-                            fullWidth
-                        />
-
-                        <Button
-                            variant="contained"
-                            type="submit"
-                            color="primary"
-                            disabled={loading}
-                            fullWidth
-                            className={LoginFormClasses.button}
-                        >
-                            {loading ? (
-                                <CircularProgress
-                                    className={LoginFormClasses.icon}
-                                    size={19}
-                                    thickness={3}
-                                />
-                            ) : (
-                                '登录'
-                            )}
-                        </Button>
-                        <Button
-                            variant="contained"
-                            type="submit"
-                            color="primary"
-                            disabled={loading}
-                            fullWidth
-                            className={LoginFormClasses.button}
-                            onClick={event => {
-                                event.preventDefault();
-                                setRegistering(true);
+                    <Card sx={{minWidth: 300, marginTop: '6em'}}>
+                        <Box
+                            sx={{
+                                margin: '1em',
+                                display: 'flex',
+                                justifyContent: 'center',
                             }}
                         >
-                            {loading ? (
-                                <CircularProgress
-                                    className={LoginFormClasses.icon}
-                                    size={19}
-                                    thickness={3}
-                                />
-                            ) : (
-                                '注册'
-                            )}
-                        </Button>
-                    </CardContent>
+                        </Box>
+                        <Box
+                            sx={{
+                                marginTop: '1em',
+                                display: 'flex',
+                                justifyContent: 'center',
+                                color: theme => theme.palette.grey[500],
+                            }}
+                        >
+                            登录
+                        </Box>
+                        <Box sx={{padding: '0 1em 1em 1em'}}>
+                            <TextInput
+                                autoFocus
+                                source="username"
+                                label={translate('ra.auth.username')}
+                                autoComplete="username"
+                                validate={required()}
+                                fullWidth
+                            />
+                            <TextInput
+                                source="password"
+                                label={translate('ra.auth.password')}
+                                type="password"
+                                autoComplete="current-password"
+                                validate={required()}
+                                fullWidth
+                            />
+                        </Box>
+                        <CardActions>
+                            <Button
+                                variant="contained"
+                                type="submit"
+                                color="primary"
+                                disabled={loading}
+                                fullWidth
+                            >
+                                {loading && (
+                                    <CircularProgress
+                                        size={25} thickness={2}
+                                    />
+                                )}
+                                登录
+                            </Button>
+                            <Button
+                                variant="outlined"
+                                type="submit"
+                                color="primary"
+                                disabled={loading}
+                                fullWidth
+                                onClick={event => {
+                                    event.preventDefault();
+                                    setRegistering(true);
+                                }}
+                            >
+                                {loading && (
+                                    <CircularProgress
+                                        className={LoginFormClasses.icon}
+                                        size={19}
+                                        thickness={3}
+                                    />
+                                )}
+                                注册
+                            </Button>
+                        </CardActions>
+                    </Card>
                 </StyledForm>
             ) : (
                 <StyledForm
-                    onSubmit={submitRegister}
                     mode="onChange"
                     noValidate
-                    className={className}
-                    sx={{textAlign: 'center'}}
+                    onSubmit={submitRegister}
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        minHeight: '100vh',
+                        alignItems: 'center',
+                        justifyContent: 'flex-start',
+                        backgroundRepeat: 'no-repeat',
+                        backgroundColor: 'black',
+                        backgroundSize: 'cover',
+                    }}
                 >
-                    注册
-                    <CardContent className={LoginFormClasses.content}>
-                        <TextInput
-                            autoFocus
-                            source="username"
-                            label={translate('ra.auth.username')}
-                            validate={required()}
-                            fullWidth
-                        />
-                        <TextInput
-                            source="password"
-                            label={translate('ra.auth.password')}
-                            type="password"
-                            validate={required()}
-                            fullWidth
-                        />
-                        <Link
-                            to=""
-                            onClick={event => {
-                                event.preventDefault();
-                                setRegistering(false);
+                    <Card sx={{minWidth: 300, marginTop: '6em'}}>
+                        <Box
+                            sx={{
+                                margin: '1em',
+                                display: 'flex',
+                                justifyContent: 'center',
                             }}
                         >
-                            返回登录
-                        </Link>
-                        <Button
-                            variant="contained"
-                            type="submit"
-                            color="primary"
-                            disabled={loading}
-                            fullWidth
-                            className={LoginFormClasses.button}
+                        </Box>
+                        <Box
+                            sx={{
+                                marginTop: '1em',
+                                display: 'flex',
+                                justifyContent: 'center',
+                                color: theme => theme.palette.grey[500],
+                            }}
                         >
-                            {loading ? (
-                                <CircularProgress
-                                    className={LoginFormClasses.icon}
-                                    size={19}
-                                    thickness={3}
-                                />
-                            ) : (
-                                '注册'
-                            )}
-                        </Button>
-                    </CardContent>
+                            注册
+                        </Box>
+                        <Box sx={{padding: '0 1em 1em 1em'}}>
+                            <TextInput
+                                autoFocus
+                                source="username"
+                                label={translate('ra.auth.username')}
+                                validate={required()}
+                                fullWidth
+                            />
+                            <TextInput
+                                source="password"
+                                label={translate('ra.auth.password')}
+                                type="password"
+                                validate={required()}
+                                fullWidth
+                            />
+                        </Box>
+                        <CardActions>
+                            <Button
+                                variant="outlined"
+                                type="submit"
+                                fullWidth
+                                color="primary"
+                                onClick={event => {
+                                    event.preventDefault();
+                                    setRegistering(false);
+                                }}
+                            >
+                                返回
+                            </Button>
+                            <Button
+                                variant="contained"
+                                type="submit"
+                                color="primary"
+                                disabled={loading}
+                                fullWidth
+                            >
+                                {loading ? (
+                                    <CircularProgress
+                                        className={LoginFormClasses.icon}
+                                        size={19}
+                                        thickness={3}
+                                    />
+                                ) : (
+                                    '完成'
+                                )}
+                            </Button>
+                        </CardActions>
+                    </Card>
                 </StyledForm>
             )}
         </>
