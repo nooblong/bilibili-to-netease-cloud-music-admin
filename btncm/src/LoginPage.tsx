@@ -1,23 +1,26 @@
 import * as React from 'react';
-import { useState } from 'react';
+import {useState} from 'react';
 import {
     Form,
+    LoginForm,
     required,
+    TextInput,
     useDataProvider,
     useLogin,
     useNotify,
     useSafeSetState,
-    useTranslate,Login, LoginForm, TextInput
+    useTranslate
 } from 'react-admin';
-import { Button, CardContent, CircularProgress } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import {Button, CardContent, CircularProgress} from '@mui/material';
+import {styled} from '@mui/material/styles';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import Login from "./Login";
 
 const LoginPage = () => (
     <>
         <Login
-            sx={{ background: 'black' }}
+            sx={{background: 'black'}}
             // A random image that changes everyday
             // backgroundImage={'https://source.unsplash.com/random/1600x900/daily'.replace(
             //     /^(http)s*(:\/\/)/,
@@ -29,7 +32,7 @@ const LoginPage = () => (
 );
 
 const Children = () => {
-    const { redirectTo, className } = { redirectTo: '/' };
+    const {redirectTo, className} = {redirectTo: '/'};
     const [loading, setLoading] = useSafeSetState(false);
     const [registering, setRegistering] = useState(false);
     const login = useLogin();
@@ -49,8 +52,8 @@ const Children = () => {
                     typeof error === 'string'
                         ? error
                         : typeof error === 'undefined' || !error.message
-                        ? 'ra.auth.sign_in_error'
-                        : error.message,
+                            ? 'ra.auth.sign_in_error'
+                            : error.message,
                     {
                         type: 'error',
                         messageArgs: {
@@ -58,8 +61,8 @@ const Children = () => {
                                 typeof error === 'string'
                                     ? error
                                     : error && error.message
-                                    ? error.message
-                                    : undefined,
+                                        ? error.message
+                                        : undefined,
                         },
                     }
                 );
@@ -85,8 +88,8 @@ const Children = () => {
                     typeof error === 'string'
                         ? error
                         : typeof error === 'undefined' || !error.message
-                        ? 'ra.auth.sign_in_error'
-                        : error.message,
+                            ? 'ra.auth.sign_in_error'
+                            : error.message,
                     {
                         type: 'error',
                         messageArgs: {
@@ -94,8 +97,8 @@ const Children = () => {
                                 typeof error === 'string'
                                     ? error
                                     : error && error.message
-                                    ? error.message
-                                    : undefined,
+                                        ? error.message
+                                        : undefined,
                         },
                     }
                 );
@@ -113,7 +116,7 @@ const Children = () => {
     const StyledForm = styled(Form, {
         name: PREFIX,
         overridesResolver: (props, styles) => styles.root,
-    })(({ theme }) => ({
+    })(({theme}) => ({
         [`& .${LoginFormClasses.content}`]: {
             width: 300,
         },
@@ -147,7 +150,7 @@ const Children = () => {
                     mode="onChange"
                     noValidate
                     className={className}
-                    sx={{ textAlign: 'center' }}
+                    sx={{textAlign: 'center'}}
                 >
                     登录
                     <CardContent className={LoginFormClasses.content}>
@@ -216,7 +219,7 @@ const Children = () => {
                     mode="onChange"
                     noValidate
                     className={className}
-                    sx={{ textAlign: 'center' }}
+                    sx={{textAlign: 'center'}}
                 >
                     注册
                     <CardContent className={LoginFormClasses.content}>

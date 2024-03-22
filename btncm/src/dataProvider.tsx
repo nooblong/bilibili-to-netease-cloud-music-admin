@@ -3,6 +3,7 @@ import get from 'lodash/get';
 import simpleRestProvider from 'ra-data-simple-rest';
 import addUploadFeature from './addUploadFeature';
 import moment from 'moment';
+import querystring from 'querystring'
 
 export const accessTokenClient = (url, options: any = {}) => {
     if (!options.headers) {
@@ -55,7 +56,7 @@ const dataProvider: DataProvider = {
                 pageNo: page,
                 pageSize: perPage,
             };
-            const url = `/api/data/recent?${JSON.stringify(query)}`;
+            const url = `/api/data/recent?${querystring.stringify(query)}`;
             return accessTokenClient(url).then(({ json }) => {
                 return {
                     data: json.data.records,
@@ -71,7 +72,7 @@ const dataProvider: DataProvider = {
                 pageNo: page,
                 pageSize: perPage,
             };
-            const url = `/api/subscribe?${JSON.stringify(query)}`;
+            const url = `/api/subscribe?${querystring.stringify(query)}`;
             return accessTokenClient(url).then(({ json }) => {
                 return {
                     data: json.data.records,
@@ -128,7 +129,7 @@ const dataProvider: DataProvider = {
         }
         if (resource === 'loginPassword') {
             return accessTokenClient(
-                `/api/direct/login/cellphone?${JSON.stringify(params.data)}`,
+                `/api/direct/login/cellphone?${querystring.stringify(params.data)}`,
                 {}
             ).then(({ json }) => {
                 return {
@@ -252,7 +253,7 @@ const dataProvider: DataProvider = {
     sendCode: (resource, params) => {
         console.log(params);
         return accessTokenClient(
-            `/api/direct/captcha/send?${JSON.stringify(params)}`
+            `/api/direct/captcha/send?${querystring.stringify(params)}`
         ).then(({ json }) => {
             return {
                 data: json,
@@ -261,7 +262,7 @@ const dataProvider: DataProvider = {
     },
     verify: (resource, params) => {
         return accessTokenClient(
-            `/api/direct/captcha/verify?${JSON.stringify(params)}`
+            `/api/direct/captcha/verify?${querystring.stringify(params)}`
         ).then(({ json }) => {
             return {
                 data: json,
