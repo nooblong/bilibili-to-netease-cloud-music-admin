@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Fragment, memo } from 'react';
+import {Fragment, memo} from 'react';
 import BookIcon from '@mui/icons-material/Book';
-import { Box, Chip, useMediaQuery } from '@mui/material';
-import { styled, Theme } from '@mui/material/styles';
+import {Box, Chip, useMediaQuery} from '@mui/material';
+import {styled, Theme} from '@mui/material/styles';
 import lodashGet from 'lodash/get';
 import jsonExport from 'jsonexport/dist';
 import {

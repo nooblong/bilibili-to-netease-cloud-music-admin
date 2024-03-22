@@ -1,8 +1,7 @@
-import { Button, Card, CardContent, TextField } from '@mui/material';
-import Typography from '@mui/material/Typography';
-import { parseImgUrl } from '../dataProvider';
-import React, { ReactElement, useState } from 'react';
-import { useDataProvider, useNotify } from 'react-admin';
+import {Button, TextField} from '@mui/material';
+import {parseImgUrl} from '../dataProvider';
+import React, {ReactElement, useState} from 'react';
+import {useDataProvider, useNotify} from 'react-admin';
 import Box from '@mui/material/Box';
 
 export default function ({ setTargetId }): ReactElement {

@@ -1,12 +1,6 @@
 import * as React from 'react';
-import { useQueryClient } from 'react-query';
-import {
-    Identifier,
-    RaRecord,
-    ResourceContextProvider,
-    SimpleShowLayout,
-    TextField,
-} from 'react-admin';
+import {useQueryClient} from 'react-query';
+import {Identifier, RaRecord, ResourceContextProvider, SimpleShowLayout, TextField,} from 'react-admin';
 
 const PostPreview = <RecordType extends RaRecord = any>({
     id,

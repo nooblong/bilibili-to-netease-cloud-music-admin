@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { Button, useNotify, useUnselectAll, useUpdateMany } from 'react-admin';
+import {Button, useNotify, useUnselectAll, useUpdateMany} from 'react-admin';
 
 const ResetViewsButton = ({ resource, selectedIds }) => {
     const notify = useNotify();

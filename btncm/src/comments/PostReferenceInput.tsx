@@ -1,16 +1,10 @@
 import * as React from 'react';
-import { Fragment, useCallback, useState } from 'react';
-import { useWatch } from 'react-hook-form';
+import {Fragment, useCallback, useState} from 'react';
+import {useWatch} from 'react-hook-form';
 
-import {
-    Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogTitle,
-} from '@mui/material';
+import {Button, Dialog, DialogActions, DialogContent, DialogTitle,} from '@mui/material';
 
-import { ReferenceInput, SelectInput, useTranslate } from 'react-admin'; // eslint-disable-line import/no-unresolved
+import {ReferenceInput, SelectInput, useTranslate} from 'react-admin'; // eslint-disable-line import/no-unresolved
 import PostQuickCreate from './PostQuickCreate';
 import PostPreview from './PostPreview';
 

@@ -1,14 +1,16 @@
 import * as React from 'react';
-import { Avatar, useMediaQuery } from '@mui/material';
-import { Theme } from '@mui/material/styles';
+import {Avatar, useMediaQuery} from '@mui/material';
+import {Theme} from '@mui/material/styles';
 import {
     CreateButton,
+    Datagrid,
+    FilterButton,
     InfiniteList,
     List,
     SimpleList,
     TextField,
     TextInput,
-    TopToolbar,Datagrid, FilterButton, SearchInput
+    TopToolbar
 } from 'react-admin';
 
 const SubscribesMobile = () => {

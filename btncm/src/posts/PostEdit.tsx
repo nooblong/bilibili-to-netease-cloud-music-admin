@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { RichTextInput } from 'ra-input-rich-text';
+import {RichTextInput} from 'ra-input-rich-text';
 import {
     ArrayInput,
     AutocompleteInput,
@@ -33,15 +33,7 @@ import {
     useCreateSuggestionContext,
     usePermissions,
 } from 'react-admin'; // eslint-disable-line import/no-unresolved
-import {
-    Box,
-    BoxProps,
-    Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    TextField as MuiTextField,
-} from '@mui/material';
+import {Box, BoxProps, Button, Dialog, DialogActions, DialogContent, TextField as MuiTextField,} from '@mui/material';
 import PostTitle from './PostTitle';
 import TagReferenceInput from './TagReferenceInput';
 

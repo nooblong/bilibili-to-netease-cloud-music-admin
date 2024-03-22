@@ -1,13 +1,6 @@
 import * as React from 'react';
 
-import {
-    Create,
-    DateInput,
-    minLength,
-    required,
-    SimpleFormConfigurable,
-    TextInput,
-} from 'react-admin'; // eslint-disable-line import/no-unresolved
+import {Create, DateInput, minLength, required, SimpleFormConfigurable, TextInput,} from 'react-admin'; // eslint-disable-line import/no-unresolved
 import PostReferenceInput from './PostReferenceInput';
 
 const now = new Date();

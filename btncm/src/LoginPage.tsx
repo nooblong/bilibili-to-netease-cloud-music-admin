@@ -11,10 +11,9 @@ import {
     useSafeSetState,
     useTranslate
 } from 'react-admin';
-import {Box, Button, Card, CardActions, CardContent, CircularProgress} from '@mui/material';
+import {Box, Button, Card, CardActions, CircularProgress} from '@mui/material';
 import {styled} from '@mui/material/styles';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
 
 const LoginPage = () => {
     const {redirectTo} = {redirectTo: '/'};

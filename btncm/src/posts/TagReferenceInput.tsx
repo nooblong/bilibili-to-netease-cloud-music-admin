@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import {useState} from 'react';
 import {
     AutocompleteArrayInput,
     ReferenceArrayInput,
@@ -7,15 +7,8 @@ import {
     useCreateSuggestionContext,
     useLocaleState,
 } from 'react-admin';
-import {
-    Box,
-    Button,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    TextField as MuiTextField,
-} from '@mui/material';
-import { useFormContext } from 'react-hook-form';
+import {Box, Button, Dialog, DialogActions, DialogContent, TextField as MuiTextField,} from '@mui/material';
+import {useFormContext} from 'react-hook-form';
 
 const TagReferenceInput = ({
     ...props

@@ -1,4 +1,4 @@
-import { fetchUtils, GetOneResult, DataProvider, HttpError, withLifecycleCallbacks } from 'react-admin';
+import {DataProvider, fetchUtils, HttpError, withLifecycleCallbacks} from 'react-admin';
 import get from 'lodash/get';
 import simpleRestProvider from 'ra-data-simple-rest';
 import addUploadFeature from './addUploadFeature';

@@ -1,20 +1,8 @@
 import * as React from 'react';
-import { useMediaQuery } from '@mui/material';
-import { Theme } from '@mui/material/styles';
-import {
-    CreateButton,
-    Datagrid,
-    FilterButton,
-    InfiniteList,
-    List,
-    SearchInput,
-    SelectInput,
-    SimpleList,
-    TextField,
-    TextInput,
-    TopToolbar,
-} from 'react-admin';
-import { AuditStatusEnum } from '../subscribes/Enums';
+import {useMediaQuery} from '@mui/material';
+import {Theme} from '@mui/material/styles';
+import {CreateButton, FilterButton, InfiniteList, SelectInput, SimpleList, TextInput, TopToolbar,} from 'react-admin';
+import {AuditStatusEnum} from '../subscribes/Enums';
 
 const RecentListMobile = () => {
     return (
@@ -39,25 +27,6 @@ const RecentListMobile = () => {
         </InfiniteList>
     );
 };
-
-const RecentListDesktop = () => (
-    <List
-        exporter={false}
-        actions={<PostListActions />}
-        filters={recentFilters}
-    >
-        <Datagrid rowClick={rowClick}>
-            <TextField source="name" label="标题" />
-            <TextField source="voiceId" label="声音id" />
-            <TextField source="voiceListId" label="播客id" />
-            <TextField source="userName" label="用户名" />
-            <TextField source="displayStatus" label="审核状态" />
-            <TextField source="uploadStatus" label="上传状态" />
-            <TextField source="retryTimes" label="重试次数" />
-            <TextField source="createTime" label="创建时间" />
-        </Datagrid>
-    </List>
-);
 
 const PostListActions = () => (
     <TopToolbar>
@@ -89,7 +58,7 @@ const RecentList = () => {
         theme => theme.breakpoints.down('md'),
         { noSsr: true }
     );
-    return isSmall ? <RecentListMobile /> : <RecentListDesktop />;
+    return <RecentListMobile />
 };
 
 function rowSx(record, index) {

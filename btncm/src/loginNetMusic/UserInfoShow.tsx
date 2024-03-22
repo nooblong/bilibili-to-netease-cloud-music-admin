@@ -1,5 +1,5 @@
-import { Paper } from '@mui/material';
-import React, { ReactElement } from 'react';
+import {Paper} from '@mui/material';
+import React, {ReactElement} from 'react';
 
 export interface NetAccount {
     id: string;

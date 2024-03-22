@@ -1,11 +1,5 @@
 import * as React from 'react';
-import {
-    BooleanField,
-    Show,
-    SimpleShowLayout,
-    TextField,
-    TranslatableFields,
-} from 'react-admin'; // eslint-disable-line import/no-unresolved
+import {BooleanField, Show, SimpleShowLayout, TextField, TranslatableFields,} from 'react-admin'; // eslint-disable-line import/no-unresolved
 
 const TagShow = () => (
     <Show>

@@ -1,13 +1,12 @@
 import * as React from 'react';
-import { ReactElement } from 'react';
-import { Card } from '@mui/material';
+import {ReactElement} from 'react';
+import {Card} from '@mui/material';
 import {
-    AutocompleteInput,
+    ArrayInput,
     BooleanInput,
-    DateInput,
+    DateTimeInput,
+    DeleteButton,
     EditContextProvider,
-    FormDataConsumer,
-    ReferenceInput,
     required,
     SaveButton,
     SelectInput,
@@ -16,21 +15,19 @@ import {
     TextInput,
     Title,
     Toolbar,
+    ToolbarClasses,
     useEditController,
     useGetIdentity,
-    useGetOne,ArrayInput,
-    DateTimeInput,
-    DeleteButton,
-    ToolbarClasses,
+    useGetOne,
 } from 'react-admin';
-import { useFormContext, useWatch } from 'react-hook-form';
-import { SubscribeTypeEnum, VideoOrderEnum } from './Enums';
+import {useFormContext, useWatch} from 'react-hook-form';
+import {SubscribeTypeEnum, VideoOrderEnum} from './Enums';
 import GetCollection from './GetCollection';
 import GetUp from './GetUp';
-import { parseDatetime } from '../dataProvider';
+import {parseDatetime} from '../dataProvider';
 import GetFavorite from './GetFavorite';
 import GetPart from './GetPart';
-import { toChoice } from '../recents/RecentCreate';
+import {toChoice} from '../recents/RecentCreate';
 import moment from 'moment/moment';
 
 const SubscribeEdit = props => {
