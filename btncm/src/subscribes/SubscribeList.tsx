@@ -15,7 +15,7 @@ import {
 
 const AvatarField = (props) => {
     const record = useRecordContext(props);
-    return record ? <img src={record.netCover} style={{maxHeight: "100%", maxWidth: "100%"}}  alt=''/> : null;
+    return record ? <img src={record.netCover} style={{maxHeight: "100px", maxWidth: "100px", objectFit: "contain"}}  alt=''/> : null;
 }
 
 const SubscribesDesktop = () => (
