@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {AppBar, Layout, Logout, TitlePortal, UserMenu} from 'react-admin';
+import {AppBar, Layout, Menu, TitlePortal} from 'react-admin';
 import {Button} from '@mui/material';
 import {useNavigate} from 'react-router-dom';
 
@@ -8,13 +8,8 @@ const MyAppBar = () => {
     const nav = useNavigate();
     return (
         <AppBar
-            userMenu={
-                <UserMenu>
-                    <Logout></Logout>
-                </UserMenu>
-            }
         >
-            <TitlePortal />
+            <TitlePortal/>
             <Button
                 onClick={() => {
                     nav('/loginNetMusic');
@@ -25,14 +20,19 @@ const MyAppBar = () => {
     );
 };
 
+const MyMenu = () => {
+    return <Menu>
+        <Menu.DashboardItem/>
+        <Menu.ResourceItem name="recentsList"/>
+        <Menu.ResourceItem name="subscribe"/>
+        <Menu.ResourceItem name="loginNetMusic"/>
+        <Menu.Item to="https://github.com/nooblong/bilibili-to-netease-cloud-music"
+                   primaryText="跳转Github">Github</Menu.Item>
+    </Menu>
+}
+
 export default props => (
     <>
-        <Layout {...props} appBar={MyAppBar} />
-        {/*<ReactQueryDevtools*/}
-        {/*    initialIsOpen={false}*/}
-        {/*    toggleButtonProps={{*/}
-        {/*        style: { width: 40, height: 30, marginLeft: 300 },*/}
-        {/*    }}*/}
-        {/*/>*/}
+        <Layout {...props} appBar={MyAppBar} menu={MyMenu}/>
     </>
 );

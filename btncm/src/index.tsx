@@ -14,6 +14,9 @@ import SubscribeList from './subscribes/SubscribeList';
 import SubscribeCreate from './subscribes/SubscribeCreate';
 import SubscribeEdit from './subscribes/SubscribeEdit';
 import RecentShow from './recents/RecentShow';
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
+import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
+import VpnKeyIcon from '@mui/icons-material/VpnKey';
 
 render(
     <React.StrictMode>
@@ -30,6 +33,7 @@ render(
                 list={RecentList}
                 create={RecentCreate}
                 show={RecentShow}
+                icon={PlaylistAddIcon}
                 options={{ label: '单曲上传' }}
             />
             <Resource
@@ -37,9 +41,11 @@ render(
                 list={SubscribeList}
                 create={SubscribeCreate}
                 edit={SubscribeEdit}
+                icon={SubscriptionsIcon}
                 options={{ label: '订阅' }}
             />
             <Resource
+                icon={VpnKeyIcon}
                 name="loginNetMusic"
                 list={LoginNetMusic}
                 options={{ label: '登录网易云' }}
