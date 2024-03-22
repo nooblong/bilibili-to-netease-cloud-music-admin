@@ -18,9 +18,10 @@ const RecentListMobile = () => {
 
         <List actions={<PostListActions/>} filters={recentFilters} exporter={false}>
             <Datagrid bulkActionButtons={false} rowClick={(id, resource, record) => rowClick(id, resource)}>
-                <TextField source="uploadName" />
-                <TextField source="status" />
-                <TextField source="createTime" />
+                <TextField source="uploadName" label="上传名字" />
+                <TextField source="userName" label="用户" />
+                <TextField source="statusDesc" label="状态" />
+                <TextField source="createTime" label="创建时间" />
             </Datagrid>
         </List>
     );
