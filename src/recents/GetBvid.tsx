@@ -5,7 +5,7 @@ import {
   FormControl,
   MenuItem,
 } from "@mui/material";
-import React, { useState } from "react";
+import { useState } from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";

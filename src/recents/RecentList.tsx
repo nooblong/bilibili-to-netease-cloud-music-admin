@@ -1,14 +1,10 @@
 import * as React from "react";
-import { useMediaQuery } from "@mui/material";
-import { Theme } from "@mui/material/styles";
 import {
   CreateButton,
   Datagrid,
   FilterButton,
-  InfiniteList,
   List,
   SelectInput,
-  SimpleList,
   TextField,
   TextInput,
   TopToolbar,

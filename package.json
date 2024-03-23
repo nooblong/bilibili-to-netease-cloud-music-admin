@@ -1,5 +1,5 @@
 {
-  "name": "test-admin",
+  "name": "btncm",
   "private": true,
   "scripts": {
     "dev": "vite",
@@ -16,6 +16,7 @@
     "@mui/material": "^5.15.14",
     "lodash": "^4.17.21",
     "moment": "^2.30.1",
+    "querystring": "^0.2.1",
     "ra-data-json-server": "^4.16.0",
     "ra-data-simple-rest": "^4.16.12",
     "react": "^18.2.0",

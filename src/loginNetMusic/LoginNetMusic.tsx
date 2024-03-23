@@ -1,4 +1,3 @@
-import * as React from "react";
 import { ReactElement, useEffect, useState } from "react";
 import {
   Button,

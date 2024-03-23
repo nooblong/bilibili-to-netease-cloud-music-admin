@@ -1,14 +1,9 @@
 import * as React from "react";
-import { Avatar, useMediaQuery } from "@mui/material";
-import { Theme } from "@mui/material/styles";
 import {
   CreateButton,
   Datagrid,
   FilterButton,
-  ImageField,
-  InfiniteList,
   List,
-  SimpleList,
   TextField,
   TextInput,
   TopToolbar,
