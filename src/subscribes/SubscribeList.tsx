@@ -1,6 +1,4 @@
-import * as React from "react";
 import {
-  CreateButton,
   Datagrid,
   FilterButton,
   List,
@@ -9,8 +7,10 @@ import {
   TopToolbar,
   useRecordContext,
 } from "react-admin";
+import { Identifier } from "react-admin";
+import CreateButton from "../customAdmin/CreateButton";
 
-const AvatarField = (props) => {
+const AvatarField = (props: any) => {
   const record = useRecordContext(props);
   return record ? (
     <img
@@ -27,6 +27,7 @@ const AvatarField = (props) => {
 
 const SubscribesDesktop = () => (
   <List
+    perPage={100}
     exporter={false}
     filters={recentFilters}
     actions={<SubscribeListActions />}
@@ -47,15 +48,21 @@ const SubscribeListActions = () => (
   </TopToolbar>
 );
 
-const rowClick = (_id, _resource) => {
-  console.log(_id);
+const rowClick = (id: Identifier, resource: string) => {
+  console.log(resource);
   // https://y.music.163.com/m/program?id=2534086095
   return "show";
 };
 
 const recentFilters = [
   // <SearchInput source="remark" alwaysOn />,
-  <TextInput label="Title" source="remark" defaultValue="" />,
+  <TextInput
+    key={"title"}
+    label="Title"
+    source="remark"
+    defaultValue=""
+    name={"remark"}
+  />,
 ];
 
 const SubscribeList = () => {

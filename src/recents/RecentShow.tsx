@@ -1,4 +1,3 @@
-import * as React from "react";
 import { useEffect } from "react";
 import {
   Create,
@@ -40,7 +39,7 @@ const RecentShow = () => {
     if (data === null || data?.voiceList === null) {
       redirect("/loginNetmusic");
     }
-    return () => {};
+    return () => { };
   }, [data, redirect]);
 
   const RecentToolbar = () => (

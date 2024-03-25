@@ -1,4 +1,3 @@
-import * as React from "react";
 import { useEffect, useState } from "react";
 import {
   BooleanInput,
@@ -19,7 +18,7 @@ import { useFormContext } from "react-hook-form";
 import { Card } from "@mui/material";
 import GetBvid from "./GetBvid";
 
-const RecentCreateToolbar = ({ videoInfo }) => {
+const RecentCreateToolbar = ({ videoInfo }: any) => {
   const notify = useNotify();
   const redirect = useRedirect();
   return (
@@ -63,8 +62,7 @@ const RecentCreate = () => {
     partName: "",
   });
   const redirect = useRedirect();
-  const notify = useNotify();
-  const { data, error } = useGetOne(
+  const { data } = useGetOne(
     "voiceList",
     { id: 1 },
     { retry: false, staleTime: Infinity }
@@ -84,7 +82,7 @@ const RecentCreate = () => {
       <>
         <GetBvid
           videoInfo={videoInfo}
-          setVideoInfo={(data) => {
+          setVideoInfo={(data: any) => {
             setVideoInfo(data);
             context.setValue(
               "customUploadName",

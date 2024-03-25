@@ -12,16 +12,18 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import { TextInput, useDataProvider } from "react-admin";
 
-export default function ({ videoInfo, setVideoInfo }) {
+export default GetBvid;
+
+function GetBvid({ videoInfo, setVideoInfo }: any) {
   const dataProvider = useDataProvider();
   const [bvid, setBvid] = useState<string>(videoInfo.bvid);
-  const handleChange = (event): void => {
+  const handleChange = (event: any): void => {
     if (videoInfo.pages.length > 1) {
       const obj = {
         ...videoInfo,
         cid: event.target.value,
         partName: videoInfo.pages.filter(
-          (value) => value.cid === event.target.value
+          (value: any) => value.cid === event.target.value
         )[0].part,
       };
       setVideoInfo(obj);
@@ -45,7 +47,7 @@ export default function ({ videoInfo, setVideoInfo }) {
         onClick={() => {
           dataProvider
             .getVideoInfo("getVideoInfo", { bvid: bvid })
-            .then((data) => {
+            .then((data: any) => {
               data = data.data;
               const obj = {
                 ...videoInfo,
@@ -88,7 +90,7 @@ export default function ({ videoInfo, setVideoInfo }) {
                   label="选择分p,默认1p"
                   onChange={handleChange}
                 >
-                  {videoInfo.pages.map((value) => {
+                  {videoInfo.pages.map((value: any) => {
                     return (
                       <MenuItem key={value.cid} value={value.cid}>
                         {value.part}
