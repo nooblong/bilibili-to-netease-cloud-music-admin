@@ -22,56 +22,14 @@ export default function AddBilibiliCookieDialog() {
 
   return (
     <React.Fragment>
+      <br />
       <Button variant="outlined" onClick={handleClickOpen}>
-        提供b站账号
+        贡献一个b站大会员账号以供下载音频
       </Button>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        PaperProps={{
-          component: "form",
-          onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
-            event.preventDefault();
-            const formData = new FormData(event.currentTarget);
-            const formJson = Object.fromEntries((formData as any).entries());
-            const email = formJson.email;
-            console.log(email);
-            handleClose();
-          },
-        }}
-      >
-        <DialogTitle>Subscribe</DialogTitle>
+      <Dialog open={open} onClose={handleClose}>
         <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
-          </DialogContentText>
-          {scan ? (
-            <LoginBilibili />
-          ) : (
-            <TextField
-              autoFocus
-              required
-              margin="dense"
-              id="name"
-              name="email"
-              label="Email Address"
-              type="email"
-              fullWidth
-              variant="standard"
-            />
-          )}
+          <LoginBilibili />
         </DialogContent>
-        <DialogActions>
-          <Button
-            onClick={() => {
-              setScan(true);
-            }}
-          >
-            扫码登录
-          </Button>
-          <Button type="submit">Subscribe</Button>
-        </DialogActions>
       </Dialog>
     </React.Fragment>
   );

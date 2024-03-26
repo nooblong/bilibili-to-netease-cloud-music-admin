@@ -14,11 +14,14 @@ const Dashboard = () => {
   ) : (
     <Card>
       <CardContent>
-        <Typography>b站账号状态:</Typography>
-        {data.activeBilibiliUserName === null
-          ? "无可用b站大会员账号"
-          : "当前提供b站大会员账号的用户" + data.activeBilibiliUserName}
-        {"     "}
+        <Typography
+          color={data.activeBilibiliUserName === null ? "red" : "green"}
+        >
+          b站账号状态:{" "}
+          {data.activeBilibiliUserName === null
+            ? "无可用b站大会员账号"
+            : "当前提供b站大会员账号的用户" + data.activeBilibiliUserName}
+        </Typography>
         <AddBilibiliCookieDialog />
       </CardContent>
     </Card>

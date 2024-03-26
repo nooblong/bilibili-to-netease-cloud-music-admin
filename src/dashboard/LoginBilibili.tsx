@@ -42,7 +42,7 @@ const LoginNetMusic = () => {
         if (value.data.data.code === 0) {
           clearInterval(timer);
           notify("授权登录成功", { type: "success" });
-          console.log(value)
+          console.log(value);
         }
       });
     }, 3000);
@@ -54,46 +54,36 @@ const LoginNetMusic = () => {
   return (
     <>
       <Grid>
-        <Card
-          sx={{
-            flexDirection: "column",
-          }}
-        >
-          <CardContent>贡献你的大会员账号</CardContent>
-          <CardContent sx={{ flexGrow: 1 }}>
-            <Typography
-              component="span"
-              variant="body2"
-              data-testid="postLink"
-            ></Typography>
-            {checking && <LoginDialog img={img} />}
-            <ReferenceField
-              record={record}
-              source="post_id"
-              reference="posts"
-            />
-          </CardContent>
-          <CardActions sx={{ justifyContent: "flex-end" }}>
+        <CardContent>贡献你的大会员账号</CardContent>
+        <CardContent sx={{ flexGrow: 1 }}>
+          <Typography
+            component="span"
+            variant="body2"
+            data-testid="postLink"
+          ></Typography>
+          {checking && <LoginDialog img={img} />}
+          <ReferenceField record={record} source="post_id" reference="posts" />
+        </CardContent>
+        <CardActions sx={{ justifyContent: "flex-end" }}>
+          <Button
+            variant="contained"
+            onClick={() => {
+              login(setImg, setChecking, setKey, dataProvider);
+            }}
+          >
+            扫码登录
+          </Button>
+          {checking && (
             <Button
-              variant="contained"
               onClick={() => {
-                login(setImg, setChecking, setKey, dataProvider);
+                setChecking(false);
               }}
             >
-              扫码登录
+              取消
             </Button>
-            {checking && (
-              <Button
-                onClick={() => {
-                  setChecking(false);
-                }}
-              >
-                取消
-              </Button>
-            )}
-            <ShowButton record={record} />
-          </CardActions>
-        </Card>
+          )}
+          <ShowButton record={record} />
+        </CardActions>
         <Card
           sx={{
             height: "100%",
