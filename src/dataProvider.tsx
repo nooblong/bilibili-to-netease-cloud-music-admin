@@ -273,6 +273,20 @@ const dataProvider: DataProvider = {
       }
     );
   },
+  getQrBili: () => {
+    return accessTokenClient(`/api/getQrBili`).then(({ json }) => {
+      return {
+        data: json.data,
+      };
+    });
+  },
+  checkQrBili: (key) => {
+    return accessTokenClient(`/api/checkQrBili?key=${key}`).then(({ json }) => {
+      return {
+        data: json.data,
+      };
+    });
+  },
 };
 
 const addTagsSearchSupport = (dataProvider: DataProvider) => ({
