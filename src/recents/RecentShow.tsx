@@ -1,46 +1,55 @@
-import { useEffect } from "react";
 import {
   Create,
+  Loading,
   required,
   SaveButton,
   SelectInput,
   SimpleForm,
-  TextField,
-  TextInput,
   Toolbar,
-  useCreate,
+  useDataProvider,
   useGetOne,
   useNotify,
   useRedirect,
 } from "react-admin";
-import { Card } from "@mui/material";
 import { toChoice } from "./RecentCreate";
 import { useParams } from "react-router-dom";
+import { Card, CardContent } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import { useState } from "react";
 
 const RecentShow = () => {
   const redirect = useRedirect();
   const params = useParams();
   const voiceDetailId = params.id;
-  const [create] = useCreate();
   const notify = useNotify();
+  const dataProvider = useDataProvider();
+  const [logData, setLogData] = useState(null);
 
-  const { data: detail, isLoading } = useGetOne(
+  const uploadDetail: any = useGetOne(
     "uploadDetail",
-    { id: voiceDetailId },
-    { onError: () => redirect("/recentsList") }
+    {
+      id: voiceDetailId,
+    },
+    {
+      onSuccess: (data1) => {
+        dataProvider
+          .instanceLog(data1.instanceId, 0)
+          .then((data) => {
+            // console.log(data);
+            setLogData(data.data);
+          });
+      },
+    }
   );
 
-  const { data, error } = useGetOne(
+  const { data } = useGetOne(
     "voiceList",
     { id: 1 },
-    { retry: false, staleTime: Infinity }
-  );
-  useEffect(() => {
-    if (data === null || data?.voiceList === null) {
-      redirect("/loginNetmusic");
+    {
+      retry: false,
+      staleTime: Infinity,
     }
-    return () => { };
-  }, [data, redirect]);
+  );
 
   const RecentToolbar = () => (
     <Toolbar>
@@ -69,27 +78,33 @@ const RecentShow = () => {
         <SelectInput
           source="voiceListId"
           label="选择播客"
+          fullWidth
           choices={data && data.voiceList ? toChoice(data.voiceList.list) : []}
           validate={required("Required field")}
         ></SelectInput>
-        <TextInput
-          source="voiceDetailId"
-          defaultValue={voiceDetailId}
-          disabled
-        />
-        <TextField source="uploadName" label="名字" record={detail} disabled />
       </>
     );
   };
 
   return (
-    <Create resource={"addToMy"}>
-      <Card sx={{ marginTop: "1em", maxWidth: "30em" }}>
+    <>
+      <Create resource={"addToMy"}>
         <SimpleForm toolbar={<RecentToolbar />}>
           <MyForm />
         </SimpleForm>
+      </Create>
+      <hr />
+      <Card>
+        <CardContent>
+          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+            上传日志
+          </Typography>
+          <Typography variant="body2">
+            {logData === null ? <Loading /> : logData.data}
+          </Typography>
+        </CardContent>
       </Card>
-    </Create>
+    </>
   );
 };
 

@@ -287,6 +287,15 @@ const dataProvider: DataProvider = {
       };
     });
   },
+  instanceLog: (instanceId, index) => {
+    return accessTokenClient(
+      `/api/uploadDetail/instanceLog?instanceId=${instanceId}&index=${index}`
+    ).then(({ json }) => {
+      return {
+        data: json.data,
+      };
+    });
+  },
 };
 
 const addTagsSearchSupport = (dataProvider: DataProvider) => ({
