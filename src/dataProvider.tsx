@@ -53,7 +53,7 @@ const dataProvider: DataProvider = {
         pageNo: page,
         pageSize: perPage,
       };
-      const url = `/api/data/recent?${querystring.stringify(query)}`;
+      const url = `/api/uploadDetail/recent?${querystring.stringify(query)}`;
       return accessTokenClient(url).then(({ json }) => {
         return {
           data: json.data.records,
@@ -108,7 +108,7 @@ const dataProvider: DataProvider = {
   },
   create: (resource, params): any => {
     if (resource === "recentsList") {
-      return accessTokenClient("/api/download/addQueue", {
+      return accessTokenClient("/api/uploadDetail/addQueue", {
         method: "POST",
         body: JSON.stringify(params.data),
       }).then(({ json }) => {
@@ -135,7 +135,7 @@ const dataProvider: DataProvider = {
       });
     }
     if (resource === "addToMy") {
-      return accessTokenClient("/api/download/addToMyList", {
+      return accessTokenClient("/api/uploadDetail/addToMyList", {
         method: "POST",
         body: JSON.stringify(params.data),
       }).then(({ json }) => {
