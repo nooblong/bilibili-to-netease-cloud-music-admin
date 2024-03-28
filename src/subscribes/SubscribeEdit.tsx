@@ -157,6 +157,12 @@ const SubscribeEdit = (props) => {
             />
           </SimpleFormIterator>
         </ArrayInput>
+        <BooleanInput
+          source="enable"
+          label="启用"
+          disabled
+          fullWidth
+        />
       </>
     );
   };

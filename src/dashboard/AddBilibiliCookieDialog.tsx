@@ -24,7 +24,7 @@ export default function AddBilibiliCookieDialog() {
     <React.Fragment>
       <br />
       <Button variant="outlined" onClick={handleClickOpen}>
-        贡献一个b站大会员账号以供下载音频
+        提供一个以供下载音频?
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogContent>
