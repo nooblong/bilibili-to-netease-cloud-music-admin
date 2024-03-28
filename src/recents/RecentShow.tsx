@@ -99,7 +99,7 @@ const RecentShow = () => {
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             上传日志
           </Typography>
-          <Typography variant="body2">
+          <Typography variant="body2" sx={{whiteSpace: "pre-line"}}>
             {logData === null ? <Loading /> : logData.data}
           </Typography>
         </CardContent>
