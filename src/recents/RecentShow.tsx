@@ -12,8 +12,15 @@ import {
   useRedirect,
 } from "react-admin";
 import { toChoice } from "./RecentCreate";
-import { useParams } from "react-router-dom";
-import { Card, CardContent, Pagination, Stack } from "@mui/material";
+import { Link, useParams } from "react-router-dom";
+import {
+  Button,
+  ButtonGroup,
+  Card,
+  CardContent,
+  Pagination,
+  Stack,
+} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 
@@ -26,6 +33,7 @@ const RecentShow = () => {
   const [logData, setLogData] = useState(null);
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
+  const [success, setSuccess] = useState(false);
 
   const uploadDetail: any = useGetOne(
     "uploadDetail",
@@ -39,6 +47,7 @@ const RecentShow = () => {
           setLogData(data.data);
           setTotalPage(data.data.totalPages);
           setPage(data.data.index + 1);
+          setSuccess(true);
         });
       },
     }
@@ -73,6 +82,21 @@ const RecentShow = () => {
     </Toolbar>
   );
 
+  const buttons = [
+    <Button key="one" disabled={!success}>
+      <Link
+        style={{ textDecoration: "none", color: "inherit" }}
+        to={`https://music.163.com/#/program?id=${
+          success ? uploadDetail.data.voiceId : -1
+        }`}
+      >
+        跳转到网易云
+      </Link>
+    </Button>,
+    <Button key="two">Two</Button>,
+    <Button key="three">Three</Button>,
+  ];
+
   const MyForm = () => {
     return (
       <>
@@ -96,6 +120,10 @@ const RecentShow = () => {
         </SimpleForm>
       </Create>
       <hr />
+      <ButtonGroup size="large" fullWidth aria-label="Large button group">
+        {buttons}
+      </ButtonGroup>
+      <hr />
       <Card>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
@@ -105,7 +133,9 @@ const RecentShow = () => {
             {logData === null ? <Loading /> : logData.data}
           </Typography>
           <Stack spacing={2}>
-            <Typography>Page: {page} TotalPage: {totalPage}</Typography>
+            <Typography>
+              Page: {page} TotalPage: {totalPage}
+            </Typography>
             <Pagination
               count={totalPage}
               page={page}
