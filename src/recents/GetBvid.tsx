@@ -10,13 +10,14 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
-import { TextInput, useDataProvider } from "react-admin";
+import { Loading, TextInput, useDataProvider } from "react-admin";
 
 export default GetBvid;
 
 function GetBvid({ videoInfo, setVideoInfo }: any) {
   const dataProvider = useDataProvider();
   const [bvid, setBvid] = useState<string>(videoInfo.bvid);
+  const [loading, setLoading] = useState(false);
   const handleChange = (event: any): void => {
     if (videoInfo.pages.length > 1) {
       const obj = {
@@ -45,6 +46,7 @@ function GetBvid({ videoInfo, setVideoInfo }: any) {
       <Button
         variant="contained"
         onClick={() => {
+          setLoading(true);
           dataProvider
             .getVideoInfo("getVideoInfo", { bvid: bvid })
             .then((data: any) => {
@@ -62,13 +64,14 @@ function GetBvid({ videoInfo, setVideoInfo }: any) {
                 bvid: bvid,
               };
               setVideoInfo(obj);
+              setLoading(false);
             });
         }}
       >
         解析
       </Button>
       <br />
-
+      {loading && <Loading />}
       {videoInfo.title && (
         <Card>
           {videoInfo.image !== "" && (

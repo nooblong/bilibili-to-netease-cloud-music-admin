@@ -13,7 +13,7 @@ import {
 } from "react-admin";
 import { toChoice } from "./RecentCreate";
 import { useParams } from "react-router-dom";
-import { Card, CardContent } from "@mui/material";
+import { Card, CardContent, Pagination, Stack } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 
@@ -24,6 +24,8 @@ const RecentShow = () => {
   const notify = useNotify();
   const dataProvider = useDataProvider();
   const [logData, setLogData] = useState(null);
+  const [page, setPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(1);
 
   const uploadDetail: any = useGetOne(
     "uploadDetail",
@@ -32,12 +34,12 @@ const RecentShow = () => {
     },
     {
       onSuccess: (data1) => {
-        dataProvider
-          .instanceLog(data1.instanceId, 0)
-          .then((data) => {
-            // console.log(data);
-            setLogData(data.data);
-          });
+        dataProvider.instanceLog(data1.instanceId, page - 1).then((data) => {
+          console.log(data);
+          setLogData(data.data);
+          setTotalPage(data.data.totalPages);
+          setPage(data.data.index + 1);
+        });
       },
     }
   );
@@ -99,9 +101,19 @@ const RecentShow = () => {
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             上传日志
           </Typography>
-          <Typography variant="body2" sx={{whiteSpace: "pre-line"}}>
+          <Typography variant="body2" sx={{ whiteSpace: "pre-line" }}>
             {logData === null ? <Loading /> : logData.data}
           </Typography>
+          <Stack spacing={2}>
+            <Typography>Page: {page} TotalPage: {totalPage}</Typography>
+            <Pagination
+              count={totalPage}
+              page={page}
+              onChange={(event, page) => {
+                setPage(page);
+              }}
+            />
+          </Stack>
         </CardContent>
       </Card>
     </>
