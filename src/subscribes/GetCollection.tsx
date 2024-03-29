@@ -15,6 +15,7 @@ export default function ({ setTargetId }) {
     <Box margin="10px">
       <TextField
         fullWidth
+        variant="outlined"
         sx={{ width: "100%" }}
         onChange={(event) => {
           setUrl(event.currentTarget.value);
@@ -23,7 +24,7 @@ export default function ({ setTargetId }) {
         defaultValue={url}
       />
       <Button
-        variant="contained"
+        variant="outlined"
         onClick={() => {
           if (url === null || url === "") {
             notify("填写url！");

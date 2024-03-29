@@ -1,4 +1,3 @@
-import * as React from "react";
 import { ReactElement, useEffect } from "react";
 import {
   ArrayInput,
@@ -17,23 +16,19 @@ import {
   useGetIdentity,
   useGetOne,
   useNotify,
-  useRedirect,
 } from "react-admin";
 import { useFormContext, useWatch } from "react-hook-form";
 import { SubscribeTypeEnum, VideoOrderEnum } from "./Enums";
 import { parseDatetime } from "../dataProvider";
-import { Card } from "@mui/material";
 import GetUp from "./GetUp";
 import GetCollection from "./GetCollection";
 import GetFavorite from "./GetFavorite";
 import GetPart from "./GetPart";
 import { toChoice } from "../recents/UploadDetailCreate";
 import moment from "moment";
+import { Card } from "@mui/material";
 
 const RecentCreateToolbar = () => {
-  const notify = useNotify();
-  const redirect = useRedirect();
-
   return (
     <Toolbar>
       <SaveButton
@@ -52,7 +47,7 @@ const RecentCreateToolbar = () => {
 };
 
 const SubscribeCreate = () => {
-  const { data, error } = useGetOne(
+  const { data } = useGetOne(
     "voiceList",
     { id: 1 },
     { retry: false, staleTime: Infinity }
@@ -61,7 +56,7 @@ const SubscribeCreate = () => {
   const notify = useNotify();
 
   useEffect(() => {
-    dataProvider.checkHasUploaded().then((uploaded) => {
+    dataProvider.checkHasUploaded().then((uploaded: any) => {
       if (!uploaded.data) {
         notify("需要先上传一遍单曲才可以订阅", { type: "error" });
       }
@@ -79,38 +74,48 @@ const SubscribeCreate = () => {
           fullWidth
           label="备注"
           validate={required("Required field")}
+          variant="outlined"
         />
         <SelectInput
           source="videoOrder"
           label="选择上传顺序"
           choices={VideoOrderEnum}
           validate={required("Required field")}
+          variant="outlined"
           fullWidth
         ></SelectInput>
         <SelectInput
           source="voiceListId"
+          variant="outlined"
           label="选择播客"
           choices={data && data.voiceList ? toChoice(data.voiceList.list) : []}
           fullWidth
           validate={required("Required field")}
         ></SelectInput>
         <SelectInput
+          variant="outlined"
           source="type"
           label="订阅类型"
           choices={SubscribeTypeEnum}
           validate={required("Required field")}
           fullWidth
         ></SelectInput>
-        {showAction(watchType, (targetId) => {
+        {showAction(watchType, (targetId: any) => {
           context.setValue("targetId", targetId);
         })}
         <TextInput
           source="targetId"
           // validate={required('Required field')}
+          variant="outlined"
           label="目标id(不建议手动填写)"
           fullWidth
         />
-        <TextInput source="keyWord" fullWidth label="过滤关键词" />
+        <TextInput
+          source="keyWord"
+          fullWidth
+          label="过滤关键词"
+          variant="outlined"
+        />
         <BooleanInput
           source="crack"
           fullWidth
@@ -125,6 +130,7 @@ const SubscribeCreate = () => {
         <TextInput
           source="limitSec"
           validate={required("Required field")}
+          variant="outlined"
           label="限制时长(秒)"
           fullWidth
         />
@@ -136,6 +142,7 @@ const SubscribeCreate = () => {
           source="processTime"
           defaultValue={moment(new Date()).format("YYYY-MM-DD HH:mm:ss")}
           label="上次处理时间"
+          variant="outlined"
           disabled={watchType === "PART"}
           fullWidth
         />
@@ -148,6 +155,7 @@ const SubscribeCreate = () => {
                 "YYYY-MM-DD HH:mm:ss"
               )}
               label="开始时间, 不会处理这个时间前的视频"
+              variant="outlined"
               fullWidth
             />
             <DateTimeInput
@@ -157,27 +165,36 @@ const SubscribeCreate = () => {
                 "YYYY-MM-DD HH:mm:ss"
               )}
               label="结束时间, 不会处理这个时间后的视频"
+              variant="outlined"
               fullWidth
             />
           </>
         )}
         <p>
-          {"使用大括号加序号来获取下面的变量: 例如 '{pubdate} 《{1}》', 数字1是下面的序号为1的正则结果, 会将名字变为: '2023.1.1 《彩虹糖的梦》', " +
-            "特殊变量: {pubdate}为获取视频发布时间, 格式为yyyy.MM.dd"}
+          {"使用大括号加序号来获取下面的变量: 例如歌名是:「2000.29.92《阿肝(again)》」, 自定义上传名称填:「你好{1}世界」," +
+            "下面添加一个序号为1内容为「\\《(.*?)\\》」, 上传时会将名字变为: 「你好阿肝(again)世界」"}
         </p>
         <TextInput
           source="regName"
           label="自定义上传名称，可以不填"
+          variant="outlined"
           fullWidth
         />
         <ArrayInput
           source="subscribeRegs"
+          variant="outlined"
           label="用于自定义上传名称, 对视频名字匹配正则"
         >
           <SimpleFormIterator inline>
-            <TextInput source="regex" helperText={false} label="正则表达式" />
+            <TextInput
+              source="regex"
+              helperText={false}
+              label="正则表达式"
+              variant="outlined"
+            />
             <TextInput
               source="pos"
+              variant="outlined"
               helperText={false}
               label="序号，只能为数字"
             />
@@ -190,11 +207,9 @@ const SubscribeCreate = () => {
   return (
     <Create redirect="list">
       <Title defaultTitle="新建订阅" />
-      <Card sx={{ marginTop: "1em", maxWidth: "30em" }}>
-        <SimpleForm toolbar={<RecentCreateToolbar />} warnWhenUnsavedChanges>
-          <MyForm />
-        </SimpleForm>
-      </Card>
+      <SimpleForm toolbar={<RecentCreateToolbar />} warnWhenUnsavedChanges>
+        <MyForm />
+      </SimpleForm>
     </Create>
   );
 };
@@ -203,31 +218,31 @@ function showAction(type: string, setTargetId: any): ReactElement {
   switch (type) {
     case "UP":
       return (
-        <Card sx={{ width: "100%", marginBottom: "15px" }} elevation={10}>
+        <Card sx={{ width: "100%" }} elevation={10}>
           <GetUp setTargetId={setTargetId} />
         </Card>
       );
     case "COLLECTION":
       return (
-        <Card sx={{ width: "100%", marginBottom: "15px" }} elevation={10}>
+        <Card sx={{ width: "100%" }} elevation={10}>
           <GetCollection setTargetId={setTargetId} />
         </Card>
       );
     case "FAVORITE":
       return (
-        <Card sx={{ width: "100%", marginBottom: "15px" }} elevation={10}>
+        <Card sx={{ width: "100%" }} elevation={10}>
           <GetFavorite setTargetId={setTargetId} />
         </Card>
       );
     case "PART":
       return (
-        <Card sx={{ width: "100%", marginBottom: "15px" }} elevation={10}>
+        <Card sx={{ width: "100%" }} elevation={10}>
           <GetPart setTargetId={setTargetId} />
         </Card>
       );
     default:
       return (
-        <Card sx={{ width: "100%", marginBottom: "15px" }} elevation={10}>
+        <Card sx={{ width: "100%" }} elevation={10}>
           <>未知类型</>
         </Card>
       );

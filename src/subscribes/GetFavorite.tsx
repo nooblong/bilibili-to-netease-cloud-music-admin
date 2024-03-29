@@ -17,12 +17,13 @@ export default function ({ setTargetId }) {
         onChange={(event) => {
           setUid(event.currentTarget.value);
         }}
+        variant="outlined"
         defaultValue={uid}
         label="请输入用户uid"
         fullWidth={true}
       />
       <Button
-        variant="contained"
+        variant="outlined"
         onClick={() => {
           dataProvider
             .getUserFavoriteList("getSubscribe", { uid })
@@ -43,6 +44,7 @@ export default function ({ setTargetId }) {
           id="demo-simple-select"
           value={mid ?? ""}
           label="选择收藏夹"
+          variant="outlined"
           onChange={(event) => {
             setMid(event.target.value);
             setTargetId(event.target.value);

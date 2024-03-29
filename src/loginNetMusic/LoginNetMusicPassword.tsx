@@ -1,4 +1,3 @@
-import React, { Fragment, useState } from "react";
 import {
   Create,
   required,
@@ -8,8 +7,9 @@ import {
   useDataProvider,
   useNotify,
 } from "react-admin";
-import { Button, Checkbox, Container, Grid } from "@mui/material";
+import { Button, ButtonGroup, Checkbox, Grid } from "@mui/material";
 import { useFormContext } from "react-hook-form";
+import { Fragment, useState } from "react";
 
 const LoginNetMusicPassword = () => {
   const notify = useNotify();
@@ -30,76 +30,70 @@ const LoginNetMusicPassword = () => {
           />
         </div>
         <TextInput
+          variant="outlined"
           source={"phone"}
           validate={required("Required field")}
           fullWidth={true}
         />
         {sendCode ? (
           <Grid container>
-            <Grid item xs={8}>
+            <Grid item xs={12}>
               <TextInput
+                variant="outlined"
                 source={"captcha"}
                 fullWidth={true}
                 validate={required("Required field")}
               />
             </Grid>
-            <Grid item xs={4}>
-              <Container>
-                <Button
-                  variant="contained"
-                  onClick={() => {
-                    dataProvider
-                      .sendCode("sendCode", {
-                        phone: context.getValues("phone"),
-                      })
-                      .then((data) => {
-                        if (data.data.code === 200) {
-                          notify("成功");
-                        } else {
-                          notify("失败");
-                        }
-                      });
-                  }}
-                >
-                  发送验证码
-                </Button>
-              </Container>
-            </Grid>
-            <Grid item xs={8}>
-              <p>先验证一下验证码是否正确</p>
-            </Grid>
-            <Grid item xs={4}>
-              <Container>
-                <Button
-                  fullWidth
-                  variant="contained"
-                  onClick={() => {
-                    dataProvider
-                      .verify("verify", {
-                        phone: context.getValues("phone"),
-                        captcha: context.getValues("captcha"),
-                      })
-                      .then((data) => {
-                        if (data.data.code === 200) {
-                          notify("验证成功");
-                        } else {
-                          notify("验证失败");
-                        }
-                      });
-                  }}
-                >
-                  验证
-                </Button>
-              </Container>
-            </Grid>
+            <ButtonGroup size="large" fullWidth aria-label="Large button group">
+              <Button
+                onClick={() => {
+                  dataProvider
+                    .sendCode("sendCode", {
+                      phone: context.getValues("phone"),
+                    })
+                    .then((data) => {
+                      if (data.data.code === 200) {
+                        notify("成功");
+                      } else {
+                        notify("失败");
+                      }
+                    });
+                }}
+              >
+                发送验证码
+              </Button>
+
+              <Button
+                fullWidth
+                onClick={() => {
+                  dataProvider
+                    .verify("verify", {
+                      phone: context.getValues("phone"),
+                      captcha: context.getValues("captcha"),
+                    })
+                    .then((data) => {
+                      if (data.data.code === 200) {
+                        notify("验证成功");
+                      } else {
+                        notify("验证失败");
+                      }
+                    });
+                }}
+              >
+                验证
+              </Button>
+            </ButtonGroup>
           </Grid>
         ) : (
           <TextInput
             source={"password"}
+            fullWidth
             validate={required("Required field")}
-            fullWidth={true}
+            variant="outlined"
           />
         )}
+        <hr />
         <SaveButton
           label="登录"
           type="button"

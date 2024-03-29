@@ -1,8 +1,7 @@
-import { Button, TextField } from "@mui/material";
-import { parseImgUrl } from "../dataProvider";
-import React, { ReactElement, useState } from "react";
+import { Box, Button, TextField } from "@mui/material";
 import { useDataProvider, useNotify } from "react-admin";
-import Box from "@mui/material/Box";
+import { ReactElement, useState } from "react";
+import { parseImgUrl } from "../dataProvider";
 
 export default function ({ setTargetId }): ReactElement {
   const [url, setUrl] = useState(
@@ -14,6 +13,7 @@ export default function ({ setTargetId }): ReactElement {
   return (
     <Box margin="10px">
       <TextField
+        variant="outlined"
         onChange={(event) => {
           setUrl(event.currentTarget.value);
         }}
@@ -22,7 +22,7 @@ export default function ({ setTargetId }): ReactElement {
         fullWidth={true}
       />
       <Button
-        variant="contained"
+        variant="outlined"
         onClick={() => {
           if (url === null || url === "") {
             notify("填写url！");
@@ -39,7 +39,7 @@ export default function ({ setTargetId }): ReactElement {
                 .getUserInfo("getUserInfo", {
                   uid: videoData.uid,
                 })
-                .then(({ data }) => {
+                .then(({ data }: any) => {
                   if (data.code !== -1) {
                     setCollectionInfo(data.data);
                     setTargetId(videoData.uid);
@@ -54,7 +54,6 @@ export default function ({ setTargetId }): ReactElement {
         解析
       </Button>
       <img
-        width="100%"
         src={collectionInfo == null ? "" : parseImgUrl(collectionInfo.face)}
         alt=""
       />

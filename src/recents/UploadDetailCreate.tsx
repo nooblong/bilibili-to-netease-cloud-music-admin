@@ -15,7 +15,6 @@ import {
   useRedirect,
 } from "react-admin";
 import { useFormContext } from "react-hook-form";
-import { Card } from "@mui/material";
 import GetBvid from "./GetBvid";
 
 const RecentCreateToolbar = ({ videoInfo }: any) => {
@@ -93,6 +92,7 @@ const UploadDetailCreate = () => {
           }}
         />
         <SelectInput
+          variant="outlined"
           source="voiceListId"
           label="选择播客"
           choices={data && data.voiceList ? toChoice(data.voiceList.list) : []}
@@ -100,6 +100,7 @@ const UploadDetailCreate = () => {
           validate={required("Required field")}
         ></SelectInput>
         <TextInput
+          variant="outlined"
           source="customUploadName"
           multiline
           fullWidth
@@ -107,32 +108,37 @@ const UploadDetailCreate = () => {
           validate={required("Required field")}
         />
         <TextInput
+          variant="outlined"
           source="voiceOffset"
           label="声音增益(db)支持小数"
           validate={number("必须是数字")}
           fullWidth
         />
         <TextInput
+          variant="outlined"
           source="startTime"
           label="剪辑开始时间(秒)支持小数"
           validate={number("必须是数字")}
           fullWidth
         />
         <TextInput
+          variant="outlined"
           source="endTime"
           label="剪辑结束时间(秒)支持小数"
           validate={number("必须是数字")}
           fullWidth
         />
         <BooleanInput
+          variant="outlined"
           source="useDefaultImg"
           label="使用视频封面，取消则为播客默认封面"
           defaultValue
           fullWidth
         />
-        <BooleanInput source="privacy" label="隐私声音?" />
+        <BooleanInput source="privacy" label="隐私声音?" variant="outlined" />
         <BooleanInput
           source="crack"
+          variant="outlined"
           disabled={data1 && data1.fullName !== "admin"}
           label="绕过版权检测"
         />
@@ -142,13 +148,9 @@ const UploadDetailCreate = () => {
 
   return (
     <Create redirect="list">
-      <div className="create-page">
-        <Card sx={{ marginTop: "1em", maxWidth: "30em" }}>
-          <SimpleForm toolbar={<RecentCreateToolbar videoInfo={videoInfo} />}>
-            <MyForm />
-          </SimpleForm>
-        </Card>
-      </div>
+      <SimpleForm toolbar={<RecentCreateToolbar videoInfo={videoInfo} />}>
+        <MyForm />
+      </SimpleForm>
     </Create>
   );
 };

@@ -5,12 +5,12 @@ import {
   MenuItem,
   TextField,
 } from "@mui/material";
-import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import { useDataProvider, useNotify } from "react-admin";
+import { useState } from "react";
 
 export default function ({ setTargetId }) {
   const dataProvider = useDataProvider();
@@ -41,8 +41,9 @@ export default function ({ setTargetId }) {
   };
 
   return (
-    <>
+    <Box margin="10px">
       <TextField
+        variant="outlined"
         label="输入bvid或url"
         onChange={(event) => {
           setVideoInfo({
@@ -55,7 +56,7 @@ export default function ({ setTargetId }) {
         sx={{ width: "100%" }}
       />
       <Button
-        variant="contained"
+        variant="outlined"
         onClick={() => {
           dataProvider
             .getVideoInfo("getVideoInfo", { bvid: videoInfo.bvid })
@@ -117,6 +118,6 @@ export default function ({ setTargetId }) {
         </>
       )}
       <Box sx={{ minWidth: 120 }}>预计分p数量: {videoInfo.pages.length}</Box>
-    </>
+    </Box>
   );
 }

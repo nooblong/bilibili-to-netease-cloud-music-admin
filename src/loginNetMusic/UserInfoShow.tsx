@@ -14,7 +14,6 @@ export default UserInfoShow;
 function UserInfoShow(netAccount: NetAccount): ReactElement {
   return (
     <div>
-      <Paper sx={{ fontSize: "10px" }}>
         id: {netAccount.id}
         <br />
         username: {netAccount.userName}
@@ -23,7 +22,6 @@ function UserInfoShow(netAccount: NetAccount): ReactElement {
         <br />
         signature: {netAccount.signature}
         <br />
-      </Paper>
     </div>
   );
 }

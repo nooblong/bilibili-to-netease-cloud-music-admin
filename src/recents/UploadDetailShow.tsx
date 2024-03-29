@@ -40,7 +40,6 @@ const UploadDetailShow = () => {
     resource: "uploadDetail",
     id: params.id,
   });
-  console.log(controllerProps);
 
   const uploadDetail: any = useGetOne(
     "uploadDetail",
@@ -52,7 +51,6 @@ const UploadDetailShow = () => {
         dataProvider
           .instanceLog(data1.instanceId, page - 1)
           .then((data: any) => {
-            console.log(data);
             setLogData(data.data);
             setTotalPage(data.data.totalPages);
             setPage(data.data.index + 1);
@@ -116,6 +114,7 @@ const UploadDetailShow = () => {
           fullWidth
           choices={data && data.voiceList ? toChoice(data.voiceList.list) : []}
           validate={required("Required field")}
+          variant="outlined"
         ></SelectInput>
       </>
     );
@@ -128,37 +127,6 @@ const UploadDetailShow = () => {
           <MyForm />
         </SimpleForm>
       </Create>
-      {/*<EditContextProvider value={controllerProps}>*/}
-      {/*  <Title defaultTitle={controllerProps.defaultTitle} />*/}
-      {/*  <Card sx={{ marginTop: "1em" }}>*/}
-      {/*    <CardContent>编辑用于重新上传</CardContent>*/}
-      {/*    <SimpleForm*/}
-      {/*      toolbar={*/}
-      {/*        <Toolbar>*/}
-      {/*          <div className={ToolbarClasses.defaultToolbar}>*/}
-      {/*            <SaveButton*/}
-      {/*              label="提交"*/}
-      {/*              type="button"*/}
-      {/*              variant="text"*/}
-      {/*              mutationOptions={{*/}
-      {/*                onSuccess: (response: any) => {*/}
-      {/*                  console.log(response);*/}
-      {/*                  notify(response.message);*/}
-      {/*                  redirect("/recentsList");*/}
-      {/*                },*/}
-      {/*              }}*/}
-      {/*            />*/}
-      {/*          </div>*/}
-      {/*        </Toolbar>*/}
-      {/*      }*/}
-      {/*      resource={""}*/}
-      {/*      record={controllerProps.record}*/}
-      {/*      warnWhenUnsavedChanges*/}
-      {/*    >*/}
-      {/*      <TextInput source="uploadName" fullWidth label="上传名字" />*/}
-      {/*    </SimpleForm>*/}
-      {/*  </Card>*/}
-      {/*</EditContextProvider>*/}
       <hr />
       <ButtonGroup size="large" fullWidth aria-label="Large button group">
         {buttons}

@@ -62,17 +62,24 @@ const SubscribeEdit = (props) => {
             </Typography>
           </CardContent>
         </Card>
-        <TextInput source="id" fullWidth InputProps={{ disabled: true }} />
-        <TextInput source="remark" fullWidth label="备注" />
+        <TextInput
+          source="id"
+          fullWidth
+          InputProps={{ disabled: true }}
+          variant="outlined"
+        />
+        <TextInput source="remark" fullWidth label="备注" variant="outlined" />
         <SelectInput
           source="videoOrder"
           label="选择上传顺序"
           choices={VideoOrderEnum}
           validate={required("Required field")}
+          variant="outlined"
           fullWidth
         ></SelectInput>
         <SelectInput
           source="voiceListId"
+          variant="outlined"
           label="选择播客"
           choices={
             data && data.voiceList
@@ -83,6 +90,7 @@ const SubscribeEdit = (props) => {
           validate={required("Required field")}
         ></SelectInput>
         <SelectInput
+          variant="outlined"
           source="type"
           label="订阅类型"
           choices={SubscribeTypeEnum}
@@ -97,11 +105,18 @@ const SubscribeEdit = (props) => {
           source="targetId"
           // validate={required('Required field')}
           label="目标id(不建议手动填写)"
+          variant="outlined"
           fullWidth
         />
-        <TextInput source="keyWord" fullWidth label="过滤关键词" />
+        <TextInput
+          source="keyWord"
+          fullWidth
+          label="过滤关键词"
+          variant="outlined"
+        />
         <BooleanInput
           source="crack"
+          variant="outlined"
           fullWidth
           label="绕过版权检测"
           disabled={data1 && data1.fullName !== "admin"}
@@ -109,6 +124,7 @@ const SubscribeEdit = (props) => {
         <BooleanInput
           source="useVideoCover"
           label="使用视频封面，取消则为播客默认封面"
+          variant="outlined"
           defaultValue
           fullWidth
         />
@@ -116,6 +132,7 @@ const SubscribeEdit = (props) => {
           source="limitSec"
           validate={required("Required field")}
           label="限制时长(秒)"
+          variant="outlined"
           fullWidth
         />
         <p>
@@ -126,6 +143,7 @@ const SubscribeEdit = (props) => {
           source="processTime"
           defaultValue={moment(new Date()).format("YYYY-MM-DD HH:mm:ss")}
           label="上次处理时间"
+          variant="outlined"
           disabled={watchType === "PART"}
           fullWidth
         />
@@ -139,6 +157,7 @@ const SubscribeEdit = (props) => {
               )}
               label="开始时间, 不会处理这个时间前的视频"
               fullWidth
+              variant="outlined"
             />
             <DateTimeInput
               parse={parseDatetime}
@@ -147,6 +166,7 @@ const SubscribeEdit = (props) => {
                 "YYYY-MM-DD HH:mm:ss"
               )}
               label="结束时间, 不会处理这个时间后的视频"
+              variant="outlined"
               fullWidth
             />
           </>
@@ -159,6 +179,7 @@ const SubscribeEdit = (props) => {
           source="regName"
           label="自定义上传名称，可以不填"
           fullWidth
+          variant="outlined"
         />
         <ArrayInput
           source="subscribeRegs"
@@ -169,6 +190,7 @@ const SubscribeEdit = (props) => {
             <TextInput
               source="pos"
               helperText={false}
+              variant="outlined"
               label="序号，只能为数字"
             />
           </SimpleFormIterator>
@@ -180,37 +202,33 @@ const SubscribeEdit = (props) => {
 
   return (
     <EditContextProvider value={controllerProps}>
-      <div className="edit-page">
-        <Title defaultTitle={controllerProps.defaultTitle} />
-        <Card sx={{ marginTop: "1em", maxWidth: "30em" }}>
-          <SimpleForm
-            toolbar={
-              <Toolbar>
-                <div className={ToolbarClasses.defaultToolbar}>
-                  <SaveButton
-                    label="提交"
-                    type="button"
-                    variant="text"
-                    alwaysEnable
-                    transform={(data) => ({
-                      ...data,
-                      crack: data.crack ? 1 : 0,
-                      useVideoCover: data.useVideoCover ? 1 : 0,
-                    })}
-                  />
-                  <DeleteButton resource={resource} />
-                </div>
-              </Toolbar>
-            }
-            resource={resource}
-            record={record}
-            // onSubmit={save}
-            warnWhenUnsavedChanges
-          >
-            <MyForm />
-          </SimpleForm>
-        </Card>
-      </div>
+      <Title defaultTitle={controllerProps.defaultTitle} />
+      <SimpleForm
+        toolbar={
+          <Toolbar>
+            <div className={ToolbarClasses.defaultToolbar}>
+              <SaveButton
+                label="提交"
+                type="button"
+                variant="text"
+                alwaysEnable
+                transform={(data) => ({
+                  ...data,
+                  crack: data.crack ? 1 : 0,
+                  useVideoCover: data.useVideoCover ? 1 : 0,
+                })}
+              />
+              <DeleteButton resource={resource} />
+            </div>
+          </Toolbar>
+        }
+        resource={resource}
+        record={record}
+        // onSubmit={save}
+        warnWhenUnsavedChanges
+      >
+        <MyForm />
+      </SimpleForm>
     </EditContextProvider>
   );
 };
@@ -219,31 +237,31 @@ function showAction(type: string, setTargetId: any): ReactElement {
   switch (type) {
     case "UP":
       return (
-        <Card sx={{ width: "100%", marginBottom: "15px" }} elevation={10}>
+        <Card sx={{ width: "100%" }} elevation={10}>
           <GetUp setTargetId={setTargetId} />
         </Card>
       );
     case "COLLECTION":
       return (
-        <Card sx={{ width: "100%", marginBottom: "15px" }} elevation={10}>
+        <Card sx={{ width: "100%" }} elevation={10}>
           <GetCollection setTargetId={setTargetId} />
         </Card>
       );
     case "FAVORITE":
       return (
-        <Card sx={{ width: "100%", marginBottom: "15px" }} elevation={10}>
+        <Card sx={{ width: "100%" }} elevation={10}>
           <GetFavorite setTargetId={setTargetId} />
         </Card>
       );
     case "PART":
       return (
-        <Card sx={{ width: "100%", marginBottom: "15px" }} elevation={10}>
+        <Card sx={{ width: "100%" }} elevation={10}>
           <GetPart setTargetId={setTargetId} />
         </Card>
       );
     default:
       return (
-        <Card sx={{ width: "100%", marginBottom: "15px" }} elevation={10}>
+        <Card sx={{ width: "100%" }} elevation={10}>
           <>未知类型</>
         </Card>
       );

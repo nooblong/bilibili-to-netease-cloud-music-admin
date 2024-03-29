@@ -10,11 +10,11 @@ const UploadDetailEdit = () => {
           </Toolbar>
         }
       >
-        <TextInput fullWidth disabled label="id" source="id" />
-        <TextInput disabled label="subscribeId" source="subscribeId" />
-        <TextInput disabled source="title" />
-        <TextInput disabled source="userId" />
-        <TextInput source="uploadName" />
+        <TextInput fullWidth disabled label="id" source="id" variant="outlined" />
+        <TextInput fullWidth disabled label="subscribeId" source="subscribeId" variant="outlined" />
+        <TextInput fullWidth disabled source="title" variant="outlined" />
+        <TextInput fullWidth disabled source="userId" variant="outlined" />
+        <TextInput fullWidth source="uploadName" variant="outlined" />
       </SimpleForm>
     </Edit>
   );
