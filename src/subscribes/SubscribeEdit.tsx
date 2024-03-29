@@ -1,6 +1,6 @@
 import * as React from "react";
 import { ReactElement } from "react";
-import { Card } from "@mui/material";
+import { Card, CardContent } from "@mui/material";
 import {
   ArrayInput,
   BooleanInput,
@@ -12,6 +12,7 @@ import {
   SelectInput,
   SimpleForm,
   SimpleFormIterator,
+  TextField,
   TextInput,
   Title,
   Toolbar,
@@ -29,6 +30,7 @@ import GetFavorite from "./GetFavorite";
 import GetPart from "./GetPart";
 import { toChoice } from "../recents/RecentCreate";
 import moment from "moment/moment";
+import Typography from "@mui/material/Typography";
 
 const SubscribeEdit = (props) => {
   const controllerProps = useEditController(props);
@@ -46,6 +48,20 @@ const SubscribeEdit = (props) => {
     const data1 = identity.data;
     return (
       <>
+        <Card sx={{ width: "100%" }}>
+          <CardContent>
+            <Typography
+              sx={{ fontSize: 14 }}
+              color="text.secondary"
+              gutterBottom
+            >
+              订阅日志
+            </Typography>
+            <Typography variant="body2" sx={{ whiteSpace: "pre-line" }}>
+              <TextField source="log"></TextField>
+            </Typography>
+          </CardContent>
+        </Card>
         <TextInput source="id" fullWidth InputProps={{ disabled: true }} />
         <TextInput source="remark" fullWidth label="备注" />
         <SelectInput
@@ -157,12 +173,7 @@ const SubscribeEdit = (props) => {
             />
           </SimpleFormIterator>
         </ArrayInput>
-        <BooleanInput
-          source="enable"
-          label="启用"
-          disabled
-          fullWidth
-        />
+        <BooleanInput source="enable" label="启用" disabled fullWidth />
       </>
     );
   };

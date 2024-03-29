@@ -1,12 +1,17 @@
 import {
   Create,
+  EditContextProvider,
   Loading,
   required,
   SaveButton,
   SelectInput,
   SimpleForm,
+  TextInput,
+  Title,
   Toolbar,
+  ToolbarClasses,
   useDataProvider,
+  useEditController,
   useGetOne,
   useNotify,
   useRedirect,
@@ -22,6 +27,7 @@ import {
   Stack,
 } from "@mui/material";
 import Typography from "@mui/material/Typography";
+import * as React from "react";
 import { useState } from "react";
 
 const RecentShow = () => {
@@ -30,10 +36,15 @@ const RecentShow = () => {
   const voiceDetailId = params.id;
   const notify = useNotify();
   const dataProvider = useDataProvider();
-  const [logData, setLogData] = useState(null);
+  const [logData, setLogData] = useState<any>(null);
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
   const [success, setSuccess] = useState(false);
+  const controllerProps = useEditController({
+    resource: "uploadDetail",
+    id: params.id,
+  });
+  console.log(controllerProps);
 
   const uploadDetail: any = useGetOne(
     "uploadDetail",
@@ -42,13 +53,15 @@ const RecentShow = () => {
     },
     {
       onSuccess: (data1) => {
-        dataProvider.instanceLog(data1.instanceId, page - 1).then((data) => {
-          console.log(data);
-          setLogData(data.data);
-          setTotalPage(data.data.totalPages);
-          setPage(data.data.index + 1);
-          setSuccess(true);
-        });
+        dataProvider
+          .instanceLog(data1.instanceId, page - 1)
+          .then((data: any) => {
+            console.log(data);
+            setLogData(data.data);
+            setTotalPage(data.data.totalPages);
+            setPage(data.data.index + 1);
+            setSuccess(true);
+          });
       },
     }
   );
@@ -100,7 +113,7 @@ const RecentShow = () => {
   const MyForm = () => {
     return (
       <>
-        <p>上传这首歌到自己的播客</p>
+        <Typography>上传这首歌到自己的播客</Typography>
         <SelectInput
           source="voiceListId"
           label="选择播客"
@@ -119,6 +132,37 @@ const RecentShow = () => {
           <MyForm />
         </SimpleForm>
       </Create>
+      <EditContextProvider value={controllerProps}>
+        <Title defaultTitle={controllerProps.defaultTitle} />
+        <Card sx={{ marginTop: "1em" }}>
+          <CardContent>编辑用于重新上传</CardContent>
+          <SimpleForm
+            toolbar={
+              <Toolbar>
+                <div className={ToolbarClasses.defaultToolbar}>
+                  <SaveButton
+                    label="提交"
+                    type="button"
+                    variant="text"
+                    mutationOptions={{
+                      onSuccess: (response: any) => {
+                        console.log(response);
+                        notify(response.message);
+                        redirect("/recentsList");
+                      },
+                    }}
+                  />
+                </div>
+              </Toolbar>
+            }
+            resource={""}
+            record={controllerProps.record}
+            warnWhenUnsavedChanges
+          >
+            <TextInput source="uploadName" fullWidth label="上传名字" />
+          </SimpleForm>
+        </Card>
+      </EditContextProvider>
       <hr />
       <ButtonGroup size="large" fullWidth aria-label="Large button group">
         {buttons}

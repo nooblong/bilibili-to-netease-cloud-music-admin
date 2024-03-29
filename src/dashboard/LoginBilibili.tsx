@@ -109,17 +109,17 @@ function LoginDialog({ img }: { img: string }): ReactElement {
 
 let timer: any;
 
-async function login(setImg, setChecking, setKey, dataProvider): Promise<void> {
+async function login(setImg: any, setChecking: any, setKey: any, dataProvider: any): Promise<void> {
   dataProvider
     .getQrBili()
-    .then((data) => {
+    .then((data: any) => {
       setImg(data.data.image);
       setKey(data.data.uniqueKey);
     })
     .then(() => {
       setChecking(true);
     })
-    .catch((reason) => {
+    .catch((reason: any) => {
       alert(reason);
     });
 }

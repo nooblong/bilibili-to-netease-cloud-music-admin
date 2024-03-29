@@ -22,7 +22,7 @@ import UserInfoShow from "./UserInfoShow";
 import LoginNetMusicPassword from "./LoginNetMusicPassword";
 
 const LoginNetMusic = () => {
-  const [img, setImg] = useState();
+  const [img, setImg] = useState<string>("");
   const [userInfo, setUserInfo] = useState<any>({});
   const [checking, setChecking] = useState(false);
   const [loginStatus, setLoginStatus] = useState("未登录");
@@ -36,7 +36,7 @@ const LoginNetMusic = () => {
       return;
     }
     const id = setInterval(async () => {
-      void dataProvider.qrCheck(key).then((value) => {
+      void dataProvider.qrCheck(key).then((value: any) => {
         setLoginStatus(value.data.message);
         if (value.data.code === 800) {
           notify("二维码已过期,请重新获取", { type: "error" });
@@ -45,7 +45,7 @@ const LoginNetMusic = () => {
         if (value.data.code === 803) {
           clearInterval(timer);
           notify("授权登录成功", { type: "success" });
-          dataProvider.loginStatus().then((userInfo) => {
+          dataProvider.loginStatus().then((userInfo: any) => {
             setUserInfo(userInfo);
             setChecking(false);
           });
@@ -58,7 +58,7 @@ const LoginNetMusic = () => {
   }, [checking, dataProvider, key, notify]);
 
   useEffect(() => {
-    dataProvider.isLogin().then((data) => {
+    dataProvider.isLogin().then((data: any) => {
       if (
         data.data.data === null ||
         data.data.data.account === null ||
@@ -158,7 +158,8 @@ const LoginNetMusic = () => {
     </>
   );
 };
-function LoginDialog({ img }): ReactElement {
+
+function LoginDialog({ img }: { img: string }): ReactElement {
   return (
     <div>
       <DialogTitle>保存到手机扫码登录</DialogTitle>
@@ -168,18 +169,24 @@ function LoginDialog({ img }): ReactElement {
   );
 }
 
-let timer;
-async function login(setImg, setChecking, setKey, dataProvider): Promise<void> {
+let timer: any;
+
+async function login(
+  setImg: any,
+  setChecking: any,
+  setKey: any,
+  dataProvider: any
+): Promise<void> {
   dataProvider
     .getQrCode()
-    .then((data) => {
+    .then((data: any) => {
       setImg(data.data.image);
       setKey(data.data.uniqueKey);
     })
     .then(() => {
       setChecking(true);
     })
-    .catch((reason) => {
+    .catch((reason: any) => {
       alert(reason);
     });
 }
