@@ -12,7 +12,7 @@ import {
   useNotify,
   useRedirect,
 } from "react-admin";
-import { toChoice } from "./RecentCreate";
+import { toChoice } from "./UploadDetailCreate";
 import { Link, useParams } from "react-router-dom";
 import {
   Button,
@@ -26,7 +26,7 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { useState } from "react";
 
-const RecentShow = () => {
+const UploadDetailShow = () => {
   const redirect = useRedirect();
   const params = useParams();
   const voiceDetailId = params.id;
@@ -84,7 +84,7 @@ const RecentShow = () => {
               type: "info",
               messageArgs: { smart_count: 1 },
             });
-            redirect("list", "recentsList", data.id);
+            redirect("list", "uploadDetail", data.id);
           },
         }}
       />
@@ -190,4 +190,4 @@ const RecentShow = () => {
   );
 };
 
-export default RecentShow;
+export default UploadDetailShow;

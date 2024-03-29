@@ -1,4 +1,3 @@
-/* eslint react/jsx-key: off */
 import * as React from "react";
 import { Admin, Resource } from "react-admin";
 import { render } from "react-dom";
@@ -8,16 +7,17 @@ import Layout from "./Layout";
 import LoginNetMusic from "./loginNetMusic/LoginNetMusic";
 import delayedDataProvider from "./dataProvider";
 import LoginPage from "./LoginPage";
-import RecentCreate from "./recents/RecentCreate";
-import RecentList from "./recents/RecentList";
+import UploadDetailCreate from "./recents/UploadDetailCreate";
+import UploadDetail from "./recents/UploadDetailList";
 import SubscribeList from "./subscribes/SubscribeList";
 import SubscribeCreate from "./subscribes/SubscribeCreate";
 import SubscribeEdit from "./subscribes/SubscribeEdit";
-import RecentShow from "./recents/RecentShow";
+import UploadDetailShow from "./recents/UploadDetailShow";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import Dashboard from "./dashboard/Dashboard";
+import RecentEdit from "./recents/UploadDetailEdit";
 
 render(
   <React.StrictMode>
@@ -30,10 +30,11 @@ render(
       loginPage={LoginPage}
     >
       <Resource
-        name="recentsList"
-        list={RecentList}
-        create={RecentCreate}
-        show={RecentShow}
+        name="uploadDetail"
+        list={UploadDetail}
+        create={UploadDetailCreate}
+        show={UploadDetailShow}
+        edit={RecentEdit}
         icon={PlaylistAddIcon}
         options={{ label: "单曲上传" }}
       />

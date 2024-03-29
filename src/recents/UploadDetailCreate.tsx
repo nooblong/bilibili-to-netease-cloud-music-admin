@@ -34,7 +34,7 @@ const RecentCreateToolbar = ({ videoInfo }: any) => {
               type: "info",
               messageArgs: { smart_count: 1 },
             });
-            redirect("list", "recentsList", data.id);
+            redirect("list", "uploadDetail", data.id);
           },
         }}
         transform={(data) => ({
@@ -49,7 +49,7 @@ const RecentCreateToolbar = ({ videoInfo }: any) => {
   );
 };
 
-const RecentCreate = () => {
+const UploadDetailCreate = () => {
   const [videoInfo, setVideoInfo] = useState({
     title: "",
     quality: [],
@@ -161,4 +161,4 @@ export function toChoice(voiceList: any[]): any[] {
   });
 }
 
-export default RecentCreate;
+export default UploadDetailCreate;

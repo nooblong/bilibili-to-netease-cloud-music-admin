@@ -45,7 +45,7 @@ const withLifeCycleCallbackProvider = withLifecycleCallbacks(
 const dataProvider: DataProvider = {
   ...withLifeCycleCallbackProvider,
   getList: (resource, params) => {
-    if (resource === "recentsList") {
+    if (resource === "uploadDetail") {
       const { page, perPage } = params.pagination;
       const filters = params.filter;
       const query = {
@@ -53,7 +53,7 @@ const dataProvider: DataProvider = {
         pageNo: page,
         pageSize: perPage,
       };
-      const url = `/api/uploadDetail/recent?${querystring.stringify(query)}`;
+      const url = `/api/uploadDetail?${querystring.stringify(query)}`;
       return accessTokenClient(url).then(({ json }) => {
         return {
           data: json.data.records,
@@ -107,7 +107,7 @@ const dataProvider: DataProvider = {
     return withLifeCycleCallbackProvider.getOne(resource, params);
   },
   create: (resource, params): any => {
-    if (resource === "recentsList") {
+    if (resource === "uploadDetail") {
       return accessTokenClient("/api/uploadDetail/addQueue", {
         method: "POST",
         body: JSON.stringify(params.data),

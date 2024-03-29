@@ -27,7 +27,7 @@ import GetUp from "./GetUp";
 import GetCollection from "./GetCollection";
 import GetFavorite from "./GetFavorite";
 import GetPart from "./GetPart";
-import { toChoice } from "../recents/RecentCreate";
+import { toChoice } from "../recents/UploadDetailCreate";
 import moment from "moment";
 
 const RecentCreateToolbar = () => {

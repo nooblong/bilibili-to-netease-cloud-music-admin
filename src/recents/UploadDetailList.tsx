@@ -1,28 +1,41 @@
 import {
   Datagrid,
+  EditButton,
   FilterButton,
   Identifier,
   List,
   SelectInput,
+  ShowButton,
   TextField,
   TextInput,
   TopToolbar,
 } from "react-admin";
 import { AuditStatusEnum } from "../subscribes/Enums";
 import CreateButton from "../customAdmin/CreateButton";
+import { Box } from "@mui/material";
 
-const RecentListMobile = () => {
+const PostListActionToolbar = ({ children }: any) => (
+  <Box sx={{ alignItems: "center", display: "flex" }}>{children}</Box>
+);
+
+const UploadDetailListMobile = () => {
   return (
     <List
       actions={<PostListActions />}
       filters={recentFilters}
       exporter={false}
     >
-      <Datagrid bulkActionButtons={false} rowClick={rowClick}>
+      <Datagrid
+        bulkActionButtons={false}
+      >
         <TextField source="mergeTitle" label="上传名字" />
         <TextField source="userName" label="用户" />
         <TextField source="statusDesc" label="状态" />
         <TextField source="createTime" label="创建时间" />
+        <PostListActionToolbar>
+          <EditButton />
+          <ShowButton />
+        </PostListActionToolbar>
       </Datagrid>
     </List>
   );
@@ -35,45 +48,33 @@ const PostListActions = () => (
   </TopToolbar>
 );
 
-const rowClick = (id: Identifier, resource: string) => {
-  console.log(resource);
-  // https://y.music.163.com/m/program?id=2534086095
-  return "show";
-};
-
 const recentFilters = [
   // <SearchInput source="name" alwaysOn />,
   <TextInput
     label="标题"
     source="title"
     defaultValue=""
-    name={"标题"}
+    name={"title"}
     key={"标题"}
   />,
   <TextInput
     label="用户名"
     source="username"
     defaultValue=""
-    name={"用户名"}
+    name={"username"}
     key={"用户名"}
-  />,
-  <TextInput
-    label="备注"
-    source="remark"
-    defaultValue=""
-    name={"备注"}
-    key={"备注"}
   />,
   <SelectInput
     key={"状态"}
     label="状态"
     source="status"
+    name={"status"}
     choices={AuditStatusEnum}
   ></SelectInput>,
 ];
 
-const RecentList = () => {
-  return <RecentListMobile />;
+const UploadDetailList = () => {
+  return <UploadDetailListMobile />;
 };
 
-export default RecentList;
+export default UploadDetailList;
