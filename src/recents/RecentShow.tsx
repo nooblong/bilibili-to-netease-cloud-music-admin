@@ -1,15 +1,11 @@
 import {
   Create,
-  EditContextProvider,
   Loading,
   required,
   SaveButton,
   SelectInput,
   SimpleForm,
-  TextInput,
-  Title,
   Toolbar,
-  ToolbarClasses,
   useDataProvider,
   useEditController,
   useGetOne,
@@ -132,37 +128,37 @@ const RecentShow = () => {
           <MyForm />
         </SimpleForm>
       </Create>
-      <EditContextProvider value={controllerProps}>
-        <Title defaultTitle={controllerProps.defaultTitle} />
-        <Card sx={{ marginTop: "1em" }}>
-          <CardContent>编辑用于重新上传</CardContent>
-          <SimpleForm
-            toolbar={
-              <Toolbar>
-                <div className={ToolbarClasses.defaultToolbar}>
-                  <SaveButton
-                    label="提交"
-                    type="button"
-                    variant="text"
-                    mutationOptions={{
-                      onSuccess: (response: any) => {
-                        console.log(response);
-                        notify(response.message);
-                        redirect("/recentsList");
-                      },
-                    }}
-                  />
-                </div>
-              </Toolbar>
-            }
-            resource={""}
-            record={controllerProps.record}
-            warnWhenUnsavedChanges
-          >
-            <TextInput source="uploadName" fullWidth label="上传名字" />
-          </SimpleForm>
-        </Card>
-      </EditContextProvider>
+      {/*<EditContextProvider value={controllerProps}>*/}
+      {/*  <Title defaultTitle={controllerProps.defaultTitle} />*/}
+      {/*  <Card sx={{ marginTop: "1em" }}>*/}
+      {/*    <CardContent>编辑用于重新上传</CardContent>*/}
+      {/*    <SimpleForm*/}
+      {/*      toolbar={*/}
+      {/*        <Toolbar>*/}
+      {/*          <div className={ToolbarClasses.defaultToolbar}>*/}
+      {/*            <SaveButton*/}
+      {/*              label="提交"*/}
+      {/*              type="button"*/}
+      {/*              variant="text"*/}
+      {/*              mutationOptions={{*/}
+      {/*                onSuccess: (response: any) => {*/}
+      {/*                  console.log(response);*/}
+      {/*                  notify(response.message);*/}
+      {/*                  redirect("/recentsList");*/}
+      {/*                },*/}
+      {/*              }}*/}
+      {/*            />*/}
+      {/*          </div>*/}
+      {/*        </Toolbar>*/}
+      {/*      }*/}
+      {/*      resource={""}*/}
+      {/*      record={controllerProps.record}*/}
+      {/*      warnWhenUnsavedChanges*/}
+      {/*    >*/}
+      {/*      <TextInput source="uploadName" fullWidth label="上传名字" />*/}
+      {/*    </SimpleForm>*/}
+      {/*  </Card>*/}
+      {/*</EditContextProvider>*/}
       <hr />
       <ButtonGroup size="large" fullWidth aria-label="Large button group">
         {buttons}
