@@ -35,7 +35,8 @@ const SubscribesDesktop = () => (
     <Datagrid rowClick={rowClick} bulkActionButtons={false}>
       <AvatarField source="netCover" />
       <TextField source="remark" label="备注" />
-      <TextField source="type" label="类型" />
+      <TextField source="typeDesc" label="类型" />
+      <TextField source="userName" label="用户" />
       <TextField source="processTime" label="处理时间" />
     </Datagrid>
   </List>

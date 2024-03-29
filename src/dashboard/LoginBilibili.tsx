@@ -19,8 +19,7 @@ import {
 } from "react-admin";
 
 const LoginNetMusic = () => {
-  const [img, setImg] = useState();
-  const [userInfo, setUserInfo] = useState<any>({});
+  const [img, setImg] = useState<string>("");
   const [checking, setChecking] = useState(false);
   const [loginStatus, setLoginStatus] = useState("未登录");
   const [key, setKey] = useState("");
@@ -33,7 +32,7 @@ const LoginNetMusic = () => {
       return;
     }
     const id = setInterval(async () => {
-      void dataProvider.checkQrBili(key).then((value) => {
+      void dataProvider.checkQrBili(key).then((value: any) => {
         setLoginStatus(value.data.data.message);
         if (value.data.data.code === 86038) {
           notify("二维码已过期,请重新获取", { type: "error" });
@@ -42,7 +41,7 @@ const LoginNetMusic = () => {
         if (value.data.data.code === 0) {
           clearInterval(timer);
           notify("授权登录成功", { type: "success" });
-          console.log(value);
+          setChecking(false);
         }
       });
     }, 3000);
@@ -55,6 +54,7 @@ const LoginNetMusic = () => {
     <>
       <Grid>
         <CardContent>仅用于下载音频</CardContent>
+        <CardContent>{loginStatus}</CardContent>
         <CardContent sx={{ flexGrow: 1 }}>
           <Typography
             component="span"
@@ -97,7 +97,7 @@ const LoginNetMusic = () => {
   );
 };
 
-function LoginDialog({ img }): ReactElement {
+function LoginDialog({ img }: { img: string }): ReactElement {
   return (
     <div>
       <DialogTitle>保存到手机扫码登录</DialogTitle>
@@ -107,7 +107,7 @@ function LoginDialog({ img }): ReactElement {
   );
 }
 
-let timer;
+let timer: any;
 
 async function login(setImg, setChecking, setKey, dataProvider): Promise<void> {
   dataProvider

@@ -19,7 +19,7 @@ const RecentListMobile = () => {
       exporter={false}
     >
       <Datagrid bulkActionButtons={false} rowClick={rowClick}>
-        <TextField source="uploadName" label="上传名字" />
+        <TextField source="mergeTitle" label="上传名字" />
         <TextField source="userName" label="用户" />
         <TextField source="statusDesc" label="状态" />
         <TextField source="createTime" label="创建时间" />

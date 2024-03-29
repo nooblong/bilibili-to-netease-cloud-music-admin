@@ -1,5 +1,5 @@
 import { Paper } from "@mui/material";
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 
 export interface NetAccount {
   id: string;
@@ -9,7 +9,9 @@ export interface NetAccount {
   signature: string;
 }
 
-export default function (netAccount: NetAccount): ReactElement {
+export default UserInfoShow;
+
+function UserInfoShow(netAccount: NetAccount): ReactElement {
   return (
     <div>
       <Paper sx={{ fontSize: "10px" }}>
