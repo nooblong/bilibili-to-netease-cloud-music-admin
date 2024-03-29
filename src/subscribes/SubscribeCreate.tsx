@@ -58,7 +58,7 @@ const SubscribeCreate = () => {
   useEffect(() => {
     dataProvider.checkHasUploaded().then((uploaded: any) => {
       if (!uploaded.data) {
-        notify("需要先上传一遍单曲才可以订阅", { type: "error" });
+        notify("需要先上传一遍单曲并且上线才可以订阅", { type: "error" });
       }
     });
   }, [dataProvider, notify]);

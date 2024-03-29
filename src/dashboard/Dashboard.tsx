@@ -23,10 +23,16 @@ const Dashboard = () => {
   ) : (
     <Card>
       <CardContent>
+        上传声音需要在网页云进行实名认证！！！查看自己有没有实名:
+        <a href="https://music.163.com/st/ncreator/upload?userType=3">
+          https://music.163.com/st/ncreator/upload?userType=3
+        </a>
+      </CardContent>
+      <CardContent>
         <Typography
           color={data.activeBilibiliUserName === null ? "red" : "green"}
         >
-          公共b站大会员账号状态:{" "}
+          系统大会员账号状态(系统需要至少一个大会员账号下载音频):{" "}
           {data.activeBilibiliUserName === null
             ? "无可用b站大会员账号"
             : "当前提供b站大会员账号的用户:" +
