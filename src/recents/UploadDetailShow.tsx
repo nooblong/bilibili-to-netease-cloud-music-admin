@@ -5,7 +5,6 @@ import {
   SaveButton,
   SelectInput,
   SimpleForm,
-  Toolbar,
   useDataProvider,
   useEditController,
   useGetOne,
@@ -23,7 +22,6 @@ import {
   Stack,
 } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import * as React from "react";
 import { useState } from "react";
 
 const UploadDetailShow = () => {
@@ -69,26 +67,6 @@ const UploadDetailShow = () => {
     }
   );
 
-  const RecentToolbar = () => (
-    <Toolbar>
-      <SaveButton
-        label="提交"
-        type="button"
-        variant="text"
-        alwaysEnable
-        mutationOptions={{
-          onSuccess: (data) => {
-            notify(data.data.message, {
-              type: "info",
-              messageArgs: { smart_count: 1 },
-            });
-            redirect("list", "uploadDetail", data.id);
-          },
-        }}
-      />
-    </Toolbar>
-  );
-
   const buttons = [
     <Button key="one" disabled={!success}>
       <Link
@@ -123,8 +101,23 @@ const UploadDetailShow = () => {
   return (
     <>
       <Create resource={"addToMy"}>
-        <SimpleForm toolbar={<RecentToolbar />}>
+        <SimpleForm toolbar={<></>}>
           <MyForm />
+          <SaveButton
+            label="提交"
+            type="button"
+            variant="text"
+            alwaysEnable
+            mutationOptions={{
+              onSuccess: (data) => {
+                notify(data.data.message, {
+                  type: "info",
+                  messageArgs: { smart_count: 1 },
+                });
+                redirect("list", "uploadDetail", data.id);
+              },
+            }}
+          />
         </SimpleForm>
       </Create>
       <hr />
