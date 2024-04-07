@@ -40,7 +40,7 @@ const Dashboard = () => {
       </CardContent>
       <CardContent>
         <Button
-          sx={{ marginRight: "10px" }}
+          sx={{ margin: "10px" }}
           variant={"outlined"}
           onClick={() => {
             dataProvider
@@ -55,10 +55,10 @@ const Dashboard = () => {
         >
           立即检查订阅(仅管理员)
         </Button>
-        <Button sx={{ marginRight: "10px" }} variant={"outlined"}>
+        <Button sx={{ margin: "10px" }} variant={"outlined"}>
           预留
         </Button>
-        <Button sx={{ marginRight: "10px" }} variant={"outlined"}>
+        <Button sx={{ margin: "10px" }} variant={"outlined"}>
           预留
         </Button>
       </CardContent>
