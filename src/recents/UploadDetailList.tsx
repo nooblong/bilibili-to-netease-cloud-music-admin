@@ -65,6 +65,7 @@ const recentFilters = [
     key={"状态"}
     label="状态"
     source="status"
+    defaultValue={""}
     name={"status"}
     choices={AuditStatusEnum}
   ></SelectInput>,

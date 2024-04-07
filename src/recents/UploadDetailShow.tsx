@@ -90,6 +90,7 @@ const UploadDetailShow = () => {
           source="voiceListId"
           label="选择播客"
           fullWidth
+          defaultValue={""}
           choices={data && data.voiceList ? toChoice(data.voiceList.list) : []}
           validate={required("Required field")}
           variant="outlined"

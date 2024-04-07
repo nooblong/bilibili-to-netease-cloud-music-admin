@@ -32,14 +32,14 @@ import { toChoice } from "../recents/UploadDetailCreate";
 import moment from "moment/moment";
 import Typography from "@mui/material/Typography";
 
-const SubscribeEdit = (props) => {
+const SubscribeEdit = (props: any) => {
   const controllerProps = useEditController(props);
-  const { resource, record, save } = controllerProps;
+  const { resource, record } = controllerProps;
 
   const MyForm = () => {
     const context = useFormContext();
     const watchType = useWatch({ name: "type" });
-    const { data, error } = useGetOne(
+    const { data } = useGetOne(
       "voiceList",
       { id: 1 },
       { retry: false, staleTime: Infinity }
@@ -57,7 +57,11 @@ const SubscribeEdit = (props) => {
             >
               订阅日志
             </Typography>
-            <Typography variant="body2" sx={{ whiteSpace: "pre-line" }}>
+            <Typography
+              variant="body2"
+              sx={{ whiteSpace: "pre-line", overflowY: "auto" }}
+              maxHeight={200}
+            >
               <TextField source="log"></TextField>
             </Typography>
           </CardContent>
@@ -70,6 +74,7 @@ const SubscribeEdit = (props) => {
         />
         <TextInput source="remark" fullWidth label="备注" variant="outlined" />
         <SelectInput
+          defaultValue={""}
           source="videoOrder"
           label="选择上传顺序"
           choices={VideoOrderEnum}
@@ -78,18 +83,16 @@ const SubscribeEdit = (props) => {
           fullWidth
         ></SelectInput>
         <SelectInput
+          defaultValue={""}
           source="voiceListId"
           variant="outlined"
           label="选择播客"
-          choices={
-            data && data.voiceList
-              ? toChoice(data.voiceList.list)
-              : [{ id: 1, name: "1" }]
-          }
+          choices={data && data.voiceList ? toChoice(data.voiceList.list) : []}
           fullWidth
           validate={required("Required field")}
         ></SelectInput>
         <SelectInput
+          defaultValue={""}
           variant="outlined"
           source="type"
           label="订阅类型"
@@ -97,7 +100,7 @@ const SubscribeEdit = (props) => {
           validate={required("Required field")}
           fullWidth
         ></SelectInput>
-        {showAction(watchType, (targetId) => {
+        {showAction(watchType, (targetId: any) => {
           console.log(targetId);
           context.setValue("targetId", targetId);
         })}
@@ -126,6 +129,12 @@ const SubscribeEdit = (props) => {
           label="使用视频封面，取消则为播客默认封面"
           variant="outlined"
           defaultValue
+          fullWidth
+        />
+        <BooleanInput
+          source={"checkPart"}
+          label={"处理多p视频(严重消耗网络非必要不打开)"}
+          variant={"outlined"}
           fullWidth
         />
         <TextInput
@@ -172,12 +181,12 @@ const SubscribeEdit = (props) => {
           </>
         )}
         <p>
-          {"使用大括号加序号来获取下面的变量: 例如 '{pubdate} 《{1}》', 数字1是下面的序号为1的正则结果, 会将名字变为: '2023.1.1 《彩虹糖的梦》', " +
-            "特殊变量: {pubdate}为获取视频发布时间, 格式为yyyy.MM.dd"}
+          {"使用大括号加序号来获取下面的变量: 例如歌名是:「2000.29.92《阿肝(again)》」, 自定义上传名称填:「你好{1}世界」," +
+            "下面添加一个序号为1内容为「\\《(.*?)\\》」, 上传时会将名字变为: 「你好阿肝(again)世界」, 如果是多p视频, 则对「视频名-分p名」进行正则匹配"}
         </p>
         <TextInput
           source="regName"
-          label="自定义上传名称，可以不填"
+          label="自定义上传名称，可以不填，填了则下面必须增加至少一项"
           fullWidth
           variant="outlined"
         />
@@ -216,6 +225,7 @@ const SubscribeEdit = (props) => {
                   ...data,
                   crack: data.crack ? 1 : 0,
                   useVideoCover: data.useVideoCover ? 1 : 0,
+                  checkPart: data.checkPart ? 1 : 0,
                 })}
               />
               <DeleteButton resource={resource} />

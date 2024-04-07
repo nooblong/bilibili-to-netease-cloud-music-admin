@@ -1,5 +1,4 @@
 import {
-  Button,
   Card,
   CardContent,
   FormControl,
@@ -12,12 +11,18 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
-import { Loading, TextInput, useDataProvider } from "react-admin";
+import { Loading, useDataProvider } from "react-admin";
 import SearchIcon from "@mui/icons-material/Search";
 
 export default GetBvid;
 
-function GetBvid({ videoInfo, setVideoInfo }: any) {
+function GetBvid({
+  videoInfo,
+  setVideoInfo,
+}: {
+  videoInfo: any;
+  setVideoInfo: any;
+}) {
   const dataProvider = useDataProvider();
   const [bvid, setBvid] = useState<string>(videoInfo.bvid);
   const [loading, setLoading] = useState(false);
@@ -66,7 +71,6 @@ function GetBvid({ videoInfo, setVideoInfo }: any) {
   return (
     <Box width={"100%"}>
       <TextField
-        source="bvid"
         variant="outlined"
         onChange={(event) => {
           setBvid(event.currentTarget.value);
@@ -99,6 +103,7 @@ function GetBvid({ videoInfo, setVideoInfo }: any) {
                   value={videoInfo.cid}
                   label="选择分p,默认1p"
                   onChange={handleChange}
+                  defaultValue={""}
                 >
                   {videoInfo.pages.map((value: any) => {
                     return (
