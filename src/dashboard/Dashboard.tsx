@@ -1,12 +1,11 @@
-import { useEffect } from "react";
-import { Loading, useGetOne } from "react-admin";
-import { Card, CardContent, TextField } from "@mui/material";
+import { Loading, useGetOne, useNotify } from "react-admin";
+import { Button, Card, CardContent, TextField } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import AddBilibiliCookieDialog from "./AddBilibiliCookieDialog";
+import dataProvider from "../dataProvider";
 
 const Dashboard = () => {
-  useEffect(() => {}, []);
-
+  const notify = useNotify();
   const { data, isLoading } = useGetOne("", { id: "sysInfo" });
   const queueInfo = useGetOne(
     "",
@@ -34,12 +33,34 @@ const Dashboard = () => {
         >
           系统大会员账号状态(系统需要至少一个大会员账号下载音频):{" "}
           {data.activeBilibiliUserName === null
-            ? "无可用b站大会员账号"
-            : "当前提供b站大会员账号的用户:" +
-              data.activeBilibiliUserName +
-              " ,谢谢你"}
+            ? "无可用b站大会员账号!暂停上传"
+            : "当前提供账号的用户:" + data.activeBilibiliUserName}
         </Typography>
         <AddBilibiliCookieDialog />
+      </CardContent>
+      <CardContent>
+        <Button
+          sx={{ marginRight: "10px" }}
+          variant={"outlined"}
+          onClick={() => {
+            dataProvider
+              .getOne("", { id: "/subscribe/checkUpJob" })
+              .then(() => {
+                notify("ok", { type: "success" });
+              })
+              .catch(() => {
+                notify("error", { type: "error" });
+              });
+          }}
+        >
+          立即检查订阅(仅管理员)
+        </Button>
+        <Button sx={{ marginRight: "10px" }} variant={"outlined"}>
+          预留
+        </Button>
+        <Button sx={{ marginRight: "10px" }} variant={"outlined"}>
+          预留
+        </Button>
       </CardContent>
       <CardContent>
         <Typography>当前队列长度: {queueInfo.data.data.length}</Typography>

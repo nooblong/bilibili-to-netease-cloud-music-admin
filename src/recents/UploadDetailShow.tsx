@@ -6,7 +6,6 @@ import {
   SelectInput,
   SimpleForm,
   useDataProvider,
-  useEditController,
   useGetOne,
   useNotify,
   useRedirect,
@@ -34,10 +33,10 @@ const UploadDetailShow = () => {
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
   const [success, setSuccess] = useState(false);
-  const controllerProps = useEditController({
-    resource: "uploadDetail",
-    id: params.id,
-  });
+  // const controllerProps = useEditController({
+  //   resource: "uploadDetail",
+  //   id: params.id,
+  // });
 
   const uploadDetail: any = useGetOne(
     "uploadDetail",
@@ -78,7 +77,23 @@ const UploadDetailShow = () => {
         跳转到网易云
       </Link>
     </Button>,
-    <Button key="two">Two</Button>,
+    <Button
+      key="two"
+      onClick={() => {
+        const result = dataProvider.getOne("uploadDetail/restartJob", {
+          id: voiceDetailId,
+        });
+        result
+          .then(() => {
+            notify("ok", { type: "success" });
+          })
+          .catch((reason) => {
+            notify(reason.toString(), { type: "error" });
+          });
+      }}
+    >
+      重新上传
+    </Button>,
     <Button key="three">Three</Button>,
   ];
 
