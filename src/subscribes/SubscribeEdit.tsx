@@ -120,7 +120,7 @@ const SubscribeEdit = (props: any) => {
           source="crack"
           variant="outlined"
           fullWidth
-          label="绕过版权检测"
+          label="开启超能力"
           disabled={data1 && data1.fullName !== "admin"}
         />
         <BooleanInput

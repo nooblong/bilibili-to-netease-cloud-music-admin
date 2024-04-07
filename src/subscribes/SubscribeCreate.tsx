@@ -125,7 +125,7 @@ const SubscribeCreate = () => {
           source="crack"
           fullWidth
           disabled={data1 && data1.fullName !== "admin"}
-          label="绕过版权检测"
+          label="开启超能力"
         />
         <BooleanInput
           source="useVideoCover"
