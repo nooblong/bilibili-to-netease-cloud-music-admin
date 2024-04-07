@@ -134,7 +134,7 @@ const SubscribeCreate = () => {
         />
         <BooleanInput
           source={"checkPart"}
-          label={"处理多p视频(严重消耗网络非必要不打开)"}
+          label={"遇到多p视频上传全部part(严重消耗网络非必要不打开)"}
           variant={"outlined"}
           fullWidth
         />
