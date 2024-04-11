@@ -11,7 +11,7 @@ import {
   useRedirect,
 } from "react-admin";
 import { toChoice } from "./UploadDetailCreate";
-import { Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   Button,
   ButtonGroup,
@@ -28,6 +28,7 @@ const UploadDetailShow = () => {
   const params = useParams();
   const voiceDetailId = params.id;
   const notify = useNotify();
+  const navigate = useNavigate();
   const dataProvider = useDataProvider();
   const [logData, setLogData] = useState<any>(null);
   const [page, setPage] = useState(1);
@@ -67,15 +68,18 @@ const UploadDetailShow = () => {
   );
 
   const buttons = [
-    <Button key="one" disabled={!success}>
-      <Link
-        style={{ textDecoration: "none", color: "inherit" }}
-        to={`https://music.163.com/#/program?id=${
-          success ? uploadDetail.data.voiceId : -1
-        }`}
-      >
-        跳转到网易云
-      </Link>
+    <Button
+      key="one"
+      disabled={!success}
+      onClick={() => {
+        navigate(
+          `https://music.163.com/#/program?id=${
+            success ? uploadDetail.data.voiceId : -1
+          }`
+        );
+      }}
+    >
+      跳转到网易云
     </Button>,
     <Button
       key="two"
