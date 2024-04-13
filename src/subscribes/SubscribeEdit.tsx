@@ -194,7 +194,12 @@ const SubscribeEdit = (props: any) => {
           label="用于自定义上传名称, 对视频名字匹配正则"
         >
           <SimpleFormIterator inline>
-            <TextInput source="regex" helperText={false} label="正则表达式" />
+            <TextInput
+              source="regex"
+              helperText={false}
+              label="正则表达式"
+              variant={"outlined"}
+            />
             <TextInput
               source="pos"
               helperText={false}

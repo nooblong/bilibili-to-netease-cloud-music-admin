@@ -11,7 +11,7 @@ import {
   useRedirect,
 } from "react-admin";
 import { toChoice } from "./UploadDetailCreate";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   Button,
   ButtonGroup,
@@ -67,15 +67,19 @@ const UploadDetailShow = () => {
   );
 
   const buttons = [
-    <Button key="one" disabled={!success}>
-      <Link
-        style={{ textDecoration: "none", color: "inherit" }}
-        to={`https://music.163.com/#/program?id=${
-          success ? uploadDetail.data.voiceId : -1
-        }`}
-      >
-        跳转到网易云
-      </Link>
+    <Button
+      key="one"
+      disabled={!success}
+      onClick={() => {
+        window.open(
+          `https://music.163.com/#/program?id=${
+            success ? uploadDetail.data.voiceId : -1
+          }`,
+          "_blank"
+        );
+      }}
+    >
+      跳转到网易云
     </Button>,
     <Button
       key="two"
