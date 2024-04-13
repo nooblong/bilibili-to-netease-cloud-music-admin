@@ -69,6 +69,13 @@ const recentFilters = [
     name={"status"}
     choices={AuditStatusEnum}
   ></SelectInput>,
+  <TextInput
+    key={"订阅备注"}
+    label="订阅备注"
+    source="remark"
+    defaultValue={""}
+    name={"remark"}
+  ></TextInput>,
 ];
 
 const UploadDetailList = () => {
