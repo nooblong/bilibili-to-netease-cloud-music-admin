@@ -39,9 +39,6 @@ const Dashboard = () => {
         <AddBilibiliCookieDialog />
       </CardContent>
       <CardContent>
-        目前订阅视频是无序的，修复中
-      </CardContent>
-      <CardContent>
         <Button
           sx={{ margin: "10px" }}
           variant={"outlined"}
@@ -57,12 +54,6 @@ const Dashboard = () => {
           }}
         >
           立即检查订阅(仅管理员)
-        </Button>
-        <Button sx={{ margin: "10px" }} variant={"outlined"}>
-          预留
-        </Button>
-        <Button sx={{ margin: "10px" }} variant={"outlined"}>
-          预留
         </Button>
       </CardContent>
       <CardContent>
