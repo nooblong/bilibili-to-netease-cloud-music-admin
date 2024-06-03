@@ -12,7 +12,7 @@ import {
 } from "react-admin";
 import { AuditStatusEnum } from "../subscribes/Enums";
 import CreateButton from "../customAdmin/CreateButton";
-import { Box } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 
 const PostListActionToolbar = ({ children }: any) => (
   <Box sx={{ alignItems: "center", display: "flex" }}>{children}</Box>
@@ -25,9 +25,7 @@ const UploadDetailListMobile = () => {
       filters={recentFilters}
       exporter={false}
     >
-      <Datagrid
-        bulkActionButtons={false}
-      >
+      <Datagrid bulkActionButtons={false}>
         <TextField source="mergeTitle" label="上传名字" />
         <TextField source="userName" label="用户" />
         <TextField source="statusDesc" label="状态" />
@@ -49,7 +47,6 @@ const PostListActions = () => (
 );
 
 const recentFilters = [
-  // <SearchInput source="name" alwaysOn />,
   <TextInput
     label="标题"
     source="title"
@@ -68,9 +65,17 @@ const recentFilters = [
     key={"状态"}
     label="状态"
     source="status"
+    defaultValue={""}
     name={"status"}
     choices={AuditStatusEnum}
   ></SelectInput>,
+  <TextInput
+    key={"订阅备注"}
+    label="订阅备注"
+    source="remark"
+    defaultValue={""}
+    name={"remark"}
+  ></TextInput>,
 ];
 
 const UploadDetailList = () => {

@@ -1,20 +1,28 @@
 import {
-  Button,
   Card,
   CardContent,
   FormControl,
+  IconButton,
   MenuItem,
+  TextField,
 } from "@mui/material";
 import { useState } from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
-import { Loading, TextInput, useDataProvider } from "react-admin";
+import { Loading, useDataProvider } from "react-admin";
+import SearchIcon from "@mui/icons-material/Search";
 
 export default GetBvid;
 
-function GetBvid({ videoInfo, setVideoInfo }: any) {
+function GetBvid({
+  videoInfo,
+  setVideoInfo,
+}: {
+  videoInfo: any;
+  setVideoInfo: any;
+}) {
   const dataProvider = useDataProvider();
   const [bvid, setBvid] = useState<string>(videoInfo.bvid);
   const [loading, setLoading] = useState(false);
@@ -31,45 +39,48 @@ function GetBvid({ videoInfo, setVideoInfo }: any) {
     }
   };
 
+  const SearchButton = () => (
+    <IconButton
+      onClick={() => {
+        setLoading(true);
+        dataProvider
+          .getVideoInfo("getVideoInfo", { bvid: bvid })
+          .then((data: any) => {
+            data = data.data;
+            const obj = {
+              ...videoInfo,
+              title: data.title,
+              image: data.image.replace(
+                /^(http)s*(:\/\/)/,
+                "https://images.weserv.nl/?url="
+              ),
+              pages: data.pages,
+              cid: videoInfo.cid,
+              partName: videoInfo.partName,
+              bvid: bvid,
+            };
+            setVideoInfo(obj);
+            setLoading(false);
+          });
+      }}
+    >
+      <SearchIcon />
+    </IconButton>
+  );
+
   return (
-    <Box width="100%">
-      <TextInput
-        source="bvid"
+    <Box width={"100%"}>
+      <TextField
+        variant="outlined"
         onChange={(event) => {
           setBvid(event.currentTarget.value);
         }}
         multiline
         fullWidth
         defaultValue={videoInfo.bvid}
-        label="输入bvid或url"
+        label="输入bvid或url后点击解析"
+        InputProps={{ endAdornment: <SearchButton /> }}
       />
-      <Button
-        variant="contained"
-        onClick={() => {
-          setLoading(true);
-          dataProvider
-            .getVideoInfo("getVideoInfo", { bvid: bvid })
-            .then((data: any) => {
-              data = data.data;
-              const obj = {
-                ...videoInfo,
-                title: data.title,
-                image: data.image.replace(
-                  /^(http)s*(:\/\/)/,
-                  "https://images.weserv.nl/?url="
-                ),
-                pages: data.pages,
-                cid: videoInfo.cid,
-                partName: videoInfo.partName,
-                bvid: bvid,
-              };
-              setVideoInfo(obj);
-              setLoading(false);
-            });
-        }}
-      >
-        解析
-      </Button>
       <br />
       {loading && <Loading />}
       {videoInfo.title && (
@@ -92,6 +103,7 @@ function GetBvid({ videoInfo, setVideoInfo }: any) {
                   value={videoInfo.cid}
                   label="选择分p,默认1p"
                   onChange={handleChange}
+                  defaultValue={""}
                 >
                   {videoInfo.pages.map((value: any) => {
                     return (

@@ -5,15 +5,13 @@ import {
   SaveButton,
   SelectInput,
   SimpleForm,
-  Toolbar,
   useDataProvider,
-  useEditController,
   useGetOne,
   useNotify,
   useRedirect,
 } from "react-admin";
 import { toChoice } from "./UploadDetailCreate";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   Button,
   ButtonGroup,
@@ -23,7 +21,6 @@ import {
   Stack,
 } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import * as React from "react";
 import { useState } from "react";
 
 const UploadDetailShow = () => {
@@ -36,10 +33,10 @@ const UploadDetailShow = () => {
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
   const [success, setSuccess] = useState(false);
-  const controllerProps = useEditController({
-    resource: "uploadDetail",
-    id: params.id,
-  });
+  // const controllerProps = useEditController({
+  //   resource: "uploadDetail",
+  //   id: params.id,
+  // });
 
   const uploadDetail: any = useGetOne(
     "uploadDetail",
@@ -69,38 +66,38 @@ const UploadDetailShow = () => {
     }
   );
 
-  const RecentToolbar = () => (
-    <Toolbar>
-      <SaveButton
-        label="提交"
-        type="button"
-        variant="text"
-        alwaysEnable
-        mutationOptions={{
-          onSuccess: (data) => {
-            notify(data.data.message, {
-              type: "info",
-              messageArgs: { smart_count: 1 },
-            });
-            redirect("list", "uploadDetail", data.id);
-          },
-        }}
-      />
-    </Toolbar>
-  );
-
   const buttons = [
-    <Button key="one" disabled={!success}>
-      <Link
-        style={{ textDecoration: "none", color: "inherit" }}
-        to={`https://music.163.com/#/program?id=${
-          success ? uploadDetail.data.voiceId : -1
-        }`}
-      >
-        跳转到网易云
-      </Link>
+    <Button
+      key="one"
+      disabled={!success}
+      onClick={() => {
+        window.open(
+          `https://music.163.com/#/program?id=${
+            success ? uploadDetail.data.voiceId : -1
+          }`,
+          "_blank"
+        );
+      }}
+    >
+      跳转到网易云
     </Button>,
-    <Button key="two">Two</Button>,
+    <Button
+      key="two"
+      onClick={() => {
+        const result = dataProvider.getOne("uploadDetail/restartJob", {
+          id: voiceDetailId,
+        });
+        result
+          .then(() => {
+            notify("ok", { type: "success" });
+          })
+          .catch((reason) => {
+            notify(reason.toString(), { type: "error" });
+          });
+      }}
+    >
+      重新上传
+    </Button>,
     <Button key="three">Three</Button>,
   ];
 
@@ -112,6 +109,7 @@ const UploadDetailShow = () => {
           source="voiceListId"
           label="选择播客"
           fullWidth
+          defaultValue={""}
           choices={data && data.voiceList ? toChoice(data.voiceList.list) : []}
           validate={required("Required field")}
           variant="outlined"
@@ -123,8 +121,23 @@ const UploadDetailShow = () => {
   return (
     <>
       <Create resource={"addToMy"}>
-        <SimpleForm toolbar={<RecentToolbar />}>
+        <SimpleForm toolbar={<></>}>
           <MyForm />
+          <SaveButton
+            label="提交"
+            type="button"
+            variant="text"
+            alwaysEnable
+            mutationOptions={{
+              onSuccess: (data) => {
+                notify(data.data.message, {
+                  type: "info",
+                  messageArgs: { smart_count: 1 },
+                });
+                redirect("list", "uploadDetail", data.id);
+              },
+            }}
+          />
         </SimpleForm>
       </Create>
       <hr />

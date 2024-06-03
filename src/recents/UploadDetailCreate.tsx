@@ -96,6 +96,7 @@ const UploadDetailCreate = () => {
           source="voiceListId"
           label="选择播客"
           choices={data && data.voiceList ? toChoice(data.voiceList.list) : []}
+          defaultValue={""}
           fullWidth
           validate={required("Required field")}
         ></SelectInput>
@@ -140,7 +141,7 @@ const UploadDetailCreate = () => {
           source="crack"
           variant="outlined"
           disabled={data1 && data1.fullName !== "admin"}
-          label="绕过版权检测"
+          label="开启超能力"
         />
       </>
     );

@@ -27,6 +27,7 @@ import GetPart from "./GetPart";
 import { toChoice } from "../recents/UploadDetailCreate";
 import moment from "moment";
 import { Card } from "@mui/material";
+import * as React from "react";
 
 const RecentCreateToolbar = () => {
   return (
@@ -40,6 +41,7 @@ const RecentCreateToolbar = () => {
           ...data,
           crack: data.crack ? 1 : 0,
           useVideoCover: data.useVideoCover ? 1 : 0,
+          checkPart: data.checkPart ? 1 : 0,
         })}
       />
     </Toolbar>
@@ -58,7 +60,7 @@ const SubscribeCreate = () => {
   useEffect(() => {
     dataProvider.checkHasUploaded().then((uploaded: any) => {
       if (!uploaded.data) {
-        notify("需要先上传一遍单曲才可以订阅", { type: "error" });
+        notify("需要先上传一遍单曲并且上线才可以订阅", { type: "error" });
       }
     });
   }, [dataProvider, notify]);
@@ -78,6 +80,7 @@ const SubscribeCreate = () => {
         />
         <SelectInput
           source="videoOrder"
+          defaultValue={""}
           label="选择上传顺序"
           choices={VideoOrderEnum}
           validate={required("Required field")}
@@ -85,6 +88,7 @@ const SubscribeCreate = () => {
           fullWidth
         ></SelectInput>
         <SelectInput
+          defaultValue={""}
           source="voiceListId"
           variant="outlined"
           label="选择播客"
@@ -93,6 +97,7 @@ const SubscribeCreate = () => {
           validate={required("Required field")}
         ></SelectInput>
         <SelectInput
+          defaultValue={""}
           variant="outlined"
           source="type"
           label="订阅类型"
@@ -120,11 +125,17 @@ const SubscribeCreate = () => {
           source="crack"
           fullWidth
           disabled={data1 && data1.fullName !== "admin"}
-          label="绕过版权检测"
+          label="开启超能力"
         />
         <BooleanInput
           source="useVideoCover"
           label="使用视频封面，取消则为播客默认封面"
+          fullWidth
+        />
+        <BooleanInput
+          source={"checkPart"}
+          label={"遇到多p视频上传全部part(严重消耗网络非必要不打开)"}
+          variant={"outlined"}
           fullWidth
         />
         <TextInput
@@ -171,12 +182,12 @@ const SubscribeCreate = () => {
           </>
         )}
         <p>
-          {"使用大括号加序号来获取下面的变量: 例如歌名是:「2000.29.92《阿肝(again)》」, 自定义上传名称填:「你好{1}世界」," +
-            "下面添加一个序号为1内容为「\\《(.*?)\\》」, 上传时会将名字变为: 「你好阿肝(again)世界」"}
+          {"使用大括号加序号来获取下面的变量: 例如歌名是:「2000.01.01《阿肝AGAIN》」, 自定义上传名称填:「你好{1}世界」," +
+            "下面添加一个序号为1内容为「\\《(.*?)\\》」, 上传时会将名字变为: 「你好阿肝(AGAIN)世界」, 如果是多p视频, 则对「视频名-分p名」进行正则匹配"}
         </p>
         <TextInput
           source="regName"
-          label="自定义上传名称，可以不填"
+          label="自定义上传名称，可以不填，填了则下面必须增加至少一项"
           variant="outlined"
           fullWidth
         />
