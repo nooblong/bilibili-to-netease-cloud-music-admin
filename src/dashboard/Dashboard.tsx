@@ -1,49 +1,76 @@
-import { useEffect } from "react";
-import { Loading, useGetOne } from "react-admin";
-import { Card, CardContent, TextField } from "@mui/material";
+import { useDataProvider, useNotify } from "react-admin";
+import { Button, Card, CardContent, TextField } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import AddBilibiliCookieDialog from "./AddBilibiliCookieDialog";
+import { useEffect, useState } from "react";
 
 const Dashboard = () => {
-  useEffect(() => {}, []);
+  const notify = useNotify();
+  const dataProvider = useDataProvider();
+  const [sysInfo, setSysInfo] = useState({
+    netCookieStatus: false,
+    bilibiliCookieStatus: false,
+  });
+  const [queueInfo, setQueueInfo] = useState({
+    total: 0,
+    records: [],
+  });
 
-  const { data, isLoading } = useGetOne("", { id: "sysInfo" });
-  const queueInfo = useGetOne(
-    "",
-    { id: "queueInfo" },
-    {
-      refetchOnMount: false,
-      refetchOnReconnect: false,
-      refetchOnWindowFocus: false,
-    }
-  );
+  useEffect(() => {
+    dataProvider.getOne("sysInfo", { id: undefined }).then((data) => {
+      setSysInfo(data);
+    });
+    // dataProvider
+    //   .getOne("queueInfo?pageNo=1&pageSize=50", {
+    //     id: undefined,
+    //   })
+    //   .then((data) => {
+    //     setQueueInfo(data);
+    //   });
+  }, [dataProvider]);
 
-  return isLoading || queueInfo.isLoading ? (
-    <Loading />
-  ) : (
+  return (
     <Card>
       <CardContent>
-        <Typography
-          color={data.activeBilibiliUserName === null ? "red" : "green"}
-        >
-          公共b站大会员账号状态:{" "}
-          {data.activeBilibiliUserName === null
-            ? "无可用b站大会员账号"
-            : "当前提供b站大会员账号的用户:" +
-              data.activeBilibiliUserName +
-              " ,谢谢你"}
+        上传声音需要在网页云进行实名认证！！！查看自己有没有实名:
+        <a href="https://music.163.com/st/ncreator/upload?userType=3">
+          https://music.163.com/st/ncreator/upload?userType=3
+        </a>
+      </CardContent>
+      <CardContent>
+        <Typography>
+          系统大会员账号状态(系统需要至少一个大会员账号下载音频):
+          {sysInfo.bilibiliCookieStatus === true ? "ok" : "fail"}
         </Typography>
         <AddBilibiliCookieDialog />
       </CardContent>
       <CardContent>
-        <Typography>当前队列长度: {queueInfo.data.data.length}</Typography>
+        <Button
+          sx={{ margin: "10px" }}
+          variant={"outlined"}
+          onClick={() => {
+            dataProvider
+              .getOne("", { id: "/subscribe/checkUpJob" })
+              .then(() => {
+                notify("ok", { type: "success" });
+              })
+              .catch(() => {
+                notify("error", { type: "error" });
+              });
+          }}
+        >
+          立即检查订阅(仅admin)
+        </Button>
+      </CardContent>
+      <CardContent>
+        <Typography>当前队列长度: {queueInfo.total}</Typography>
         <Typography>队列内容:</Typography>
         <TextField
           multiline
           rows={10} // 设置初始显示的行数
           variant="outlined"
           fullWidth
-          value={getAllInfo(queueInfo.data.data)} // 设置显示的文本内容
+          value={getAllInfo(queueInfo.records)} // 设置显示的文本内容
         />
       </CardContent>
     </Card>

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Admin, Resource } from "react-admin";
-import { render } from "react-dom";
+import { createRoot } from "react-dom/client";
 
 import authProvider from "./authProvider";
 import Layout from "./Layout";
@@ -19,7 +19,9 @@ import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import Dashboard from "./dashboard/Dashboard";
 import RecentEdit from "./recents/UploadDetailEdit";
 
-render(
+const container = document.getElementById("root");
+const root = createRoot(container); // createRoot(container!) if you use TypeScript
+root.render(
   <React.StrictMode>
     <Admin
       authProvider={authProvider}
@@ -53,6 +55,5 @@ render(
         options={{ label: "登录网易云" }}
       />
     </Admin>
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );

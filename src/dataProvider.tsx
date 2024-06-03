@@ -104,7 +104,16 @@ const dataProvider: DataProvider = {
     if (resource === "addToMy") {
       return withLifeCycleCallbackProvider.update("uploadDetail", params);
     }
-    return withLifeCycleCallbackProvider.getOne(resource, params);
+    return accessTokenClient("/api/" + resource).then(({ json }) => {
+      console.log(json);
+      return {
+        data: {
+          id: 1,
+          data: json,
+        },
+      };
+    });
+    // return withLifeCycleCallbackProvider.getOne(resource, params);
   },
   create: (resource, params): any => {
     if (resource === "uploadDetail") {
