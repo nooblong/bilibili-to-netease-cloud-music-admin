@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
+import querystring from "querystring";
+import { accessTokenClient } from "./dataProvider";
 
 export const LoadingDots = () => {
   const [dots, setDots] = useState("");
@@ -27,3 +29,22 @@ export const Item = styled(Paper)(({ theme }) => ({
   textAlign: "center",
   color: theme.palette.text.secondary,
 }));
+
+export const useGetInfo = (resource: string, params: any) => {
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  let url = "/api/" + resource + "?" + querystring.stringify(params);
+  useEffect(() => {
+    accessTokenClient(url)
+      .then(({ json }) => {
+        setData(json);
+        setIsLoading(false);
+      })
+      .catch((reason) => {
+        setError(reason);
+        setIsLoading(false);
+      });
+  }, [url]);
+  return { data, isLoading, error };
+};
