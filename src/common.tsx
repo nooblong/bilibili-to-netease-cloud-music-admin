@@ -19,7 +19,7 @@ export const LoadingDots = () => {
 };
 
 export const FailDots = () => {
-  return <div>加载失败，请联系</div>;
+  return <div>加载失败</div>;
 };
 
 export const Item = styled(Paper)(({ theme }) => ({
