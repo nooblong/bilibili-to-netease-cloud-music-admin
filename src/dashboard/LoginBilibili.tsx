@@ -53,7 +53,6 @@ const LoginNetMusic = () => {
   return (
     <>
       <Grid>
-        <CardContent>仅用于下载音频</CardContent>
         <CardContent>{loginStatus}</CardContent>
         <CardContent sx={{ flexGrow: 1 }}>
           <Typography

@@ -4,7 +4,7 @@ import simpleRestProvider from "ra-data-simple-rest";
 import moment from "moment";
 import querystring from "querystring";
 
-export const accessTokenClient = (url, options: any = {}) => {
+export const accessTokenClient = (url: string, options: any = {}) => {
   if (!options.headers) {
     options.headers = new Headers({ Accept: "application/json" });
   }
@@ -13,7 +13,7 @@ export const accessTokenClient = (url, options: any = {}) => {
   return fetchUtils.fetchJson(url, options);
 };
 
-const tokenNotifyClient = (url, options: any = {}) =>
+const tokenNotifyClient = (url: string, options: any = {}) =>
   accessTokenClient(url, options).then(({ json, headers, body, status }) => {
     if (json.code < 0) {
       throw new Error(json.message);
@@ -23,23 +23,7 @@ const tokenNotifyClient = (url, options: any = {}) =>
 
 const withLifeCycleCallbackProvider = withLifecycleCallbacks(
   simpleRestProvider("/api", tokenNotifyClient),
-  [
-    {
-      resource: "posts",
-      beforeDelete: async ({ id }, dp) => {
-        // delete related comments
-        const { data: comments } = await dp.getList("comments", {
-          filter: { post_id: id },
-          pagination: { page: 1, perPage: 100 },
-          sort: { field: "id", order: "DESC" },
-        });
-        await dp.deleteMany("comments", {
-          ids: comments.map((comment) => comment.id),
-        });
-        return { id };
-      },
-    },
-  ]
+  []
 );
 
 const dataProvider: DataProvider = {
@@ -104,16 +88,15 @@ const dataProvider: DataProvider = {
     if (resource === "addToMy") {
       return withLifeCycleCallbackProvider.update("uploadDetail", params);
     }
-    return accessTokenClient("/api/" + resource).then(({ json }) => {
-      console.log(json);
-      return {
-        data: {
-          id: 1,
-          data: json,
-        },
-      };
-    });
-    // return withLifeCycleCallbackProvider.getOne(resource, params);
+    // return accessTokenClient("/api/" + resource).then(({ json }) => {
+    //   return {
+    //     data: {
+    //       id: 1,
+    //       data: json,
+    //     },
+    //   };
+    // });
+    return withLifeCycleCallbackProvider.getOne(resource, params);
   },
   create: (resource, params): any => {
     if (resource === "uploadDetail") {
