@@ -3,10 +3,16 @@ import Typography from "@mui/material/Typography";
 import { FailDots, Item, LoadingDots, useGetInfo } from "../common";
 import AddBilibiliCookieDialog from "./AddBilibiliCookieDialog";
 import { useDataProvider, useNotify } from "react-admin";
+import { useEffect } from "react";
 
 const Dashboard = () => {
   const notify = useNotify();
   const dataProvider = useDataProvider();
+  useEffect(() => {
+    dataProvider.get("sys/log", {}).then(() => {
+      console.log("记录成功");
+    });
+  }, [dataProvider]);
   const {
     data: data1,
     isLoading: isLoading1,
@@ -47,35 +53,33 @@ const Dashboard = () => {
             <Item sx={{ border: 1 }}>你的b站登录状态</Item>
           </Grid>
           <Grid item xs={6}>
-            <Item sx={{ border: 1 }}>
-              {123}
-            </Item>
+            <Item sx={{ border: 1 }}>{data1 && data1.data.bilibiliCookieStatus + ""}</Item>
           </Grid>
           <Grid item xs={6}>
             <Item sx={{ border: 1 }}>系统就绪</Item>
           </Grid>
           <Grid item xs={6}>
             <Item sx={{ border: 1 }}>
-              {data1.data.bilibiliCookieStatus + ""}
+              {data1.data.ready + ""}
             </Item>
           </Grid>
           <Grid item xs={6}>
             <Item sx={{ border: 1 }}>注册用户数</Item>
           </Grid>
           <Grid item xs={6}>
-            <Item sx={{ border: 1 }}>xs=6</Item>
+            <Item sx={{ border: 1 }}>{data1 && data1.data.regNum + ""}</Item>
           </Grid>
           <Grid item xs={6}>
-            <Item sx={{ border: 1 }}>游客当日访问数</Item>
+            <Item sx={{ border: 1 }}>游客访问数</Item>
           </Grid>
           <Grid item xs={6}>
-            <Item sx={{ border: 1 }}>xs=6</Item>
+            <Item sx={{ border: 1 }}>{data1 && data1.data.annoVisitNum + ""}</Item>
           </Grid>
           <Grid item xs={6}>
-            <Item sx={{ border: 1 }}>用户当日访问数</Item>
+            <Item sx={{ border: 1 }}>用户访问数</Item>
           </Grid>
           <Grid item xs={6}>
-            <Item sx={{ border: 1 }}>xs=6</Item>
+            <Item sx={{ border: 1 }}>{data1 && data1.data.userVisitNum + ""}</Item>
           </Grid>
         </Grid>
       </CardContent>
