@@ -44,7 +44,15 @@ const Dashboard = () => {
             </Item>
           </Grid>
           <Grid item xs={6}>
-            <Item sx={{ border: 1 }}>b站登录状态</Item>
+            <Item sx={{ border: 1 }}>你的b站登录状态</Item>
+          </Grid>
+          <Grid item xs={6}>
+            <Item sx={{ border: 1 }}>
+              {123}
+            </Item>
+          </Grid>
+          <Grid item xs={6}>
+            <Item sx={{ border: 1 }}>系统就绪</Item>
           </Grid>
           <Grid item xs={6}>
             <Item sx={{ border: 1 }}>
