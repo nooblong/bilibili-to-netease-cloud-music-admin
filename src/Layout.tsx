@@ -1,19 +1,12 @@
 import { AppBar, Layout, Menu, TitlePortal } from "react-admin";
-import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 
 const MyAppBar = () => {
-  const netmusic = localStorage.getItem("netmusic");
-  const nav = useNavigate();
+  const username = localStorage.getItem("user");
   return (
     <AppBar>
-      <TitlePortal />
-      <Button
-        onClick={() => {
-          nav("/loginNetMusic");
-        }}
-        variant="contained"
-      >{`网易云状态: ${netmusic != null ? "已登录" : "未登录"}`}</Button>
+      <TitlePortal>
+      </TitlePortal>
+      {username ? username : "未登录"}
     </AppBar>
   );
 };

@@ -1,4 +1,3 @@
-import * as React from "react";
 import { useState } from "react";
 import {
   Form,
@@ -164,6 +163,7 @@ const LoginPage = () => {
             </Box>
             <Box sx={{ padding: "0 1em 1em 1em" }}>
               <TextInput
+                variant={"outlined"}
                 autoFocus
                 source="username"
                 label={translate("ra.auth.username")}
@@ -172,6 +172,7 @@ const LoginPage = () => {
                 fullWidth
               />
               <TextInput
+                variant={"outlined"}
                 source="password"
                 label={translate("ra.auth.password")}
                 type="password"
@@ -250,6 +251,7 @@ const LoginPage = () => {
             </Box>
             <Box sx={{ padding: "0 1em 1em 1em" }}>
               <TextInput
+                variant={"outlined"}
                 autoFocus
                 source="username"
                 label={translate("ra.auth.username")}
@@ -257,6 +259,7 @@ const LoginPage = () => {
                 fullWidth
               />
               <TextInput
+                variant={"outlined"}
                 source="password"
                 label={translate("ra.auth.password")}
                 type="password"

@@ -20,28 +20,6 @@ export default {
           localStorage.removeItem("not_authenticated");
           localStorage.removeItem("role");
           localStorage.setItem("user", username);
-
-          // 检查网易登录状态
-          const request2 = new Request("/api/netmusic/loginStatus", {
-            method: "GET",
-            headers: new Headers({
-              "Access-Token": data,
-            }),
-          });
-          fetch(request2)
-            .then((response) => {
-              if (response.status < 200 || response.status >= 300) {
-                throw new Error(response.statusText);
-              }
-              return response.json();
-            })
-            .then(({ data }) => {
-              if (data.account !== null && data.account !== "null") {
-                localStorage.setItem("netmusic", JSON.stringify(data));
-              } else {
-                localStorage.removeItem("netmusic");
-              }
-            });
         } else {
           throw new Error(message);
         }
@@ -57,6 +35,7 @@ export default {
     localStorage.removeItem("user");
     localStorage.removeItem("avatar");
     localStorage.removeItem("netmusic");
+    localStorage.removeItem("token");
     return Promise.resolve();
   },
   checkError: ({ status }) => {
@@ -65,9 +44,10 @@ export default {
       : Promise.resolve();
   },
   checkAuth: () => {
-    return localStorage.getItem("not_authenticated")
-      ? Promise.reject()
-      : Promise.resolve();
+    // return localStorage.getItem("not_authenticated")
+    //   ? Promise.reject()
+    //   : Promise.resolve();
+    return Promise.resolve();
   },
   getPermissions: () => {
     const role = localStorage.getItem("role");
