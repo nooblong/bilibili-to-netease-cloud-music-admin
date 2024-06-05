@@ -1,6 +1,6 @@
 import * as React from "react";
 import ContentAdd from "@mui/icons-material/Add";
-import { Fab, useMediaQuery, Theme } from "@mui/material";
+import { Fab } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import clsx from "clsx";
 import isEqual from "lodash/isEqual";

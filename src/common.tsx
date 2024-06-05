@@ -30,7 +30,14 @@ export const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-export const useGetInfo = (resource: string, params: any) => {
+export const useGetInfo = (
+  resource: string,
+  params: any
+): {
+  data: any | null;
+  isLoading: boolean;
+  error: Error | null;
+} => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);

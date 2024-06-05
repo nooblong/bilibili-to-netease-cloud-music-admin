@@ -2,9 +2,16 @@ import { Button, Card, CardContent, Grid, TextField } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { FailDots, Item, LoadingDots, useGetInfo } from "../common";
 import AddBilibiliCookieDialog from "./AddBilibiliCookieDialog";
+import { useDataProvider, useNotify } from "react-admin";
 
 const Dashboard = () => {
-  const { data: data1, isLoading: isLoading1, error: error1 } = useGetInfo("sys/sysInfo", {});
+  const notify = useNotify();
+  const dataProvider = useDataProvider();
+  const {
+    data: data1,
+    isLoading: isLoading1,
+    error: error1,
+  } = useGetInfo("sys/sysInfo", {});
   const {
     data: data2,
     isLoading: isLoading2,
@@ -32,7 +39,9 @@ const Dashboard = () => {
             <Item sx={{ border: 1 }}>你的网易云登录状态</Item>
           </Grid>
           <Grid item xs={6}>
-            <Item sx={{ border: 1 }}>{data1.data.netCookieStatus + ""}</Item>
+            <Item sx={{ border: 1 }}>
+              {data1 && data1.data.netCookieStatus + ""}
+            </Item>
           </Grid>
           <Grid item xs={6}>
             <Item sx={{ border: 1 }}>b站登录状态</Item>
@@ -61,11 +70,6 @@ const Dashboard = () => {
             <Item sx={{ border: 1 }}>xs=6</Item>
           </Grid>
         </Grid>
-        {/*// <Typography>*/}
-        {/*//   系统大会员账号状态(系统需要至少一个大会员账号下载音频):*/}
-        {/*//   {data.bilibiliCookieStatus === true ? "ok" : "fail"}*/}
-        {/*// </Typography>*/}
-        {/*// <AddBilibiliCookieDialog />*/}
       </CardContent>
     );
   };
@@ -113,14 +117,14 @@ const Dashboard = () => {
           sx={{ width: "100%", marginTop: "10px" }}
           variant={"outlined"}
           onClick={() => {
-            // dataProvider
-            //   .getOne("", { id: "/subscribe/checkUpJob" })
-            //   .then(() => {
-            //     notify("ok", { type: "success" });
-            //   })
-            //   .catch(() => {
-            //     notify("error", { type: "error" });
-            //   });
+            dataProvider
+              .get("subscribe/checkUpJob")
+              .then(() => {
+                notify("ok", { type: "success" });
+              })
+              .catch((reason: Error) => {
+                notify(reason.message, { type: "error" });
+              });
           }}
         >
           立即检查订阅

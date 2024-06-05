@@ -1,5 +1,4 @@
 import { DataProvider, fetchUtils, withLifecycleCallbacks } from "react-admin";
-import get from "lodash/get";
 import simpleRestProvider from "ra-data-simple-rest";
 import moment from "moment";
 import querystring from "querystring";
@@ -28,6 +27,20 @@ const withLifeCycleCallbackProvider = withLifecycleCallbacks(
 
 const dataProvider: DataProvider = {
   ...withLifeCycleCallbackProvider,
+  get: (resource: string, params: any) => {
+    let url = "/api/" + resource + "?" + querystring.stringify(params);
+    return accessTokenClient(url)
+      .then(({ json }) => {
+        console.log(json);
+        if (json.code !== 0) {
+          return Promise.reject(Error(json.message));
+        }
+        return json;
+      })
+      .catch((reason) => {
+        return Promise.reject(reason);
+      });
+  },
   getList: (resource, params) => {
     if (resource === "uploadDetail") {
       const { page, perPage } = params.pagination;
@@ -88,14 +101,6 @@ const dataProvider: DataProvider = {
     if (resource === "addToMy") {
       return withLifeCycleCallbackProvider.update("uploadDetail", params);
     }
-    // return accessTokenClient("/api/" + resource).then(({ json }) => {
-    //   return {
-    //     data: {
-    //       id: 1,
-    //       data: json,
-    //     },
-    //   };
-    // });
     return withLifeCycleCallbackProvider.getOne(resource, params);
   },
   create: (resource, params): any => {
@@ -289,50 +294,6 @@ const dataProvider: DataProvider = {
     });
   },
 };
-
-const addTagsSearchSupport = (dataProvider: DataProvider) => ({
-  ...dataProvider,
-  getList: (resource, params) => {
-    if (resource === "comments") {
-      // partial pagination
-      return dataProvider.getList(resource, params).then(({ data, total }) => ({
-        data,
-        pageInfo: {
-          hasNextPage:
-            params.pagination.perPage * params.pagination.page < total,
-          hasPreviousPage: params.pagination.page > 1,
-        },
-      }));
-    }
-    if (resource === "tags") {
-      const matchSearchFilter = Object.keys(params.filter).find((key) =>
-        key.endsWith("_q")
-      );
-      if (matchSearchFilter) {
-        const searchRegExp = new RegExp(params.filter[matchSearchFilter], "i");
-
-        return dataProvider.getList(resource, {
-          ...params,
-          filter: (item) => {
-            const matchPublished = item.published == params.filter.published; // eslint-disable-line eqeqeq
-
-            const fieldName = matchSearchFilter.replace(/(_q)$/, "");
-            return (
-              matchPublished &&
-              get(item, fieldName).match(searchRegExp) !== null
-            );
-          },
-        });
-      }
-    }
-
-    return dataProvider.getList(resource, params);
-  },
-});
-
-interface ResponseError extends Error {
-  status?: number;
-}
 
 export function parseImgUrl(url: string): string {
   return url.replace(/^(http)s*(:\/\/)/, "https://images.weserv.nl/?url=");

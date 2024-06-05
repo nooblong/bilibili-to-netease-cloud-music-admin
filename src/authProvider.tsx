@@ -1,6 +1,6 @@
 // Authenticated by default
 export default {
-  login: ({ username, password }) => {
+  login: ({ username, password }: any) => {
     const request = new Request("/api/login", {
       method: "POST",
       body: JSON.stringify({ username, password }),
@@ -38,7 +38,7 @@ export default {
     localStorage.removeItem("token");
     return Promise.resolve();
   },
-  checkError: ({ status }) => {
+  checkError: ({ status }: any) => {
     return status === 401 || status === 403
       ? Promise.reject()
       : Promise.resolve();
