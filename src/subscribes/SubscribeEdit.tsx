@@ -116,13 +116,15 @@ const SubscribeEdit = (props: any) => {
           label="过滤关键词"
           variant="outlined"
         />
-        <BooleanInput
-          source="crack"
-          variant="outlined"
-          fullWidth
-          label="开启超能力"
-          disabled={data1 && data1.fullName !== "admin"}
-        />
+        {localStorage.getItem("user") === "admin" && (
+          <BooleanInput
+            source="crack"
+            variant="outlined"
+            fullWidth
+            label="开启超能力"
+            disabled={data1 && data1.fullName !== "admin"}
+          />
+        )}
         <BooleanInput
           source="useVideoCover"
           label="使用视频封面，取消则为播客默认封面"

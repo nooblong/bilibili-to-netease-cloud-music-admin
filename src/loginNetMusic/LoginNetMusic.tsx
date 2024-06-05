@@ -87,6 +87,7 @@ const LoginNetMusic = () => {
           <CardContent>
             {userInfo?.data != null &&
             userInfo.data?.account != null &&
+            userInfo.data?.profile != null &&
             !userInfo.data.account.anonimousUser ? (
               <UserInfoShow
                 id={userInfo.data?.account.id}

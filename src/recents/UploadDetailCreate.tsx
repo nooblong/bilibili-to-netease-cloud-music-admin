@@ -9,7 +9,6 @@ import {
   SimpleForm,
   TextInput,
   Toolbar,
-  useGetIdentity,
   useGetOne,
   useNotify,
   useRedirect,
@@ -75,8 +74,6 @@ const UploadDetailCreate = () => {
 
   const MyForm = () => {
     const context = useFormContext();
-    const identity = useGetIdentity();
-    const data1 = identity.data;
     return (
       <>
         <GetBvid
@@ -137,12 +134,9 @@ const UploadDetailCreate = () => {
           fullWidth
         />
         <BooleanInput source="privacy" label="隐私声音?" variant="outlined" />
-        <BooleanInput
-          source="crack"
-          variant="outlined"
-          disabled={data1 && data1.fullName !== "admin"}
-          label="开启超能力"
-        />
+        {localStorage.getItem("user") === "admin" && (
+          <BooleanInput source="crack" variant="outlined" label="开启超能力" />
+        )}
       </>
     );
   };

@@ -52,11 +52,11 @@ const LoginNetMusicPassword = () => {
                     .sendCode("sendCode", {
                       phone: context.getValues("phone"),
                     })
-                    .then((data) => {
+                    .then((data: any) => {
                       if (data.data.code === 200) {
-                        notify("成功");
+                        notify("发送成功", { type: "success" });
                       } else {
-                        notify("失败");
+                        notify(data.data.message + "", { type: "error" });
                       }
                     });
                 }}
@@ -72,11 +72,11 @@ const LoginNetMusicPassword = () => {
                       phone: context.getValues("phone"),
                       captcha: context.getValues("captcha"),
                     })
-                    .then((data) => {
+                    .then((data: any) => {
                       if (data.data.code === 200) {
-                        notify("验证成功");
+                        notify("验证成功", { type: "success" });
                       } else {
-                        notify("验证失败");
+                        notify(data.data.message + "", { type: "error" });
                       }
                     });
                 }}
@@ -98,14 +98,14 @@ const LoginNetMusicPassword = () => {
           label="登录"
           type="button"
           mutationOptions={{
-            onSuccess: (data) => {
+            onSuccess: (data: any) => {
               if (data.data.code === 200) {
                 notify("登录成功: " + data.data.profile.nickname, {
                   type: "success",
                 });
                 localStorage.setItem("netmusic", JSON.stringify(data.data));
               } else {
-                notify(data.data.msg, { type: "error" });
+                notify(data.data.message + "", { type: "error" });
               }
             },
           }}
