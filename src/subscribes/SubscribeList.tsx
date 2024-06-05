@@ -1,27 +1,30 @@
 import {
   Datagrid,
   FilterButton,
+  Identifier,
   List,
   TextField,
   TextInput,
   TopToolbar,
   useRecordContext,
 } from "react-admin";
-import { Identifier } from "react-admin";
 import CreateButton from "../customAdmin/CreateButton";
+import { Box } from "@mui/material";
 
 const AvatarField = (props: any) => {
   const record = useRecordContext(props);
   return record ? (
-    <img
-      src={record.netCover}
-      style={{
-        maxHeight: "100px",
-        maxWidth: "100px",
-        objectFit: "contain",
-      }}
-      alt=""
-    />
+    <Box maxWidth={"100%"} maxHeight={"100%"}>
+      <img
+        src={record.netCover}
+        style={{
+          maxHeight: "50px",
+          maxWidth: "50px",
+          objectFit: "contain",
+        }}
+        alt=""
+      />
+    </Box>
   ) : null;
 };
 

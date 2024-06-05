@@ -1,3 +1,4 @@
+import * as React from "react";
 import { ReactElement, useEffect } from "react";
 import {
   ArrayInput,
@@ -26,8 +27,6 @@ import GetFavorite from "./GetFavorite";
 import GetPart from "./GetPart";
 import { toChoice } from "../recents/UploadDetailCreate";
 import moment from "moment";
-import { Card } from "@mui/material";
-import * as React from "react";
 
 const RecentCreateToolbar = () => {
   return (
@@ -228,35 +227,15 @@ const SubscribeCreate = () => {
 function showAction(type: string, setTargetId: any): ReactElement {
   switch (type) {
     case "UP":
-      return (
-        <Card sx={{ width: "100%" }} elevation={10}>
-          <GetUp setTargetId={setTargetId} />
-        </Card>
-      );
+      return <GetUp setTargetId={setTargetId} />;
     case "COLLECTION":
-      return (
-        <Card sx={{ width: "100%" }} elevation={10}>
-          <GetCollection setTargetId={setTargetId} />
-        </Card>
-      );
+      return <GetCollection setTargetId={setTargetId} />;
     case "FAVORITE":
-      return (
-        <Card sx={{ width: "100%" }} elevation={10}>
-          <GetFavorite setTargetId={setTargetId} />
-        </Card>
-      );
+      return <GetFavorite setTargetId={setTargetId} />;
     case "PART":
-      return (
-        <Card sx={{ width: "100%" }} elevation={10}>
-          <GetPart setTargetId={setTargetId} />
-        </Card>
-      );
+      return <GetPart setTargetId={setTargetId} />;
     default:
-      return (
-        <Card sx={{ width: "100%" }} elevation={10}>
-          <>未知类型</>
-        </Card>
-      );
+      return <>未知类型</>;
   }
 }
 

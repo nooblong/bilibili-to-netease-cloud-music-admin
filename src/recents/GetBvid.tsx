@@ -44,7 +44,7 @@ function GetBvid({
       onClick={() => {
         setLoading(true);
         dataProvider
-          .getVideoInfo("getVideoInfo", { bvid: bvid })
+          .get("bilibili/getVideoInfo", { bvid: bvid })
           .then((data: any) => {
             data = data.data;
             const obj = {

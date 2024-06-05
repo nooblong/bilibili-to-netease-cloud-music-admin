@@ -20,14 +20,14 @@ const GetUp = ({ setTargetId }: any): ReactElement => {
           return;
         }
         dataProvider
-          .getVideoInfo("getVideoInfo", { bvid: url })
+          .get("bilibili/getVideoInfo", { bvid: url })
           .then(({ data: videoData }: any) => {
             console.log(videoData);
             if (videoData === null) {
               notify("找不到合集");
             }
             dataProvider
-              .getUserInfo("getUserInfo", {
+              .get("bilibili/getUserInfo", {
                 uid: videoData.uid,
               })
               .then(({ data }: any) => {
@@ -47,7 +47,7 @@ const GetUp = ({ setTargetId }: any): ReactElement => {
   );
 
   return (
-    <Box margin="10px">
+    <>
       <TextField
         variant="outlined"
         onChange={(event) => {
@@ -63,7 +63,7 @@ const GetUp = ({ setTargetId }: any): ReactElement => {
         alt=""
       />
       {collectionInfo == null ? "" : collectionInfo.name}
-    </Box>
+    </>
   );
 };
 

@@ -16,7 +16,7 @@ const GetFavorite = ({ setTargetId }: { setTargetId: any }) => {
     <IconButton
       onClick={() => {
         dataProvider
-          .getUserFavoriteList("getSubscribe", { uid })
+          .get("bilibili/getFavoriteList", { uid: uid })
           .then(({ data }: any) => {
             console.log(data);
             setFavList(data.data.list);
@@ -30,7 +30,7 @@ const GetFavorite = ({ setTargetId }: { setTargetId: any }) => {
   );
 
   return (
-    <Box margin="10px">
+    <>
       <TextField
         onChange={(event) => {
           setUid(event.currentTarget.value);
@@ -61,7 +61,7 @@ const GetFavorite = ({ setTargetId }: { setTargetId: any }) => {
           })}
         </Select>
       </FormControl>
-    </Box>
+    </>
   );
 };
 

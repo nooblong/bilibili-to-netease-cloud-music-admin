@@ -195,53 +195,6 @@ const dataProvider: DataProvider = {
       };
     });
   },
-  getVideoInfo: (resource, params) => {
-    return accessTokenClient(
-      `/api/download/getVideoInfo?bvid=${params.bvid}${
-        params.cid ? "&cid=" + params.cid : ""
-      }`
-    ).then(({ json }) => {
-      return {
-        data: json.data,
-      };
-    });
-  },
-  getSeriesInfo: (resource, params) => {
-    return accessTokenClient(
-      "/api/download/getSeriesInfo?id=" + params.id
-    ).then(({ json }) => {
-      return {
-        data: json.data,
-      };
-    });
-  },
-  getSeriesIdByUrl: (resource, params) => {
-    return accessTokenClient(
-      "/api/download/getSeriesIdByBvid?url=" + params.url
-    ).then(({ json }) => {
-      return {
-        data: json.data,
-      };
-    });
-  },
-  getUserInfo: (resource, params) => {
-    return accessTokenClient(
-      "/api/download/getUserInfo?uid=" + params.uid
-    ).then(({ json }) => {
-      return {
-        data: json.data,
-      };
-    });
-  },
-  getUserFavoriteList: (resource, params) => {
-    return accessTokenClient(
-      "/api/download/getFavoriteList?uid=" + params.uid
-    ).then(({ json }) => {
-      return {
-        data: json.data,
-      };
-    });
-  },
   sendCode: (resource, params) => {
     console.log(params);
     return accessTokenClient(

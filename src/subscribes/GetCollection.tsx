@@ -21,13 +21,13 @@ const GetCollection = ({ setTargetId }: { setTargetId: any }) => {
           return;
         }
         dataProvider
-          .getSeriesIdByUrl("getSeriesInfo", { url })
+          .get("bilibili/getSeriesIdByBvid", { url: url })
           .then(({ data }: any) => {
             if (data === null) {
               notify("找不到合集");
             }
             dataProvider
-              .getSeriesInfo("getSeriesInfo", { id: data })
+              .get("bilibili/getSeriesInfo", { id: data })
               .then(({ data }: any) => {
                 if (data.code !== -1) {
                   setCollectionInfo(data.data);
@@ -45,7 +45,7 @@ const GetCollection = ({ setTargetId }: { setTargetId: any }) => {
   );
 
   return (
-    <Box margin="10px">
+    <>
       <TextField
         fullWidth
         variant="outlined"
@@ -63,7 +63,7 @@ const GetCollection = ({ setTargetId }: { setTargetId: any }) => {
         alt=""
       />
       {collectionInfo == null ? "" : collectionInfo.title}
-    </Box>
+    </>
   );
 };
 

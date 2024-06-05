@@ -45,7 +45,7 @@ const GetPart = ({ setTargetId }: { setTargetId: any }) => {
     <IconButton
       onClick={() => {
         dataProvider
-          .getVideoInfo("getVideoInfo", { bvid: videoInfo.bvid })
+          .get("bilibili/getVideoInfo", { bvid: videoInfo.bvid })
           .then((data: any) => {
             data = data.data;
             const obj = {
@@ -70,7 +70,7 @@ const GetPart = ({ setTargetId }: { setTargetId: any }) => {
   );
 
   return (
-    <Box margin="10px">
+    <>
       <TextField
         variant="outlined"
         label="输入bvid或url"
@@ -126,7 +126,7 @@ const GetPart = ({ setTargetId }: { setTargetId: any }) => {
         </>
       )}
       <Box sx={{ minWidth: 120 }}>预计分p数量: {videoInfo.pages.length}</Box>
-    </Box>
+    </>
   );
 };
 
