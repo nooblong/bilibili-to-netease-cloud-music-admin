@@ -27,7 +27,7 @@ const LoginPage = () => {
   const notify = useNotify();
   const dataProvider = useDataProvider();
 
-  const submit = (values: FormData) => {
+  const submit = (values: any): any => {
     setLoading(true);
     login(values, redirectTo)
       .then(() => {
@@ -56,7 +56,7 @@ const LoginPage = () => {
       });
   };
 
-  const submitRegister = (values: FormData) => {
+  const submitRegister = (values: any): any => {
     setLoading(true);
     dataProvider
       .post("register", values)
@@ -114,16 +114,6 @@ const LoginPage = () => {
       margin: theme.spacing(0.3),
     },
   }));
-
-  interface LoginFormProps {
-    redirectTo?: string;
-    className?: string;
-  }
-
-  interface FormData {
-    username: string;
-    password: string;
-  }
 
   return (
     <>

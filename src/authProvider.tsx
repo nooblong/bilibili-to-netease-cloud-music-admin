@@ -1,5 +1,7 @@
 // Authenticated by default
-export default {
+import { AuthProvider } from "react-admin";
+
+const Auth: AuthProvider = {
   login: ({ username, password }: any) => {
     const request = new Request("/api/login", {
       method: "POST",
@@ -54,10 +56,15 @@ export default {
     return Promise.resolve(role);
   },
   getIdentity: () => {
+    let item = localStorage.getItem("login");
+    let fullName = localStorage.getItem("user");
+    let avatar = localStorage.getItem("avatar");
     return Promise.resolve({
-      id: localStorage.getItem("login"),
-      fullName: localStorage.getItem("user"),
-      avatar: localStorage.getItem("avatar"),
+      id: item != null ? item : "",
+      fullName: fullName != null ? fullName : undefined,
+      avatar: avatar != null ? avatar : undefined,
     });
   },
 };
+
+export default Auth;
