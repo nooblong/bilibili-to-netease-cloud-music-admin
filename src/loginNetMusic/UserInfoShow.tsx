@@ -1,4 +1,3 @@
-import { Paper } from "@mui/material";
 import { ReactElement } from "react";
 
 export interface NetAccount {

@@ -6,7 +6,7 @@ import clsx from "clsx";
 import isEqual from "lodash/isEqual";
 import merge from "lodash/merge";
 import PropTypes from "prop-types";
-import { useTranslate, useResourceContext, useCreatePath } from "ra-core";
+import { useCreatePath, useResourceContext, useTranslate } from "ra-core";
 import { Link, To } from "react-router-dom";
 
 import { Button, ButtonProps, LocationDescriptor } from "react-admin";

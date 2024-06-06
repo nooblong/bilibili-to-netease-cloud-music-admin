@@ -1,6 +1,5 @@
 import { DataProvider, fetchUtils, withLifecycleCallbacks } from "react-admin";
 import simpleRestProvider from "ra-data-simple-rest";
-import moment from "moment";
 import querystring from "querystring";
 
 export const accessTokenClient = (url: string, options: any = {}) => {
@@ -31,7 +30,22 @@ const dataProvider: DataProvider = {
     let url = "/api/" + resource + "?" + querystring.stringify(params);
     return accessTokenClient(url)
       .then(({ json }) => {
-        console.log(json);
+        if (json.code !== 0) {
+          return Promise.reject(Error(json.message));
+        }
+        return json;
+      })
+      .catch((reason) => {
+        return Promise.reject(reason);
+      });
+  },
+  post: (resource: string, params: any) => {
+    let url = "/api/" + resource;
+    return accessTokenClient(url, {
+      method: "POST",
+      body: JSON.stringify(params),
+    })
+      .then(({ json }) => {
         if (json.code !== 0) {
           return Promise.reject(Error(json.message));
         }
@@ -146,114 +160,6 @@ const dataProvider: DataProvider = {
   update: (resource, params) => {
     return withLifeCycleCallbackProvider.update(resource, params);
   },
-  register: (resource, params) => {
-    const { username, password } = params;
-    return accessTokenClient("/api/register", {
-      method: "POST",
-      body: JSON.stringify({
-        username: username,
-        password: password,
-      }),
-    }).then(({ json }) => {
-      return {
-        data: json,
-      };
-    });
-  },
-  qrCheck: (key) => {
-    return accessTokenClient(
-      `/api/direct/login/qr/check?key=${key}&timestamp=${Date.now()}`
-    ).then(({ json }) => {
-      return {
-        data: json,
-      };
-    });
-  },
-  loginStatus: () => {
-    return accessTokenClient(
-      `/api/direct/login/status?timestamp=${Date.now()}`,
-      {}
-    ).then(({ json }) => {
-      return {
-        data: json,
-      };
-    });
-  },
-  isLogin: () => {
-    return accessTokenClient(`/api/netmusic/loginStatus`, {}).then(
-      ({ json }) => {
-        return {
-          data: json,
-        };
-      }
-    );
-  },
-  getQrCode: () => {
-    return accessTokenClient("/api/netmusic/getQrCode", {}).then(({ json }) => {
-      return {
-        data: json.data,
-      };
-    });
-  },
-  sendCode: (resource, params) => {
-    console.log(params);
-    return accessTokenClient(
-      `/api/direct/captcha/send?${querystring.stringify(params)}`
-    ).then(({ json }) => {
-      return {
-        data: json,
-      };
-    });
-  },
-  verify: (resource, params) => {
-    return accessTokenClient(
-      `/api/direct/captcha/verify?${querystring.stringify(params)}`
-    ).then(({ json }) => {
-      return {
-        data: json,
-      };
-    });
-  },
-  checkHasUploaded: (resource, params) => {
-    return accessTokenClient(`/api/uploadDetail/checkHasUploaded`).then(
-      ({ json }) => {
-        return {
-          data: json.data,
-        };
-      }
-    );
-  },
-  getQrBili: () => {
-    return accessTokenClient(`/api/getQrBili`).then(({ json }) => {
-      return {
-        data: json.data,
-      };
-    });
-  },
-  checkQrBili: (key) => {
-    return accessTokenClient(`/api/checkQrBili?key=${key}`).then(({ json }) => {
-      return {
-        data: json.data,
-      };
-    });
-  },
-  instanceLog: (instanceId, index) => {
-    return accessTokenClient(
-      `/api/uploadDetail/instanceLog?instanceId=${instanceId}&index=${index}`
-    ).then(({ json }) => {
-      return {
-        data: json.data,
-      };
-    });
-  },
 };
-
-export function parseImgUrl(url: string): string {
-  return url.replace(/^(http)s*(:\/\/)/, "https://images.weserv.nl/?url=");
-}
-
-export function parseDatetime(date: Date): string {
-  return moment(date).format("YYYY-MM-DD HH:mm:ss");
-}
 
 export default dataProvider;

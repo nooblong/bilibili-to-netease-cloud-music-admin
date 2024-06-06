@@ -1,7 +1,7 @@
-import { Box, IconButton, TextField } from "@mui/material";
+import { IconButton, TextField } from "@mui/material";
 import { useDataProvider, useNotify } from "react-admin";
 import { ReactElement, useState } from "react";
-import { parseImgUrl } from "../dataProvider";
+import { parseImgUrl } from "../common";
 import SearchIcon from "@mui/icons-material/Search";
 
 const GetUp = ({ setTargetId }: any): ReactElement => {

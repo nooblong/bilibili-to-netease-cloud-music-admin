@@ -2,7 +2,6 @@ import {
   Datagrid,
   EditButton,
   FilterButton,
-  Identifier,
   List,
   SelectInput,
   ShowButton,
@@ -12,7 +11,7 @@ import {
 } from "react-admin";
 import { AuditStatusEnum } from "../subscribes/Enums";
 import CreateButton from "../customAdmin/CreateButton";
-import { Box, Stack } from "@mui/material";
+import { Box } from "@mui/material";
 
 const PostListActionToolbar = ({ children }: any) => (
   <Box sx={{ alignItems: "center", display: "flex" }}>{children}</Box>

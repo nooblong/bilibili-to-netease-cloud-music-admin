@@ -49,7 +49,7 @@ const LoginNetMusicPassword = () => {
               <Button
                 onClick={() => {
                   dataProvider
-                    .sendCode("sendCode", {
+                    .get("direct/captcha/send", {
                       phone: context.getValues("phone"),
                     })
                     .then((data: any) => {
@@ -68,7 +68,7 @@ const LoginNetMusicPassword = () => {
                 fullWidth
                 onClick={() => {
                   dataProvider
-                    .verify("verify", {
+                    .get("direct/captcha/verify", {
                       phone: context.getValues("phone"),
                       captcha: context.getValues("captcha"),
                     })

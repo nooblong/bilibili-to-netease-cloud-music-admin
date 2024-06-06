@@ -20,7 +20,7 @@ import {
 } from "react-admin";
 import { useFormContext, useWatch } from "react-hook-form";
 import { SubscribeTypeEnum, VideoOrderEnum } from "./Enums";
-import { parseDatetime } from "../dataProvider";
+import { parseDatetime } from "../common";
 import GetUp from "./GetUp";
 import GetCollection from "./GetCollection";
 import GetFavorite from "./GetFavorite";
@@ -57,7 +57,7 @@ const SubscribeCreate = () => {
   const notify = useNotify();
 
   useEffect(() => {
-    dataProvider.checkHasUploaded().then((uploaded: any) => {
+    dataProvider.get("uploadDetail/checkHasUploaded", {}).then((uploaded: any) => {
       if (!uploaded.data) {
         notify("需要先上传一遍单曲并且上线才可以订阅", { type: "error" });
       }

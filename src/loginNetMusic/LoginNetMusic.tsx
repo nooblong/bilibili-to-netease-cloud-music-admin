@@ -36,21 +36,25 @@ const LoginNetMusic = () => {
       return;
     }
     const id = setInterval(async () => {
-      void dataProvider.qrCheck(key).then((value: any) => {
-        setLoginStatus(value.data.message);
-        if (value.data.code === 800) {
-          notify("二维码已过期,请重新获取", { type: "error" });
-          clearInterval(timer);
-        }
-        if (value.data.code === 803) {
-          clearInterval(timer);
-          notify("授权登录成功", { type: "success" });
-          dataProvider.loginStatus().then((userInfo: any) => {
-            setUserInfo(userInfo);
-            setChecking(false);
-          });
-        }
-      });
+      void dataProvider
+        .get("direct/login/qr/check", { key: key, timestamp: Date.now() })
+        .then((value: any) => {
+          setLoginStatus(value.data.message);
+          if (value.data.code === 800) {
+            notify("二维码已过期,请重新获取", { type: "error" });
+            clearInterval(timer);
+          }
+          if (value.data.code === 803) {
+            clearInterval(timer);
+            notify("授权登录成功", { type: "success" });
+            dataProvider
+              .get(`direct/login/status?timestamp=${Date.now()}`, {})
+              .then((userInfo: any) => {
+                setUserInfo(userInfo);
+                setChecking(false);
+              });
+          }
+        });
     }, 3000);
     return () => {
       clearInterval(id);
@@ -58,18 +62,18 @@ const LoginNetMusic = () => {
   }, [checking, dataProvider, key, notify]);
 
   useEffect(() => {
-    dataProvider.isLogin().then((data: any) => {
+    dataProvider.get("netmusic/loginStatus", {}).then((data: any) => {
       if (
-        data.data.data === null ||
-        data.data.data.account === null ||
-        data.data.data.account === "null" ||
-        data.data.data.account.anonimousUser
+        data.data === null ||
+        data.data.account === null ||
+        data.data.account === "null" ||
+        data.data.account.anonimousUser
       ) {
         localStorage.removeItem("netmusic");
       } else {
-        localStorage.setItem("netmusic", JSON.stringify(data.data));
+        localStorage.setItem("netmusic", JSON.stringify(data));
       }
-      setUserInfo(data.data);
+      setUserInfo(data);
     });
   }, [dataProvider]);
 
@@ -179,7 +183,7 @@ async function login(
   dataProvider: any
 ): Promise<void> {
   dataProvider
-    .getQrCode()
+    .get("netmusic/getQrCode", {})
     .then((data: any) => {
       setImg(data.data.image);
       setKey(data.data.uniqueKey);

@@ -3,6 +3,7 @@ import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import querystring from "querystring";
 import { accessTokenClient } from "./dataProvider";
+import moment from "moment/moment";
 
 export const LoadingDots = () => {
   const [dots, setDots] = useState("");
@@ -55,3 +56,11 @@ export const useGetInfo = (
   }, [url]);
   return { data, isLoading, error };
 };
+
+export function parseImgUrl(url: string): string {
+  return url.replace(/^(http)s*(:\/\/)/, "https://images.weserv.nl/?url=");
+}
+
+export function parseDatetime(date: Date): string {
+  return moment(date).format("YYYY-MM-DD HH:mm:ss");
+}

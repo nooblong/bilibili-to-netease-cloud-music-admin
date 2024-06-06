@@ -1,14 +1,14 @@
 import {
   Create,
-  Loading,
+  Loading, NumberInput,
   required,
   SaveButton,
   SelectInput,
-  SimpleForm,
+  SimpleForm, TextInput,
   useDataProvider,
   useGetOne,
   useNotify,
-  useRedirect,
+  useRedirect
 } from "react-admin";
 import { toChoice } from "./UploadDetailCreate";
 import { useParams } from "react-router-dom";
@@ -17,8 +17,7 @@ import {
   ButtonGroup,
   Card,
   CardContent,
-  Pagination,
-  Stack,
+  TextField,
 } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
@@ -30,13 +29,7 @@ const UploadDetailShow = () => {
   const notify = useNotify();
   const dataProvider = useDataProvider();
   const [logData, setLogData] = useState<any>(null);
-  const [page, setPage] = useState(1);
-  const [totalPage, setTotalPage] = useState(1);
   const [success, setSuccess] = useState(false);
-  // const controllerProps = useEditController({
-  //   resource: "uploadDetail",
-  //   id: params.id,
-  // });
 
   const uploadDetail: any = useGetOne(
     "uploadDetail",
@@ -45,14 +38,10 @@ const UploadDetailShow = () => {
     },
     {
       onSuccess: (data1) => {
-        dataProvider
-          .instanceLog(data1.instanceId, page - 1)
-          .then((data: any) => {
-            setLogData(data.data);
-            setTotalPage(data.data.totalPages);
-            setPage(data.data.index + 1);
-            setSuccess(true);
-          });
+        dataProvider.get(`uploadDetail/${data1.id}`, {}).then((data: any) => {
+          setLogData(data.data.log);
+          setSuccess(true);
+        });
       },
     }
   );
@@ -98,31 +87,32 @@ const UploadDetailShow = () => {
     >
       重新上传
     </Button>,
-    <Button key="three">Three</Button>,
   ];
-
-  const MyForm = () => {
-    return (
-      <>
-        <Typography>上传这首歌到自己的播客</Typography>
-        <SelectInput
-          source="voiceListId"
-          label="选择播客"
-          fullWidth
-          defaultValue={""}
-          choices={data && data.voiceList ? toChoice(data.voiceList.list) : []}
-          validate={required("Required field")}
-          variant="outlined"
-        ></SelectInput>
-      </>
-    );
-  };
 
   return (
     <>
       <Create resource={"addToMy"}>
         <SimpleForm toolbar={<></>}>
-          <MyForm />
+          上传到自己的播客
+          <SelectInput
+            source="voiceListId"
+            label="选择播客"
+            fullWidth
+            defaultValue={""}
+            choices={
+              data && data.voiceList ? toChoice(data.voiceList.list) : []
+            }
+            validate={required("Required field")}
+            variant="outlined"
+          ></SelectInput>
+          上传id
+          <NumberInput
+            source={"voiceDetailId"}
+            disabled
+            variant={"outlined"}
+            defaultValue={Number(voiceDetailId)}
+            value={Number(voiceDetailId)}
+          ></NumberInput>
           <SaveButton
             label="提交"
             type="button"
@@ -140,31 +130,25 @@ const UploadDetailShow = () => {
           />
         </SimpleForm>
       </Create>
-      <hr />
-      <ButtonGroup size="large" fullWidth aria-label="Large button group">
-        {buttons}
-      </ButtonGroup>
-      <hr />
+      <Card sx={{marginTop: 1, marginBottom: 1}}>
+        <ButtonGroup size="large" fullWidth aria-label="Large button group">
+          {buttons}
+        </ButtonGroup>
+      </Card>
       <Card>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             上传日志
           </Typography>
-          <Typography variant="body2" sx={{ whiteSpace: "pre-line" }}>
-            {logData === null ? <Loading /> : logData.data}
+          <Typography>
+            <TextField
+              fullWidth
+              variant={"outlined"}
+              sx={{ overflowX: "auto" }}
+              multiline
+              value={logData === null ? <Loading /> : logData}
+            ></TextField>
           </Typography>
-          <Stack spacing={2}>
-            <Typography>
-              Page: {page} TotalPage: {totalPage}
-            </Typography>
-            <Pagination
-              count={totalPage}
-              page={page}
-              onChange={(event, page) => {
-                setPage(page);
-              }}
-            />
-          </Stack>
         </CardContent>
       </Card>
     </>

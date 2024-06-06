@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { IconButton, TextField } from "@mui/material";
 import { useDataProvider, useNotify } from "react-admin";
-import { parseImgUrl } from "../dataProvider";
-import Box from "@mui/material/Box";
 import SearchIcon from "@mui/icons-material/Search";
+import { parseImgUrl } from "../common";
 
 const GetCollection = ({ setTargetId }: { setTargetId: any }) => {
   const [url, setUrl] = useState(

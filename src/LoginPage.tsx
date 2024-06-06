@@ -59,17 +59,17 @@ const LoginPage = () => {
   const submitRegister = (values: FormData) => {
     setLoading(true);
     dataProvider
-      .register("register", values)
-      .then((data) => {
-        notify(data.data.message, {
-          type: data.data.code >= 0 ? "success" : "error",
+      .post("register", values)
+      .then((data: any) => {
+        notify(data.message, {
+          type: data.code >= 0 ? "success" : "error",
         });
         setRegistering(false);
       })
       .then(() => {
         setLoading(false);
       })
-      .catch((error) => {
+      .catch((error: any) => {
         setLoading(false);
         notify(
           typeof error === "string"

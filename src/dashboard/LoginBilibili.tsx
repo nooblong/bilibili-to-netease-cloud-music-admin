@@ -32,7 +32,7 @@ const LoginNetMusic = () => {
       return;
     }
     const id = setInterval(async () => {
-      void dataProvider.checkQrBili(key).then((value: any) => {
+      void dataProvider.get("checkQrBili", { key: key }).then((value: any) => {
         setLoginStatus(value.data.data.message);
         if (value.data.data.code === 86038) {
           notify("二维码已过期,请重新获取", { type: "error" });
@@ -108,9 +108,14 @@ function LoginDialog({ img }: { img: string }): ReactElement {
 
 let timer: any;
 
-async function login(setImg: any, setChecking: any, setKey: any, dataProvider: any): Promise<void> {
+async function login(
+  setImg: any,
+  setChecking: any,
+  setKey: any,
+  dataProvider: any
+): Promise<void> {
   dataProvider
-    .getQrBili()
+    .get("getQrBili", {})
     .then((data: any) => {
       setImg(data.data.image);
       setKey(data.data.uniqueKey);

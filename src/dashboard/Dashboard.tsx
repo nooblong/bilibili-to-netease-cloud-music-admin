@@ -1,4 +1,13 @@
-import { Button, Card, CardContent, Grid, TextField } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardContent,
+  Grid,
+  List,
+  ListItem,
+  ListItemText,
+  TextField,
+} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { FailDots, Item, LoadingDots, useGetInfo } from "../common";
 import AddBilibiliCookieDialog from "./AddBilibiliCookieDialog";
@@ -53,15 +62,15 @@ const Dashboard = () => {
             <Item sx={{ border: 1 }}>你的b站登录状态</Item>
           </Grid>
           <Grid item xs={6}>
-            <Item sx={{ border: 1 }}>{data1 && data1.data.bilibiliCookieStatus + ""}</Item>
+            <Item sx={{ border: 1 }}>
+              {data1 && data1.data.bilibiliCookieStatus + ""}
+            </Item>
           </Grid>
           <Grid item xs={6}>
             <Item sx={{ border: 1 }}>系统就绪</Item>
           </Grid>
           <Grid item xs={6}>
-            <Item sx={{ border: 1 }}>
-              {data1.data.ready + ""}
-            </Item>
+            <Item sx={{ border: 1 }}>{data1.data.ready + ""}</Item>
           </Grid>
           <Grid item xs={6}>
             <Item sx={{ border: 1 }}>注册用户数</Item>
@@ -73,13 +82,17 @@ const Dashboard = () => {
             <Item sx={{ border: 1 }}>游客访问数</Item>
           </Grid>
           <Grid item xs={6}>
-            <Item sx={{ border: 1 }}>{data1 && data1.data.annoVisitNum + ""}</Item>
+            <Item sx={{ border: 1 }}>
+              {data1 && data1.data.annoVisitNum + ""}
+            </Item>
           </Grid>
           <Grid item xs={6}>
             <Item sx={{ border: 1 }}>用户访问数</Item>
           </Grid>
           <Grid item xs={6}>
-            <Item sx={{ border: 1 }}>{data1 && data1.data.userVisitNum + ""}</Item>
+            <Item sx={{ border: 1 }}>
+              {data1 && data1.data.userVisitNum + ""}
+            </Item>
           </Grid>
         </Grid>
       </CardContent>
@@ -94,25 +107,16 @@ const Dashboard = () => {
       return <FailDots />;
     }
 
-    const getAllInfo = (list: [any]) => {
-      let str = "";
-      for (let i of list) {
-        str += "名字:" + i.title + "优先级:" + i.priority;
-        str += "\n";
-      }
-      return str;
-    };
     return (
       <CardContent>
         <Typography>当前队列长度: {data2.data.total}</Typography>
-        <Typography>队列内容:</Typography>
-        <TextField
-          multiline
-          rows={10} // 设置初始显示的行数
-          variant="outlined"
-          fullWidth
-          value={getAllInfo(data2.data.records)} // 设置显示的文本内容
-        />
+        <List dense={true} sx={{ maxHeight: "400px", overflowY: "auto" }}>
+          {data2.data.records.map((i: any) => (
+            <ListItem key={i.id}>
+              <ListItemText primary={i.mergeTitle + " 优先级: " + i.priority} />
+            </ListItem>
+          ))}
+        </List>
       </CardContent>
     );
   };
