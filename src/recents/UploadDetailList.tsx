@@ -47,11 +47,18 @@ const PostListActions = () => (
 
 const recentFilters = [
   <TextInput
-    label="标题"
+    label="视频标题"
     source="title"
     defaultValue=""
     name={"title"}
-    key={"标题"}
+    key={"视频标题"}
+  />,
+  <TextInput
+    label="真实上传名字"
+    source="title"
+    defaultValue=""
+    name={"title"}
+    key={"真实上传名字"}
   />,
   <TextInput
     label="用户名"
