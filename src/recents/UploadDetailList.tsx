@@ -24,6 +24,7 @@ const UploadDetailListMobile = () => {
       actions={<PostListActions />}
       filters={recentFilters}
       exporter={false}
+      perPage={100}
     >
       <Datagrid bulkActionButtons={false}>
         <TextField source="mergeTitle" label="上传名字" />
