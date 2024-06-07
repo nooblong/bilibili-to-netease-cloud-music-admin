@@ -5,6 +5,7 @@ import {
   List,
   SelectInput,
   ShowButton,
+  SortButton,
   TextField,
   TextInput,
   TopToolbar,
@@ -42,6 +43,7 @@ const PostListActions = () => (
   <TopToolbar>
     <CreateButton />
     <FilterButton />
+    <SortButton fields={["createTime", "updateTime"]} />
   </TopToolbar>
 );
 
