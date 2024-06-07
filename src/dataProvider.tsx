@@ -59,10 +59,13 @@ const dataProvider: DataProvider = {
     if (resource === "uploadDetail") {
       const { page, perPage } = params.pagination;
       const filters = params.filter;
+      const sort = params.sort;
       const query = {
         ...filters,
         pageNo: page,
         pageSize: perPage,
+        column: sort.field,
+        orderBy: sort.order,
       };
       const url = `/api/uploadDetail?${querystring.stringify(query)}`;
       return accessTokenClient(url).then(({ json }) => {
