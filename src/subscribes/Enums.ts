@@ -55,6 +55,31 @@ export const SubscribeTypeEnum = [
 ];
 
 export const AuditStatusEnum = [
+  /*
+  // control by app
+    WAIT("等待"),
+    PROCESSING("处理中"),
+    AUDITING("审核中"),
+    // control by 163
+    ONLY_SELF_SEE("仅自己可见"),
+    ONLINE("已上线"),
+    FAILED("失败"),
+    TRANSCODE_FAILED("转码失败"),
+    // control by app
+    OVER_MAX_RETRY("超过重试次数"),
+    INTERNAL_ERROR("内部错误"),
+    SKIP("跳过"),
+    UNKNOWN("未知错误"),
+    NO_LOGIN("登录失效查询失败");
+   */
+  {
+    id: "WAIT",
+    name: "等待",
+  },
+  {
+    id: "PROCESSING",
+    name: "处理中",
+  },
   {
     id: "AUDITING",
     name: "审核中",
@@ -65,7 +90,31 @@ export const AuditStatusEnum = [
   },
   {
     id: "ONLINE",
-    name: "已发布",
+    name: "已上线",
+  },
+  {
+    id: "FAILED",
+    name: "失败",
+  },
+  {
+    id: "TRANSCODE_FAILED",
+    name: "转码失败",
+  },
+  {
+    id: "OVER_MAX_RETRY",
+    name: "超过重试次数",
+  },
+  {
+    id: "INTERNAL_ERROR",
+    name: "内部错误",
+  },
+  {
+    id: "SKIP",
+    name: "跳过",
+  },
+  {
+    id: "UNKNOWN",
+    name: "未知错误",
   },
   {
     id: "OTHER",
