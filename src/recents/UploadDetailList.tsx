@@ -12,7 +12,7 @@ import {
 } from "react-admin";
 import { AuditStatusEnum } from "../subscribes/Enums";
 import CreateButton from "../customAdmin/CreateButton";
-import { Box } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 
 const PostListActionToolbar = ({ children }: any) => (
   <Box sx={{ alignItems: "center", display: "flex" }}>{children}</Box>
@@ -32,8 +32,10 @@ const UploadDetailListMobile = () => {
         <TextField source="statusDesc" label="状态" />
         <TextField source="createTime" label="创建时间" />
         <PostListActionToolbar>
-          <EditButton />
-          <ShowButton />
+          <Stack>
+            <EditButton />
+            <ShowButton />
+          </Stack>
         </PostListActionToolbar>
       </Datagrid>
     </List>
@@ -58,9 +60,9 @@ const recentFilters = [
   />,
   <TextInput
     label="真实上传名字"
-    source="title"
+    source="uploadName"
     defaultValue=""
-    name={"title"}
+    name={"uploadName"}
     key={"真实上传名字"}
   />,
   <TextInput
