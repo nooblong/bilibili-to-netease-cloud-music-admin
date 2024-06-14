@@ -1,14 +1,16 @@
 import {
   Create,
-  Loading, NumberInput,
+  Loading,
+  NumberInput,
   required,
   SaveButton,
   SelectInput,
-  SimpleForm, TextInput,
+  SimpleForm,
+  TextInput,
   useDataProvider,
   useGetOne,
   useNotify,
-  useRedirect
+  useRedirect,
 } from "react-admin";
 import { toChoice } from "./UploadDetailCreate";
 import { useParams } from "react-router-dom";
@@ -73,14 +75,15 @@ const UploadDetailShow = () => {
     <Button
       key="two"
       onClick={() => {
-        const result = dataProvider.getOne("uploadDetail/restartJob", {
-          id: voiceDetailId,
-        });
+        const result = dataProvider.get(
+          `uploadDetail/restartJob/${voiceDetailId}`,
+          {}
+        );
         result
           .then(() => {
             notify("ok", { type: "success" });
           })
-          .catch((reason) => {
+          .catch((reason: any) => {
             notify(reason.toString(), { type: "error" });
           });
       }}
@@ -130,7 +133,7 @@ const UploadDetailShow = () => {
           />
         </SimpleForm>
       </Create>
-      <Card sx={{marginTop: 1, marginBottom: 1}}>
+      <Card sx={{ marginTop: 1, marginBottom: 1 }}>
         <ButtonGroup size="large" fullWidth aria-label="Large button group">
           {buttons}
         </ButtonGroup>
