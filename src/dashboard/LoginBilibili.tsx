@@ -32,18 +32,20 @@ const LoginNetMusic = () => {
       return;
     }
     const id = setInterval(async () => {
-      void dataProvider.get("checkQrBili", { key: key }).then((value: any) => {
-        setLoginStatus(value.data.data.message);
-        if (value.data.data.code === 86038) {
-          notify("二维码已过期,请重新获取", { type: "error" });
-          clearInterval(timer);
-        }
-        if (value.data.data.code === 0) {
-          clearInterval(timer);
-          notify("授权登录成功", { type: "success" });
-          setChecking(false);
-        }
-      });
+      void dataProvider
+        .get("bilibili/checkQrBili", { key: key })
+        .then((value: any) => {
+          setLoginStatus(value.data.data.message);
+          if (value.data.data.code === 86038) {
+            notify("二维码已过期,请重新获取", { type: "error" });
+            clearInterval(timer);
+          }
+          if (value.data.data.code === 0) {
+            clearInterval(timer);
+            notify("授权登录成功", { type: "success" });
+            setChecking(false);
+          }
+        });
     }, 3000);
     return () => {
       clearInterval(id);
@@ -115,7 +117,7 @@ async function login(
   dataProvider: any
 ): Promise<void> {
   dataProvider
-    .get("getQrBili", {})
+    .get("bilibili/getQrBili", {})
     .then((data: any) => {
       setImg(data.data.image);
       setKey(data.data.uniqueKey);
