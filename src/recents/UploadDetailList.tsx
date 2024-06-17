@@ -24,7 +24,8 @@ const UploadDetailListMobile = () => {
       actions={<PostListActions />}
       filters={recentFilters}
       exporter={false}
-      perPage={100}
+      perPage={30}
+      sort={{ field: "id", order: "DESC" }}
     >
       <Datagrid bulkActionButtons={false}>
         <TextField source="mergeTitle" label="上传名字" />
