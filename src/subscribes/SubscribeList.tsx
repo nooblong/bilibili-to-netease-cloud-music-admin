@@ -38,9 +38,10 @@ const Jump = () => {
     return null;
   }
   return (
-    <ButtonGroup>
-      <Button
-        label={"网易云"}
+    <>
+      跳转至
+      <a
+        href={""}
         onClick={(event) => {
           event.stopPropagation();
           window.open(
@@ -48,9 +49,12 @@ const Jump = () => {
             "_blank"
           );
         }}
-      ></Button>
-      <Button
-        label={"b站"}
+      >
+        网易云
+      </a>
+      /
+      <a
+        href={""}
         onClick={(event) => {
           event.stopPropagation();
           let url;
@@ -70,8 +74,10 @@ const Jump = () => {
           }
           window.open(url, "_blank");
         }}
-      ></Button>
-    </ButtonGroup>
+      >
+        b站
+      </a>
+    </>
   );
 };
 
@@ -82,7 +88,7 @@ const SubscribesDesktop = () => {
   const username = localStorage.getItem("user");
   return (
     <List
-      perPage={100}
+      perPage={10}
       exporter={false}
       filters={recentFilters}
       actions={<SubscribeListActions />}
