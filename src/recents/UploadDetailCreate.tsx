@@ -35,13 +35,30 @@ const RecentCreateToolbar = ({ videoInfo }: any) => {
             redirect("list", "uploadDetail", data.id);
           },
         }}
-        transform={(data) => ({
-          ...data,
-          voiceBeginSec: (data.endTime && data.startTime) ?? 0,
-          voiceEndSec: (data.startTime && data.endTime) ?? 0,
-          cid: videoInfo.cid,
-          bvid: videoInfo.bvid,
-        })}
+        transform={(data) => {
+          if (videoInfo.selectAll) {
+              let cid = "";
+              for (let i = 0; i < videoInfo.pages.length; i++) {
+                  cid += videoInfo.pages[i].cid;
+                  cid += ","
+              }
+              cid = cid.slice(0, -1)
+              return {
+                  ...data,
+                  voiceBeginSec: (data.endTime && data.startTime) ?? 0,
+                  voiceEndSec: (data.startTime && data.endTime) ?? 0,
+                  cid: cid,
+                  bvid: videoInfo.bvid,
+              };
+          }
+          return {
+            ...data,
+            voiceBeginSec: (data.endTime && data.startTime) ?? 0,
+            voiceEndSec: (data.startTime && data.endTime) ?? 0,
+            cid: videoInfo.cid,
+            bvid: videoInfo.bvid,
+          };
+        }}
       />
     </Toolbar>
   );
@@ -58,6 +75,7 @@ const UploadDetailCreate = () => {
     pages: [],
     cid: "",
     partName: "",
+    selectAll: false,
   });
   const redirect = useRedirect();
   const { data } = useGetOne(

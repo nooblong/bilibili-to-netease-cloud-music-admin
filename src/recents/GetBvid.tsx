@@ -1,6 +1,7 @@
 import {
   Card,
   CardContent,
+  Checkbox,
   FormControl,
   IconButton,
   MenuItem,
@@ -11,7 +12,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
-import { Loading, useDataProvider } from "react-admin";
+import { Button, Loading, useDataProvider } from "react-admin";
 import SearchIcon from "@mui/icons-material/Search";
 
 export default GetBvid;
@@ -69,7 +70,7 @@ function GetBvid({
   );
 
   return (
-    <Box width={"100%"}>
+    <Box width={"100%"} sx={{ boxShadow: 0 }}>
       <TextField
         variant="outlined"
         onChange={(event) => {
@@ -84,39 +85,39 @@ function GetBvid({
       <br />
       {loading && <Loading />}
       {videoInfo.title && (
-        <Card>
+        <>
           {videoInfo.image !== "" && (
-            <img width="100%" src={videoInfo.image} alt="" />
+            <img width="100px" src={videoInfo.image} alt="" />
           )}
-          <CardContent>
-            <Typography variant="body2" color="text.secondary">
-              {videoInfo.title}
-            </Typography>
-          </CardContent>
+          <Typography variant="body2" color="text.secondary">
+            {videoInfo.title}
+          </Typography>
+          <Checkbox checked={videoInfo.selectAll} onChange={() => {
+              setVideoInfo({
+                  ...videoInfo,
+                  selectAll: !videoInfo.selectAll
+              })
+          }}></Checkbox>全选分p
           {videoInfo.pages.length > 1 && (
-            <Box>
-              <FormControl fullWidth>
-                <InputLabel id="选择分p,默认1p">选择分p,默认1p</InputLabel>
-                <Select
-                  labelId="选择分p,默认1p"
-                  id="demo-simple-select"
-                  value={videoInfo.cid}
-                  label="选择分p,默认1p"
-                  onChange={handleChange}
-                  defaultValue={""}
-                >
-                  {videoInfo.pages.map((value: any) => {
-                    return (
-                      <MenuItem key={value.cid} value={value.cid}>
-                        {value.part}
-                      </MenuItem>
-                    );
-                  })}
-                </Select>
-              </FormControl>
-            </Box>
+            <FormControl fullWidth disabled={videoInfo.selectAll}>
+              <InputLabel id={"label"}>{videoInfo.cid == "" ? "选择分p" : null}</InputLabel>
+              <Select
+                variant={"outlined"}
+                labelId={"label"}
+                value={videoInfo.cid}
+                onChange={handleChange}
+              >
+                {videoInfo.pages.map((value: any) => {
+                  return (
+                    <MenuItem key={value.cid} value={value.cid}>
+                      {value.part}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+            </FormControl>
           )}
-        </Card>
+        </>
       )}
     </Box>
   );
