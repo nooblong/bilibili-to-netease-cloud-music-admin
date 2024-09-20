@@ -51,48 +51,22 @@ const Dashboard = () => {
       >
         <Grid container spacing={1} alignItems="center">
           <Grid item xs={6}>
-            <Item sx={{ border: 1 }}>你的网易云登录状态</Item>
+            <Item sx={{boxShadow: 0, border: 1}}>你的网易云登录状态: {data1 && data1.data.netCookieStatus + ""}</Item>
           </Grid>
           <Grid item xs={6}>
-            <Item sx={{ border: 1 }}>
-              {data1 && data1.data.netCookieStatus + ""}
-            </Item>
+            <Item sx={{boxShadow: 0, border: 1}}>你的b站登录状态: {data1 && data1.data.bilibiliCookieStatus + ""}</Item>
           </Grid>
           <Grid item xs={6}>
-            <Item sx={{ border: 1 }}>你的b站登录状态</Item>
+            <Item sx={{boxShadow: 0, border: 1}}>系统就绪: {data1.data.ready + ""}</Item>
           </Grid>
           <Grid item xs={6}>
-            <Item sx={{ border: 1 }}>
-              {data1 && data1.data.bilibiliCookieStatus + ""}
-            </Item>
+            <Item sx={{boxShadow: 0, border: 1}}>注册用户数: {data1 && data1.data.regNum + ""}</Item>
           </Grid>
           <Grid item xs={6}>
-            <Item sx={{ border: 1 }}>系统就绪</Item>
+            <Item sx={{boxShadow: 0, border: 1}}>游客访问数: {data1 && data1.data.annoVisitNum + ""}</Item>
           </Grid>
           <Grid item xs={6}>
-            <Item sx={{ border: 1 }}>{data1.data.ready + ""}</Item>
-          </Grid>
-          <Grid item xs={6}>
-            <Item sx={{ border: 1 }}>注册用户数</Item>
-          </Grid>
-          <Grid item xs={6}>
-            <Item sx={{ border: 1 }}>{data1 && data1.data.regNum + ""}</Item>
-          </Grid>
-          <Grid item xs={6}>
-            <Item sx={{ border: 1 }}>游客访问数</Item>
-          </Grid>
-          <Grid item xs={6}>
-            <Item sx={{ border: 1 }}>
-              {data1 && data1.data.annoVisitNum + ""}
-            </Item>
-          </Grid>
-          <Grid item xs={6}>
-            <Item sx={{ border: 1 }}>用户访问数</Item>
-          </Grid>
-          <Grid item xs={6}>
-            <Item sx={{ border: 1 }}>
-              {data1 && data1.data.userVisitNum + ""}
-            </Item>
+            <Item sx={{boxShadow: 0, border: 1}}>用户访问数: {data1 && data1.data.userVisitNum + ""}</Item>
           </Grid>
         </Grid>
       </CardContent>
@@ -108,7 +82,7 @@ const Dashboard = () => {
     }
 
     return (
-      <CardContent>
+      <CardContent sx={{border: 1, margin: "16px", "border-radius": "4px"}}>
         <Typography>当前队列长度: {data2.data.total}</Typography>
         <List dense={true} sx={{ maxHeight: "400px", overflowY: "auto" }}>
           {data2.data.records.map((i: any) => (
@@ -126,8 +100,6 @@ const Dashboard = () => {
       <SysInfo />
       <QueueInfo />
       <CardContent>
-        <Typography>管理: </Typography>
-        <br />
         <AddBilibiliCookieDialog />
         <Button
           sx={{ width: "100%", marginTop: "10px" }}

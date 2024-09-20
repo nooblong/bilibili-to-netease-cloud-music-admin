@@ -1,4 +1,3 @@
-// Authenticated by default
 import { AuthProvider } from "react-admin";
 
 const Auth: AuthProvider = {
