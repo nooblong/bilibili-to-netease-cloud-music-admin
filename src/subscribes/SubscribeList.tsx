@@ -52,11 +52,11 @@ const SubscribeListActions = () => (
   </TopToolbar>
 );
 
-const rowClick = (id: Identifier, resource: string) => {
-  console.log(resource);
-  // https://y.music.163.com/m/program?id=2534086095
-  return "show";
-};
+    const rowClick = (id: Identifier, resource: string) => {
+      console.log(resource);
+      // https://y.music.163.com/m/program?id=2534086095
+      return "show";
+    };
 
 const recentFilters = [
   // <SearchInput source="remark" alwaysOn />,

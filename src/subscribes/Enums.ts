@@ -48,10 +48,10 @@ export const SubscribeTypeEnum = [
     id: "FAVORITE",
     name: "收藏夹",
   },
-  {
-    id: "PART",
-    name: "单个视频分P",
-  },
+  // {
+  //   id: "PART",
+  //   name: "单个视频分P",
+  // },
 ];
 
 export const AuditStatusEnum = [

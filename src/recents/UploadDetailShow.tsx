@@ -6,7 +6,6 @@ import {
   SaveButton,
   SelectInput,
   SimpleForm,
-  TextInput,
   useDataProvider,
   useGetOne,
   useNotify,
@@ -108,14 +107,6 @@ const UploadDetailShow = () => {
             validate={required("Required field")}
             variant="outlined"
           ></SelectInput>
-          上传id
-          <NumberInput
-            source={"voiceDetailId"}
-            disabled
-            variant={"outlined"}
-            defaultValue={Number(voiceDetailId)}
-            value={Number(voiceDetailId)}
-          ></NumberInput>
           <SaveButton
             label="提交"
             type="button"

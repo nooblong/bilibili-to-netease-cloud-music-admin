@@ -17,7 +17,6 @@ import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import Dashboard from "./dashboard/Dashboard";
-import RecentEdit from "./recents/UploadDetailEdit";
 
 const container = document.getElementById("root");
 const root = createRoot(container!); // createRoot(container!) if you use TypeScript
@@ -36,7 +35,6 @@ root.render(
         list={UploadDetail}
         create={UploadDetailCreate}
         show={UploadDetailShow}
-        edit={RecentEdit}
         icon={PlaylistAddIcon}
         options={{ label: "单曲上传" }}
       />
