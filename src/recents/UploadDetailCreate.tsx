@@ -36,28 +36,29 @@ const RecentCreateToolbar = ({ videoInfo }: any) => {
           },
         }}
         transform={(data) => {
+          let array: any = [];
           if (videoInfo.selectAll) {
-              let cid = "";
-              for (let i = 0; i < videoInfo.pages.length; i++) {
-                  cid += videoInfo.pages[i].cid;
-                  cid += ","
-              }
-              cid = cid.slice(0, -1)
-              return {
+            for (let i = 0; i < videoInfo.pages.length; i++) {
+                array.push({
+                    ...data,
+                    voiceBeginSec: (data.endTime && data.startTime) ?? 0,
+                    voiceEndSec: (data.startTime && data.endTime) ?? 0,
+                    cid: videoInfo.pages[i].cid,
+                    bvid: videoInfo.bvid,
+                    // todo 暂时定customUploadName + partName
+                    customUploadName: data.customUploadName + videoInfo.pages[i].part
+                });
+            }
+          } else {
+              array.push({
                   ...data,
                   voiceBeginSec: (data.endTime && data.startTime) ?? 0,
                   voiceEndSec: (data.startTime && data.endTime) ?? 0,
-                  cid: cid,
+                  cid: videoInfo.cid,
                   bvid: videoInfo.bvid,
-              };
+              });
           }
-          return {
-            ...data,
-            voiceBeginSec: (data.endTime && data.startTime) ?? 0,
-            voiceEndSec: (data.startTime && data.endTime) ?? 0,
-            cid: videoInfo.cid,
-            bvid: videoInfo.bvid,
-          };
+          return array;
         }}
       />
     </Toolbar>
@@ -120,7 +121,7 @@ const UploadDetailCreate = () => {
           source="customUploadName"
           multiline
           fullWidth
-          label="上传名字"
+          label="上传标题, 多p且全选时为[此文字+分p标题]"
           validate={required("Required field")}
         />
         <TextInput

@@ -210,7 +210,7 @@ const SubscribeEdit = (props: any) => {
             />
           </SimpleFormIterator>
         </ArrayInput>
-        <BooleanInput source="enable" label="启用" disabled fullWidth />
+        <BooleanInput source="enable" label="启用" fullWidth />
       </>
     );
   };
@@ -232,6 +232,7 @@ const SubscribeEdit = (props: any) => {
                   crack: data.crack ? 1 : 0,
                   useVideoCover: data.useVideoCover ? 1 : 0,
                   checkPart: data.checkPart ? 1 : 0,
+                  enable: data.enable ? 1 : 0,
                 })}
               />
               <DeleteButton resource={resource} />
