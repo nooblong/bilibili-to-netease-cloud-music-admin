@@ -54,6 +54,17 @@ export const SubscribeTypeEnum = [
   // },
 ];
 
+export const StatusEnum = [
+  {
+    id: "1",
+    name: "启用",
+  },
+  {
+    id: "0",
+    name: "禁用",
+  },
+];
+
 export const AuditStatusEnum = [
   /*
   // control by app
