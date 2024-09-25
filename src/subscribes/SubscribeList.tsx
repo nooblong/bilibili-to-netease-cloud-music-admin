@@ -44,6 +44,7 @@ const Jump = () => {
         href={""}
         onClick={(event) => {
           event.stopPropagation();
+          event.preventDefault();
           window.open(
             `https://music.163.com/#/djradio?id=${record.voiceListId}`,
             "_blank"
@@ -57,6 +58,7 @@ const Jump = () => {
         href={""}
         onClick={(event) => {
           event.stopPropagation();
+          event.preventDefault();
           let url;
           switch (record.type) {
             case "UP":

@@ -1,4 +1,4 @@
-import { AuthProvider } from "react-admin";
+import { AuthProvider, fetchUtils } from "react-admin";
 
 const Auth: AuthProvider = {
   login: ({ username, password }: any) => {
@@ -30,13 +30,7 @@ const Auth: AuthProvider = {
       });
   },
   logout: () => {
-    localStorage.setItem("not_authenticated", "true");
-    localStorage.removeItem("role");
-    localStorage.removeItem("login");
-    localStorage.removeItem("user");
-    localStorage.removeItem("avatar");
-    localStorage.removeItem("netmusic");
-    localStorage.removeItem("token");
+    doLogout();
     return Promise.resolve();
   },
   checkError: ({ status }: any) => {
@@ -45,10 +39,24 @@ const Auth: AuthProvider = {
       : Promise.resolve();
   },
   checkAuth: () => {
-    // return localStorage.getItem("not_authenticated")
-    //   ? Promise.reject()
-    //   : Promise.resolve();
-    return Promise.resolve();
+    const token = localStorage.getItem("token");
+    let options: any = {};
+    options.headers = new Headers({ Accept: "application/json" });
+    options.headers.set("Access-Token", `${token}`);
+    return fetchUtils
+      .fetchJson("/api/isAuthToken", options)
+      .then(({ json }) => {
+        if (json.code < 0) {
+          doLogout();
+          return Promise.reject({ message: "登录过期" });
+        } else {
+          return Promise.resolve();
+        }
+      })
+      .catch(() => {
+        doLogout();
+        Promise.reject({ message: "登录过期" });
+      });
   },
   getPermissions: () => {
     const role = localStorage.getItem("role");
@@ -65,5 +73,15 @@ const Auth: AuthProvider = {
     });
   },
 };
+
+function doLogout(): void {
+  localStorage.setItem("not_authenticated", "true");
+  localStorage.removeItem("role");
+  localStorage.removeItem("login");
+  localStorage.removeItem("user");
+  localStorage.removeItem("avatar");
+  localStorage.removeItem("netmusic");
+  // localStorage.removeItem("token");
+}
 
 export default Auth;
