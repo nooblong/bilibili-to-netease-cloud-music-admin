@@ -46,7 +46,7 @@ const RecentCreateToolbar = ({ videoInfo }: any) => {
                 cid: videoInfo.selected[i].cid,
                 bvid: videoInfo.bvid,
                 customUploadName:
-                  data.customUploadName + videoInfo.selected[i].part + data.customUploadName2,
+                  data.customUploadName + videoInfo.selected[i].part.replace(/^\d+\s*/, "") + data.customUploadName2,
               });
             }
           } else {
