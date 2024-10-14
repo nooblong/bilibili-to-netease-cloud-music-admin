@@ -39,24 +39,24 @@ const RecentCreateToolbar = ({ videoInfo }: any) => {
           let array: any = [];
           if (videoInfo.selectAll) {
             for (let i = 0; i < videoInfo.selected.length; i++) {
-                array.push({
-                    ...data,
-                    voiceBeginSec: (data.endTime && data.startTime) ?? 0,
-                    voiceEndSec: (data.startTime && data.endTime) ?? 0,
-                    cid: videoInfo.selected[i].cid,
-                    bvid: videoInfo.bvid,
-                    // todo 暂时定customUploadName + partName
-                    customUploadName: data.customUploadName + videoInfo.selected[i].part
-                });
+              array.push({
+                ...data,
+                voiceBeginSec: (data.endTime && data.startTime) ?? 0,
+                voiceEndSec: (data.startTime && data.endTime) ?? 0,
+                cid: videoInfo.selected[i].cid,
+                bvid: videoInfo.bvid,
+                customUploadName:
+                  data.customUploadName + videoInfo.selected[i].part + data.customUploadName2,
+              });
             }
           } else {
-              array.push({
-                  ...data,
-                  voiceBeginSec: (data.endTime && data.startTime) ?? 0,
-                  voiceEndSec: (data.startTime && data.endTime) ?? 0,
-                  cid: videoInfo.cid,
-                  bvid: videoInfo.bvid,
-              });
+            array.push({
+              ...data,
+              voiceBeginSec: (data.endTime && data.startTime) ?? 0,
+              voiceEndSec: (data.startTime && data.endTime) ?? 0,
+              cid: videoInfo.cid,
+              bvid: videoInfo.bvid,
+            });
           }
           return array;
         }}
@@ -77,7 +77,7 @@ const UploadDetailCreate = () => {
     cid: "",
     partName: "",
     selectAll: false,
-    selected: []
+    selected: [],
   });
   const redirect = useRedirect();
   const { data } = useGetOne(
@@ -122,9 +122,19 @@ const UploadDetailCreate = () => {
           source="customUploadName"
           multiline
           fullWidth
-          label="上传标题, 多p且全选时为[此文字+分p标题]"
+          label={`上传标题${videoInfo.selectAll ? "(前)" : ""}`}
           validate={required("Required field")}
         />
+        {videoInfo.selectAll && (
+          <TextInput
+            variant="outlined"
+            source="customUploadName2"
+            multiline
+            fullWidth
+            label="上传标题(后), 标题：前+分p标题+后"
+            validate={required("Required field")}
+          />
+        )}
         <TextInput
           variant="outlined"
           source="voiceOffset"
