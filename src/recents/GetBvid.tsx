@@ -95,9 +95,26 @@ function GetBvid({
           <Checkbox checked={videoInfo.selectAll} onChange={() => {
               setVideoInfo({
                   ...videoInfo,
-                  selectAll: !videoInfo.selectAll
+                  selectAll: !videoInfo.selectAll,
+                  selected: videoInfo.pages
               })
           }}></Checkbox>全选分p
+            {videoInfo.selectAll && <div>点击删除</div>}
+            {videoInfo.selectAll && videoInfo.selected.map((i, index) => {
+                // console.log(videoInfo.selected)
+                    return <button key={i.cid} onClick={(event) => {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        console.log(videoInfo.selected)
+                        setVideoInfo({
+                            ...videoInfo,
+                            selected: videoInfo.selected.filter((_, j) => {
+                                return j != index
+                            })
+                        })
+                    }}>{i.part}</button>;
+                })
+            }
           {videoInfo.pages.length > 1 && (
             <FormControl fullWidth disabled={videoInfo.selectAll}>
               <InputLabel id={"label"}>{videoInfo.cid == "" ? "选择分p" : null}</InputLabel>

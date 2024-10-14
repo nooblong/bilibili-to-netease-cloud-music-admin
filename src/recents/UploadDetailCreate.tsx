@@ -38,15 +38,15 @@ const RecentCreateToolbar = ({ videoInfo }: any) => {
         transform={(data) => {
           let array: any = [];
           if (videoInfo.selectAll) {
-            for (let i = 0; i < videoInfo.pages.length; i++) {
+            for (let i = 0; i < videoInfo.selected.length; i++) {
                 array.push({
                     ...data,
                     voiceBeginSec: (data.endTime && data.startTime) ?? 0,
                     voiceEndSec: (data.startTime && data.endTime) ?? 0,
-                    cid: videoInfo.pages[i].cid,
+                    cid: videoInfo.selected[i].cid,
                     bvid: videoInfo.bvid,
                     // todo 暂时定customUploadName + partName
-                    customUploadName: data.customUploadName + videoInfo.pages[i].part
+                    customUploadName: data.customUploadName + videoInfo.selected[i].part
                 });
             }
           } else {
@@ -77,6 +77,7 @@ const UploadDetailCreate = () => {
     cid: "",
     partName: "",
     selectAll: false,
+    selected: []
   });
   const redirect = useRedirect();
   const { data } = useGetOne(
