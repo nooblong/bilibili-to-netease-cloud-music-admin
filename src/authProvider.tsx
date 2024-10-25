@@ -39,28 +39,30 @@ const Auth: AuthProvider = {
       : Promise.resolve();
   },
   checkAuth: () => {
-    const token = localStorage.getItem("token");
-    let options: any = {};
-    options.headers = new Headers({ Accept: "application/json" });
-    options.headers.set("Access-Token", `${token}`);
-    return fetchUtils
-      .fetchJson("/api/isAuthToken", options)
-      .then(({ json }) => {
-        if (json.code < 0) {
-          doLogout();
-          return Promise.reject({ message: "登录过期" });
-        } else {
-          return Promise.resolve();
-        }
-      })
-      .catch(() => {
-        doLogout();
-        Promise.reject({ message: "登录过期" });
-      });
+    // const token = localStorage.getItem("token");
+    // let options: any = {};
+    // options.headers = new Headers({ Accept: "application/json" });
+    // options.headers.set("Access-Token", `${token}`);
+    // return fetchUtils
+    //   .fetchJson("/api/isAuthToken", options)
+    //   .then(({ json }) => {
+    //     if (json.code < 0) {
+    //       doLogout();
+    //       return Promise.reject({ message: "登录过期" });
+    //     } else {
+    //       return Promise.resolve();
+    //     }
+    //   })
+    //   .catch(() => {
+    //     doLogout();
+    //     Promise.reject({ message: "登录过期" });
+    //   });
+    return Promise.resolve();
   },
   getPermissions: () => {
-    const role = localStorage.getItem("role");
-    return Promise.resolve(role);
+    // const role = localStorage.getItem("role");
+    // return Promise.resolve(role);
+    return Promise.resolve();
   },
   getIdentity: () => {
     let item = localStorage.getItem("login");
@@ -81,7 +83,7 @@ function doLogout(): void {
   localStorage.removeItem("user");
   localStorage.removeItem("avatar");
   localStorage.removeItem("netmusic");
-  // localStorage.removeItem("token");
+  localStorage.removeItem("token");
 }
 
 export default Auth;

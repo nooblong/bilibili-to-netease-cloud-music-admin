@@ -46,14 +46,14 @@ const UploadDetailShow = () => {
     }
   );
 
-  const { data } = useGetOne(
-    "voiceList",
-    { id: 1 },
-    {
-      retry: false,
-      staleTime: Infinity,
-    }
-  );
+  // const { data } = useGetOne(
+  //   "voiceList",
+  //   { id: 1 },
+  //   {
+  //     retry: false,
+  //     staleTime: Infinity,
+  //   }
+  // );
 
   const buttons = [
     <Button
@@ -68,7 +68,21 @@ const UploadDetailShow = () => {
         );
       }}
     >
-      跳转到网易云
+      跳转到声音
+    </Button>,
+    <Button
+        key="one"
+        disabled={!success}
+        onClick={() => {
+          window.open(
+              `https://music.163.com/#/djradio?id=${
+                  success ? uploadDetail.data.voiceListId : -1
+              }`,
+              "_blank"
+          );
+        }}
+    >
+      跳转到播客
     </Button>,
     <Button
       key="two"
@@ -92,37 +106,37 @@ const UploadDetailShow = () => {
 
   return (
     <>
-      <Create resource={"addToMy"}>
-        <SimpleForm toolbar={<></>}>
-          上传到自己的播客
-          <SelectInput
-            source="voiceListId"
-            label="选择播客"
-            fullWidth
-            defaultValue={""}
-            choices={
-              data && data.voiceList ? toChoice(data.voiceList.list) : []
-            }
-            validate={required("Required field")}
-            variant="outlined"
-          ></SelectInput>
-          <SaveButton
-            label="提交"
-            type="button"
-            variant="text"
-            alwaysEnable
-            mutationOptions={{
-              onSuccess: (data) => {
-                notify(data.data.message, {
-                  type: "info",
-                  messageArgs: { smart_count: 1 },
-                });
-                redirect("list", "uploadDetail", data.id);
-              },
-            }}
-          />
-        </SimpleForm>
-      </Create>
+      {/*<Create resource={"addToMy"}>*/}
+      {/*  <SimpleForm toolbar={<></>}>*/}
+      {/*    上传到自己的播客*/}
+      {/*    <SelectInput*/}
+      {/*      source="voiceListId"*/}
+      {/*      label="选择播客"*/}
+      {/*      fullWidth*/}
+      {/*      defaultValue={""}*/}
+      {/*      choices={*/}
+      {/*        data && data.voiceList ? toChoice(data.voiceList.list) : []*/}
+      {/*      }*/}
+      {/*      validate={required("Required field")}*/}
+      {/*      variant="outlined"*/}
+      {/*    ></SelectInput>*/}
+      {/*    <SaveButton*/}
+      {/*      label="提交"*/}
+      {/*      type="button"*/}
+      {/*      variant="text"*/}
+      {/*      alwaysEnable*/}
+      {/*      mutationOptions={{*/}
+      {/*        onSuccess: (data) => {*/}
+      {/*          notify(data.data.message, {*/}
+      {/*            type: "info",*/}
+      {/*            messageArgs: { smart_count: 1 },*/}
+      {/*          });*/}
+      {/*          redirect("list", "uploadDetail", data.id);*/}
+      {/*        },*/}
+      {/*      }}*/}
+      {/*    />*/}
+      {/*  </SimpleForm>*/}
+      {/*</Create>*/}
       <Card sx={{ marginTop: 1, marginBottom: 1 }}>
         <ButtonGroup size="large" fullWidth aria-label="Large button group">
           {buttons}
