@@ -50,6 +50,10 @@ const Dashboard = () => {
         }}
       >
         <Grid container spacing={1} alignItems="center">
+          <Grid item xs={12}>
+            正确的使用方式：<br/> up主：订阅合集或人，b站更新后会自动同步网易云 <br/> 观众：订阅b站公开的收藏夹，看到好看的视频收藏后能在网易云溜
+            <br/>
+          </Grid>
           <Grid item xs={6}>
             <Item sx={{boxShadow: 0, border: 1}}>你的网易云登录状态: {data1 && data1.data.netCookieStatus + ""}</Item>
           </Grid>
@@ -57,7 +61,7 @@ const Dashboard = () => {
             <Item sx={{boxShadow: 0, border: 1}}>你的b站登录状态: {data1 && data1.data.bilibiliCookieStatus + ""}</Item>
           </Grid>
           <Grid item xs={6}>
-            <Item sx={{boxShadow: 0, border: 1}}>系统就绪: {data1.data.ready + ""}</Item>
+            <Item sx={{boxShadow: 0, border: 1}}>至少有一个人提供大会员: {data1.data.ready + ""}</Item>
           </Grid>
           <Grid item xs={6}>
             <Item sx={{boxShadow: 0, border: 1}}>注册用户数: {data1 && data1.data.regNum + ""}</Item>
