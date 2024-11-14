@@ -1,6 +1,4 @@
 import {
-  Card,
-  CardContent,
   Checkbox,
   FormControl,
   IconButton,
@@ -12,7 +10,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
-import { Button, Loading, useDataProvider } from "react-admin";
+import { Loading, useDataProvider } from "react-admin";
 import SearchIcon from "@mui/icons-material/Search";
 
 export default GetBvid;
@@ -44,8 +42,16 @@ function GetBvid({
     <IconButton
       onClick={() => {
         setLoading(true);
+        let search: string = bvid;
+        if (bvid.startsWith("[") || bvid.startsWith("【")) {
+            const match = bvid.match(/https?:\/\/[^\s]+/);
+            if (match) {
+                setBvid(match[0]);
+                search = match[0];
+            }
+        }
         dataProvider
-          .get("bilibili/getVideoInfo", { bvid: bvid })
+          .get("bilibili/getVideoInfo", { bvid: search })
           .then((data: any) => {
             data = data.data;
             const obj = {
@@ -79,7 +85,7 @@ function GetBvid({
         multiline
         fullWidth
         defaultValue={videoInfo.bvid}
-        label="输入bvid或url后点击解析"
+        label="输入bvid或长、短链接(自动提取)后点击右侧搜索"
         InputProps={{ endAdornment: <SearchButton /> }}
       />
       <br />
@@ -100,7 +106,7 @@ function GetBvid({
               })
           }}></Checkbox>全选分p
             {videoInfo.selectAll && <div>点击删除</div>}
-            {videoInfo.selectAll && videoInfo.selected.map((i, index) => {
+            {videoInfo.selectAll && videoInfo.selected.map((i: any, index: number) => {
                 // console.log(videoInfo.selected)
                     return <button key={i.cid} onClick={(event) => {
                         event.preventDefault();
@@ -108,7 +114,7 @@ function GetBvid({
                         console.log(videoInfo.selected)
                         setVideoInfo({
                             ...videoInfo,
-                            selected: videoInfo.selected.filter((_, j) => {
+                            selected: videoInfo.selected.filter((_:any, j:any) => {
                                 return j != index
                             })
                         })

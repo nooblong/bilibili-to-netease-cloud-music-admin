@@ -52,7 +52,7 @@ const GetCollection = ({ setTargetId }: { setTargetId: any }) => {
         onChange={(event) => {
           setUrl(event.currentTarget.value);
         }}
-        label="请输入一个包含于合集的视频的bvid或链接"
+        label="输入一个包含于合集的视频的bvid或链接后点击右侧搜索"
         defaultValue={url}
         InputProps={{ endAdornment: <SearchButton /> }}
       />

@@ -36,7 +36,7 @@ const GetFavorite = ({ setTargetId }: { setTargetId: any }) => {
         }}
         variant="outlined"
         defaultValue={uid}
-        label="请输入用户uid"
+        label="输入用户uid后点击搜索按钮"
         fullWidth={true}
         InputProps={{ endAdornment: <SearchButton /> }}
       />

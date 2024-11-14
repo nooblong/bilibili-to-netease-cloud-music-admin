@@ -73,7 +73,7 @@ const GetPart = ({ setTargetId }: { setTargetId: any }) => {
     <>
       <TextField
         variant="outlined"
-        label="输入bvid或url"
+        label="输入bvid或长、短链接(自动提取)后点击右侧搜索"
         onChange={(event) => {
           setVideoInfo({
             ...videoInfo,

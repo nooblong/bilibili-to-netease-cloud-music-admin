@@ -9,7 +9,7 @@ const GetUp = ({ setTargetId }: any): ReactElement => {
     "https://www.bilibili.com/video/BV1yH4y1R78K/"
   );
   const dataProvider = useDataProvider();
-  const [collectionInfo, setCollectionInfo] = useState<any>();
+  // const [collectionInfo, setCollectionInfo] = useState<any>();
   const notify = useNotify();
 
   const SearchButton = () => (
@@ -24,22 +24,22 @@ const GetUp = ({ setTargetId }: any): ReactElement => {
           .then(({ data: videoData }: any) => {
             console.log(videoData);
             if (videoData === null) {
-              notify("找不到合集");
+              notify("找不到视频");
             }
-            dataProvider
-              .get("bilibili/getUserInfo", {
-                uid: videoData.uid,
-              })
-              .then(({ data }: any) => {
-                if (data.code !== -1) {
-                  setCollectionInfo(data.data);
+            // dataProvider
+            //   .get("bilibili/getUserInfo", {
+            //     uid: videoData.uid,
+            //   })
+              // .then(({ data }: any) => {
+              //   if (data.code !== -1) {
+              //     setCollectionInfo(data.data);
                   setTargetId(videoData.uid);
                   notify("已更新目标id");
-                } else {
-                  notify("b站抽风接口，再点一下-.-'");
-                }
+                // } else {
+                //   notify("b站抽风接口，再点一下-.-'");
+                // }
               });
-          });
+          // });
       }}
     >
       <SearchIcon />
@@ -54,15 +54,15 @@ const GetUp = ({ setTargetId }: any): ReactElement => {
           setUrl(event.currentTarget.value);
         }}
         defaultValue={url}
-        label="请输入一个该用户的视频的bvid或链接"
+        label="输入一个该用户的视频的bvid或链接后点击右侧搜索"
         fullWidth={true}
         InputProps={{ endAdornment: <SearchButton /> }}
       />
-      <img
-        src={collectionInfo == null ? "" : parseImgUrl(collectionInfo.face)}
-        alt=""
-      />
-      {collectionInfo == null ? "" : collectionInfo.name}
+      {/*<img*/}
+      {/*  src={collectionInfo == null ? "" : parseImgUrl(collectionInfo.face)}*/}
+      {/*  alt=""*/}
+      {/*/>*/}
+      {/*{collectionInfo == null ? "" : collectionInfo.name}*/}
     </>
   );
 };

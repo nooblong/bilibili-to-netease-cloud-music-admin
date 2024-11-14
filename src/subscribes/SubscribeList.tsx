@@ -90,7 +90,7 @@ const SubscribesDesktop = () => {
   const username = localStorage.getItem("user");
   return (
     <List
-      perPage={10}
+      perPage={50}
       exporter={false}
       filters={recentFilters}
       actions={<SubscribeListActions />}
