@@ -6,7 +6,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
 
 const GetFavorite = ({ setTargetId }: { setTargetId: any }) => {
-  const [uid, setUid] = useState("451618887");
+  const [uid, setUid] = useState("6906052");
   const [favList, setFavList] = useState<any[]>([]);
   const dataProvider = useDataProvider();
   const notify = useNotify();
