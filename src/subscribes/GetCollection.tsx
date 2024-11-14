@@ -45,6 +45,7 @@ const GetCollection = ({ setTargetId }: { setTargetId: any }) => {
 
   return (
     <>
+        订阅合集会正序和倒序都查找一遍是否存在新视频，放中间就gg
       <TextField
         fullWidth
         variant="outlined"
