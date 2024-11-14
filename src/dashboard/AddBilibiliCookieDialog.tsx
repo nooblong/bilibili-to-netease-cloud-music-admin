@@ -18,7 +18,7 @@ export default function AddBilibiliCookieDialog() {
   return (
     <React.Fragment>
       <Button variant="outlined" onClick={handleClickOpen} fullWidth>
-        提供一个大会员
+        提供一个大会员(可选)
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogContent>

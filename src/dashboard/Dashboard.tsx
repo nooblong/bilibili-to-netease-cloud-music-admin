@@ -51,7 +51,7 @@ const Dashboard = () => {
       >
         <Grid container spacing={1} alignItems="center">
           <Grid item xs={12}>
-            正确的使用方式：<br/> up主：订阅合集或人，b站更新后会自动同步网易云 <br/> 观众：订阅b站公开的收藏夹，看到好看的视频收藏后能在网易云溜
+            正确的打开方式：<br/> up主：订阅合集或人，b站更新后会自动同步网易云 <br/> 观众：订阅b站公开的收藏夹，看到好看的视频收藏后能在网易云溜
             <br/>
           </Grid>
           <Grid item xs={6}>
