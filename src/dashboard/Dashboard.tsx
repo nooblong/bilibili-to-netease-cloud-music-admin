@@ -54,6 +54,10 @@ const Dashboard = () => {
             正确的打开方式：<br/> up主：订阅合集或人，b站更新后会自动同步网易云 <br/> 观众：订阅b站公开的收藏夹，看到好看的视频收藏后能在网易云溜
             <br/>
           </Grid>
+          <Grid item xs={12}>
+            2024.11.14: 已修复订阅第一次的顺序问题
+            <br/>
+          </Grid>
           <Grid item xs={6}>
             <Item sx={{boxShadow: 0, border: 1}}>你的网易云登录状态: {data1 && data1.data.netCookieStatus + ""}</Item>
           </Grid>
