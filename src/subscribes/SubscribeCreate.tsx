@@ -27,6 +27,7 @@ import GetFavorite from "./GetFavorite";
 import GetPart from "./GetPart";
 import { toChoice } from "../recents/UploadDetailCreate";
 import moment from "moment";
+import GetOldCollection from "./GetOldCollection";
 
 const RecentCreateToolbar = () => {
   return (
@@ -232,6 +233,8 @@ function showAction(type: string, setTargetId: any): ReactElement {
       return <GetUp setTargetId={setTargetId} />;
     case "COLLECTION":
       return <GetCollection setTargetId={setTargetId} />;
+    case "OLDCOLLECTION":
+      return <GetOldCollection setTargetId={setTargetId} />;
     case "FAVORITE":
       return <GetFavorite setTargetId={setTargetId} />;
     case "PART":

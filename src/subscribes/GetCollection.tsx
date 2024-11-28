@@ -35,8 +35,12 @@ const GetCollection = ({ setTargetId }: { setTargetId: any }) => {
                 } else {
                   notify("b站抽风接口，再点一下-.-'");
                 }
-              });
-          });
+              }).catch((err: Error) => {
+                notify(err.message);
+            });
+          }).catch((err: Error) => {
+            notify(err.message);
+        });
       }}
     >
       <SearchIcon />
@@ -45,7 +49,14 @@ const GetCollection = ({ setTargetId }: { setTargetId: any }) => {
 
   return (
     <>
-        订阅合集会正序和倒序都查找一遍是否存在新视频，放中间就gg
+        <p>
+            订阅合集会正序和倒序都查找一遍是否存在新视频，放中间就gg
+            <br/>
+            什么是合集：电脑进入个人主页-》合集和列表-》
+            这是合集：<img  src={"collectionIcon.png"} alt={""}/>
+            <br/>
+            这是旧合集，前往旧合集订阅：<img src={"oldCollectionIcon.png"} alt={""}/>
+        </p>
       <TextField
         fullWidth
         variant="outlined"
@@ -58,11 +69,11 @@ const GetCollection = ({ setTargetId }: { setTargetId: any }) => {
         InputProps={{ endAdornment: <SearchButton /> }}
       />
       <img
-        width="100%"
+        width="100px"
         src={collectionInfo == null ? "" : parseImgUrl(collectionInfo.cover)}
         alt=""
       />
-      {collectionInfo == null ? "" : collectionInfo.title}
+      {collectionInfo == null ? "" : collectionInfo.title + " , 数量：" + collectionInfo.media_count}
     </>
   );
 };

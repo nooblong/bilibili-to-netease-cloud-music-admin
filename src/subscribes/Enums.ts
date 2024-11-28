@@ -45,6 +45,10 @@ export const SubscribeTypeEnum = [
     name: "合集",
   },
   {
+    id: "OLDCOLLECTION",
+    name: "旧合集(视频列表)",
+  },
+  {
     id: "FAVORITE",
     name: "收藏夹",
   },
