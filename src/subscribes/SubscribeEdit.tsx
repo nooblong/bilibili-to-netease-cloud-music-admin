@@ -141,8 +141,9 @@ const SubscribeEdit = (props: any) => {
         />
         <TextInput
           source="limitSec"
+          defaultValue={"99999"}
           validate={required("Required field")}
-          label="限制时长(秒)"
+          label="限制时长(秒)，不会上传超过这个的"
           variant="outlined"
           fullWidth
         />

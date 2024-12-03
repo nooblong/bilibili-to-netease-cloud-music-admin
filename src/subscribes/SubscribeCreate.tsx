@@ -144,7 +144,8 @@ const SubscribeCreate = () => {
           source="limitSec"
           validate={required("Required field")}
           variant="outlined"
-          label="限制时长(秒)"
+          defaultValue={"99999"}
+          label="限制时长(秒)，不会上传超过这个的"
           fullWidth
         />
         <p>
