@@ -57,7 +57,7 @@ const Dashboard = () => {
           <Grid item xs={12}>
             2024.11.14: 已修复订阅第一次的顺序问题，增加订阅合集正序反序搜索
             <br/>
-            2024.11.28: 增加对旧合集的支持
+            2024.11.28: 增加对旧合集的支持，新合集也可以用了
           </Grid>
           <Grid item xs={6}>
             <Item sx={{boxShadow: 0, border: 1}}>你的网易云登录状态: {data1 && data1.data.netCookieStatus + ""}</Item>

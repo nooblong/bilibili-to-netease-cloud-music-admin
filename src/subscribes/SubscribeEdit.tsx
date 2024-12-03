@@ -30,6 +30,7 @@ import GetPart from "./GetPart";
 import { toChoice } from "../recents/UploadDetailCreate";
 import moment from "moment/moment";
 import Typography from "@mui/material/Typography";
+import GetOldCollection from "./GetOldCollection";
 
 const SubscribeEdit = (props: any) => {
   const controllerProps = useEditController(props);
@@ -260,6 +261,8 @@ function showAction(type: string, setTargetId: any): ReactElement {
       return <GetFavorite setTargetId={setTargetId} />;
     case "PART":
       return <GetPart setTargetId={setTargetId} />;
+      case "OLDCOLLECTION":
+          return <GetOldCollection setTargetId={setTargetId} />;
     default:
       return <>未知类型</>;
   }
