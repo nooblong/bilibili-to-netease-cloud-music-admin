@@ -9,7 +9,7 @@ const GetUp = ({ setTargetId }: any): ReactElement => {
     "https://www.bilibili.com/video/BV1yH4y1R78K/"
   );
   const dataProvider = useDataProvider();
-  // const [collectionInfo, setCollectionInfo] = useState<any>();
+  const [collectionInfo, setCollectionInfo] = useState<any>();
   const notify = useNotify();
 
   const SearchButton = () => (
@@ -22,7 +22,6 @@ const GetUp = ({ setTargetId }: any): ReactElement => {
         dataProvider
           .get("bilibili/getVideoInfo", { bvid: url })
           .then(({ data: videoData }: any) => {
-            console.log(videoData);
             if (videoData === null) {
               notify("找不到视频");
             }
@@ -32,7 +31,7 @@ const GetUp = ({ setTargetId }: any): ReactElement => {
             //   })
               // .then(({ data }: any) => {
               //   if (data.code !== -1) {
-              //     setCollectionInfo(data.data);
+                  setCollectionInfo(videoData);
                   setTargetId(videoData.uid);
                   notify("已更新目标id");
                 // } else {
@@ -58,6 +57,7 @@ const GetUp = ({ setTargetId }: any): ReactElement => {
         fullWidth={true}
         InputProps={{ endAdornment: <SearchButton /> }}
       />
+      {collectionInfo != null ? "up主: " + collectionInfo.author : ""}
       {/*<img*/}
       {/*  src={collectionInfo == null ? "" : parseImgUrl(collectionInfo.face)}*/}
       {/*  alt=""*/}
