@@ -31,6 +31,7 @@ import { toChoice } from "../recents/UploadDetailCreate";
 import moment from "moment/moment";
 import Typography from "@mui/material/Typography";
 import GetOldCollection from "./GetOldCollection";
+import * as React from "react";
 
 const SubscribeEdit = (props: any) => {
   const controllerProps = useEditController(props);
@@ -184,8 +185,10 @@ const SubscribeEdit = (props: any) => {
           </>
         )}
         <p>
-          {"使用大括号加序号来获取下面的变量: 例如歌名是:「2000.01.01《阿肝AGAIN》」, 自定义上传名称填:「你好{1}世界」," +
-            "下面添加一个序号为1内容为「\\《(.*?)\\》」, 上传时会将名字变为: 「你好阿肝(AGAIN)世界」, 如果是多p视频, 则对「视频名-分p名」进行正则匹配"}
+            <img src={"regex.png"} alt={""}/>
+        </p>
+        <p>
+            {"如何自定义名称参考上图，若有分p则对【分p名-视频名】进行匹配，无则仅对视频名，上图结果为【泠鸢歌】《悠哉日常》（2024.12.12）"}
         </p>
         <TextInput
           source="regName"
