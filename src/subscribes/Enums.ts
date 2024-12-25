@@ -1,11 +1,11 @@
 export const VideoOrderEnum = [
   {
     id: "PUB_NEW_FIRST_THEN_OLD",
-    name: "先更新新发布的",
+    name: "先上传新发布的",
   },
   {
     id: "PUB_OLD_FIRST_THEN_NEW",
-    name: "先更新以前的",
+    name: "先上传以前的，务必设置开始时间，否则全部上传",
   },
 ];
 
