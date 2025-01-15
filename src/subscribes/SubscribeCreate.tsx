@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ReactElement, useEffect } from "react";
+import { ReactElement } from "react";
 import {
   ArrayInput,
   BooleanInput,
@@ -13,10 +13,9 @@ import {
   TextInput,
   Title,
   Toolbar,
-  useDataProvider,
   useGetIdentity,
   useGetOne,
-  useNotify,
+  
 } from "react-admin";
 import { useFormContext, useWatch } from "react-hook-form";
 import { SubscribeTypeEnum, VideoOrderEnum } from "./Enums";
@@ -54,16 +53,7 @@ const SubscribeCreate = () => {
     { id: 1 },
     { retry: false, staleTime: Infinity }
   );
-  const dataProvider = useDataProvider();
-  const notify = useNotify();
 
-  useEffect(() => {
-    dataProvider.get("uploadDetail/checkHasUploaded", {}).then((uploaded: any) => {
-      if (!uploaded.data) {
-        notify("需要先上传一遍单曲并且上线才可以订阅", { type: "error" });
-      }
-    });
-  }, [dataProvider, notify]);
   const MyForm = () => {
     const context = useFormContext();
     const watchType = useWatch({ name: "type" });
