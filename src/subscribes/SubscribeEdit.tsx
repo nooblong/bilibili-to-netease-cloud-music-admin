@@ -124,7 +124,7 @@ const SubscribeEdit = (props: any) => {
             variant="outlined"
             fullWidth
             label="开启超能力"
-            disabled={data1 && data1.fullName !== "admin"}
+            disabled={data1 && data1.fullName !== "admin2"}
           />
         )}
         <BooleanInput

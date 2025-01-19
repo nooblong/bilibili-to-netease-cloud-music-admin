@@ -164,7 +164,7 @@ const UploadDetailCreate = () => {
           fullWidth
         />
         <BooleanInput source="privacy" label="隐私声音?" variant="outlined" />
-        {localStorage.getItem("user") === "admin" && (
+        {localStorage.getItem("user") === "admin2" && (
           <BooleanInput source="crack" variant="outlined" label="开启超能力" />
         )}
       </>

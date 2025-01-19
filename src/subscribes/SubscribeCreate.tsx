@@ -115,7 +115,7 @@ const SubscribeCreate = () => {
           <BooleanInput
             source="crack"
             fullWidth
-            disabled={data1 && data1.fullName !== "admin"}
+            disabled={data1 && data1.fullName !== "admin2"}
             label="开启超能力"
           />
         )}
